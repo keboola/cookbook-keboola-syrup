@@ -1,0 +1,63 @@
+{
+  "sources": {
+    "keboola-syrup": {
+      "path": "."
+    },
+    "papertrail": {
+      "locked_version": "0.0.3",
+      "git": "git://github.com/librato/papertrail-cookbook.git",
+      "ref": "a62fa810a4485afb7494e32bc5e3e24acbda5a4c"
+    },
+    "aws": {
+      "locked_version": "2.1.1"
+    },
+    "apache2": {
+      "locked_version": "1.10.2"
+    },
+    "iptables": {
+      "locked_version": "0.13.2"
+    },
+    "logrotate": {
+      "locked_version": "1.5.0"
+    },
+    "pacman": {
+      "locked_version": "1.1.1"
+    },
+    "php": {
+      "locked_version": "1.4.6"
+    },
+    "build-essential": {
+      "locked_version": "1.4.2"
+    },
+    "xml": {
+      "locked_version": "1.2.0"
+    },
+    "mysql": {
+      "locked_version": "5.1.12"
+    },
+    "yum-epel": {
+      "locked_version": "0.3.6"
+    },
+    "yum": {
+      "locked_version": "3.2.0"
+    },
+    "windows": {
+      "locked_version": "1.30.2"
+    },
+    "chef_handler": {
+      "locked_version": "1.1.4"
+    },
+    "iis": {
+      "locked_version": "2.1.0"
+    },
+    "hostname": {
+      "locked_version": "0.2.0"
+    },
+    "hostsfile": {
+      "locked_version": "2.4.4"
+    },
+    "rsyslog": {
+      "locked_version": "1.9.0"
+    }
+  }
+}

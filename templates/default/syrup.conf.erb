@@ -1,0 +1,62 @@
+<VirtualHost *:80>
+    ServerName <%= @params[:server_name] %>
+    ServerAlias <% @params[:server_aliases].each do |a| %><%= a %> <% end %>
+
+    DocumentRoot /www/syrup-router/web
+
+    ErrorLog "|/usr/bin/logger -t 'apache_syrup-router-a-02_err' -p local1.info"
+    CustomLog "|/usr/bin/logger -t 'apache_syrup-router-a-02' -p local1.info" combined
+
+    php_admin_value upload_tmp_dir /tmp/syrup-router
+    php_value include_path .:/www/syrup-router/:/usr/share/php
+    php_admin_value error_log syslog
+    php_flag display_startup_errors off
+    php_flag log_errors on
+    php_flag display_errors off
+    php_value post_max_size 2048M
+    php_value upload_max_filesize  2048M
+
+    <Directory /www/syrup-router/web>
+        AllowOverride All
+    </Directory>
+
+#AWS ELB http > https on client side
+    <IfModule mod_rewrite.c>
+        RewriteEngine On
+        RewriteCond %{HTTP:X-Forwarded-Proto} !https
+        RewriteRule !/status\.php https://%{SERVER_NAME}%{REQUEST_URI} [L,R=301]
+    </IfModule>
+
+</VirtualHost>
+
+<VirtualHost *:443>
+    ServerName <%= @params[:server_name] %>
+    ServerAlias <% @params[:server_aliases].each do |a| %><%= a %> <% end %>
+
+    DocumentRoot /www/syrup-router/web
+
+    ErrorLog "|/usr/bin/logger -t 'apache_ssl_syrup-router-a-02_err' -p local1.info"
+    CustomLog "|/usr/bin/logger -t 'apache_ssl_syrup-router-a-02' -p local1.info" combined
+
+    php_admin_value upload_tmp_dir /tmp/syrup-router
+    php_value include_path .:/www/syrup-router/:/usr/share/php
+    php_admin_value error_log syslog
+    php_flag display_startup_errors off
+    php_flag log_errors on
+    php_flag display_errors off
+    php_value post_max_size 2048M
+    php_value upload_max_filesize  2048M
+
+    <Directory /www/syrup-router/web>
+        AllowOverride All
+    </Directory>
+
+SSLEngine on
+SSLProtocol all -SSLv2
+SSLCipherSuite ALL:!ADH:!EXPORT:!SSLv2:RC4+RSA:+HIGH:+MEDIUM:+LOW
+SSLCertificateFile <%= node[:apache][:dir] %>/ssl/x.keboola.com.crt
+SSLCertificateKeyFile <%= node[:apache][:dir] %>/ssl/x.keboola.com.key
+SSLCACertificateFile <%= node[:apache][:dir] %>/ssl/rapidssl.intermediate.ca
+SetEnvIf User-Agent ".*MSIE.*" nokeepalive ssl-unclean-shutdown downgrade-1.0 force-response-1.0
+
+</VirtualHost>
