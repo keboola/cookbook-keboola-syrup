@@ -50,7 +50,7 @@ execute "extract-certificates" do
   command "tar --strip 1 -C #{node['apache']['dir']}/ssl -xf  /tmp/ssl-keboola.com.tar.gz"
 end
 
-
+include_recipe "apache2"
 include_recipe "aws"
 include_recipe "hostname"
 include_recipe "keboola-syrup::logging"
