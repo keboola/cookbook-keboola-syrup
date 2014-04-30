@@ -163,7 +163,7 @@
                             }
                         },
                         "files": {
-                            "/tmp/node.json": {
+                            "/var/init/node.json": {
                                 "content": {
                                     "run_list": [ "recipe[keboola-syrup]"],
                                     "papertrail": {
@@ -185,7 +185,7 @@
                                 "owner": "root",
                                 "group": "wheel"
                             },
-                            "/tmp/solo.rb" : {
+                            "/var/init/solo.rb" : {
                                 "content" : { "Fn::Join" : ["\n", [
                                     "log_level :info",
                                     "log_location STDOUT",
@@ -195,8 +195,7 @@
                                 "owner" : "root",
                                 "group" : "wheel"
                             },
-
-                            "/tmp/bootstrap.sh": {
+                            "/var/init/bootstrap.sh": {
                                 "content": {
                                     "Fn::Join": ["\n", [
                                         "curl -s https://s3.amazonaws.com/keboola-configs/servers/devel_ssh_public_keys.txt > /home/ec2-user/.ssh/authorized_keys",
@@ -206,23 +205,17 @@
                                         "mkdir -p /etc/chef/",
                                         "mkdir -p /var/chef/cookbooks/keboola-syrup",
                                         "tar --strip 1 -C /var/chef/cookbooks/keboola-syrup -xf /tmp/cookbook-keboola-syrup-master.tar.gz",
-                                        "/opt/chef/embedded/bin/gem install berkshelf --version 3.1.1 --no-rdoc --no-ri",
-                                        "/opt/chef/embedded/bin/berks vendor /var/chef/berks-cookbooks/ --berksfile=/var/chef/cookbooks/keboola-syrup/Berksfile",
-                                        "umount /dev/xvdc"
+                                        "/opt/chef/embedded/bin/gem install berkshelf --version 2.0.16 --no-rdoc --no-ri",
+                                        "/opt/chef/embedded/bin/berks install --path /var/chef/berks-cookbooks/ --berksfile=/var/chef/cookbooks/keboola-syrup/Berksfile"
                                     ]]
                                 },
                                 "mode": "000644",
                                 "owner": "root",
                                 "group": "wheel"
                             },
-                            "/tmp/disk.sh": {
+                            "/var/init/storage.sh": {
                                 "content": {
                                     "Fn::Join": ["\n", [
-                                        "vgcreate /dev/xvdb /dev/xvdc",
-                                        "vgcreate bigdisk /dev/xvdb /dev/xvdc",
-                                        "lvcreate -i2 -I64 --size 30.5G -n big_volume bigdisk /dev/xvdb /dev/xvdc",
-                                        "mkfs.xfs -n size=64k /dev/bigdisk/big_volume",
-                                        "mount -o,rw,noexec,nodev,noatime,nodiratime,barrier=0 /dev/bigdisk/big_volume /media/ephemeral0/",
                                         "mkdir /media/ephemeral0/tmp",
                                         "chmod a+xw /media/ephemeral0/tmp/",
                                         "chmod +t /media/ephemeral0/tmp/",
@@ -288,11 +281,11 @@
                 "BlockDeviceMappings": [
                     {
                         "DeviceName":"/dev/sdb",
-                        "NoDevice": {}
+                        "VirtualName" : "ephemeral0"
                     },
                     {
                         "DeviceName": "/dev/sdc",
-                        "NoDevice": {}
+                        "VirtualName" : "ephemeral1"
                     }
                 ],
                 "UserData": {
@@ -315,13 +308,14 @@
                             "         --region ", {
                                 "Ref": "AWS::Region"
                             }, " || error_exit 'Failed to initialize Chef Solo'\n",
-                            "bash /tmp/bootstrap.sh > /tmp/bootstrap.log 2>&1\n",
-                            "sed 's/\"--no--\"/null/g' /tmp/node.json > /tmp/node-final.json\n",
-                            "chef-solo -j /tmp/node-final.json --config /tmp/solo.rb --node-name ",
+                            "bash /var/init/bootstrap.sh > /var/init/bootstrap.log 2>&1\n",
+                            "bash /var/init/storage.sh > /var/init/storage.log 2>&1\n",
+                            "sed 's/\"--no--\"/null/g' /var/init/node.json > /var/init/node-final.json\n",
+                            "chef-solo -j /var/init/node-final.json --config /var/init/solo.rb --node-name ",
                             {
                                 "Ref": "AWS::StackName"
                             },
-                            " > /tmp/chef_solo.log 2>&1\n",
+                            " > /var/init/chef_solo.log 2>&1\n",
                             "/opt/aws/bin/cfn-signal -e $? '", {
                                 "Ref": "WaitHandle"
                             }, "'\n"

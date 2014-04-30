@@ -51,19 +51,11 @@ execute "extract-certificates" do
 end
 
 
-include_recipe "apache2"
-include_recipe "apache2::mod_rewrite"
-include_recipe "apache2::mod_php5"
-include_recipe "apache2::mod_ssl"
 include_recipe "aws"
 include_recipe "hostname"
 include_recipe "keboola-syrup::logging"
 
 
-package "php55" do
-  action :install
-end
- 
 directory "/www" do
   owner "root"
   group "root"
