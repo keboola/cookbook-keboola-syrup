@@ -28,6 +28,11 @@ remote_file "/home/deploy/.ssh/authorized_keys" do
   source "https://s3.amazonaws.com/keboola-configs/servers/devel_ssh_public_keys.txt"
 end
 
+file "#{node['apache']['dir']}/conf.d/autoindex.conf" do
+  action :delete
+  backup false
+end
+
 include_recipe "aws"
 include_recipe "hostname"
 include_recipe "keboola-syrup::logging"
@@ -113,7 +118,6 @@ directory "/www/syrup-router" do
   action :create
 end
 
-=begin
 aws_s3_file "/tmp/syrup.latest.tar.gz" do
   bucket "syrup-releases"
   remote_path "syrup.latest.tar.gz"
@@ -124,7 +128,6 @@ end
 execute "extract-syrup" do
   command "tar --strip 1 -C /www/syrup-router -xf  /tmp/syrup.latest.tar.gz"
 end
-=end
 
 web_app "#{node['fqdn']}" do
   template "syrup.conf.erb"

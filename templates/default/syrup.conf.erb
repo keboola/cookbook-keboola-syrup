@@ -4,8 +4,8 @@
 
     DocumentRoot /www/syrup-router/web
 
-    ErrorLog "|/usr/bin/logger -t 'apache_syrup-router-a-02_err' -p local1.info"
-    CustomLog "|/usr/bin/logger -t 'apache_syrup-router-a-02' -p local1.info" combined
+    ErrorLog "|/usr/bin/logger -t 'apache_<%= @params[:server_name] %>_err' -p local1.info"
+    CustomLog "|/usr/bin/logger -t 'apache_<%= @params[:server_name] %>' -p local1.info" combined
 
     php_admin_value upload_tmp_dir /tmp/syrup-router
     php_value include_path .:/www/syrup-router/:/usr/share/php
@@ -15,6 +15,7 @@
     php_flag display_errors off
     php_value post_max_size 2048M
     php_value upload_max_filesize  2048M
+    php_value date.timezone "Europe/Prague"
 
     <Directory /www/syrup-router/web>
         AllowOverride All
@@ -35,8 +36,8 @@
 
     DocumentRoot /www/syrup-router/web
 
-    ErrorLog "|/usr/bin/logger -t 'apache_ssl_syrup-router-a-02_err' -p local1.info"
-    CustomLog "|/usr/bin/logger -t 'apache_ssl_syrup-router-a-02' -p local1.info" combined
+    ErrorLog "|/usr/bin/logger -t 'apache_ssl_<%= @params[:server_name] %>_err' -p local1.info"
+    CustomLog "|/usr/bin/logger -t 'apache_ssl_<%= @params[:server_name] %>' -p local1.info" combined
 
     php_admin_value upload_tmp_dir /tmp/syrup-router
     php_value include_path .:/www/syrup-router/:/usr/share/php
@@ -46,6 +47,7 @@
     php_flag display_errors off
     php_value post_max_size 2048M
     php_value upload_max_filesize  2048M
+    php_value date.timezone "Europe/Prague"
 
     <Directory /www/syrup-router/web>
         AllowOverride All
