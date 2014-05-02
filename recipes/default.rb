@@ -35,7 +35,7 @@ end
 
 include_recipe "aws"
 include_recipe "hostname"
-include_recipe "keboola-syrup::logging"
+include_recipe "keboola-logging"
 include_recipe "php"
 include_recipe "apache2"
 

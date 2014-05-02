@@ -3,10 +3,10 @@
     "keboola-syrup": {
       "path": "."
     },
-    "papertrail": {
-      "locked_version": "0.0.3",
-      "git": "git://github.com/librato/papertrail-cookbook.git",
-      "ref": "a62fa810a4485afb7494e32bc5e3e24acbda5a4c"
+    "keboola-logging": {
+      "locked_version": "0.1.0",
+      "git": "git://github.com/keboola/cookbook-keboola-logging.git",
+      "ref": "94d56284e155861e5ef3617cd55f8be1ed736969"
     },
     "aws": {
       "locked_version": "2.1.1"
@@ -56,8 +56,11 @@
     "hostsfile": {
       "locked_version": "2.4.4"
     },
+    "papertrail-rsyslog": {
+      "locked_version": "1.1.1"
+    },
     "rsyslog": {
-      "locked_version": "1.9.0"
+      "locked_version": "1.5.0"
     }
   }
 }

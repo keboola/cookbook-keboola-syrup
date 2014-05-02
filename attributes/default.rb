@@ -10,6 +10,4 @@ default['apache']['default_modules'] = %w[
 
 default['php']['packages'] = %w{ php55 php-pear } 
 
-
-default['papertrail']['remote_port'] = 49730
 default['set_fqdn'] = "*.keboola.com"

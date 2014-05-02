@@ -2,4 +2,4 @@ site :opscode
 
 metadata
 
-cookbook 'papertrail', git: 'git://github.com/librato/papertrail-cookbook.git'
+cookbook 'keboola-logging', git: 'git://github.com/keboola/cookbook-keboola-logging.git'
