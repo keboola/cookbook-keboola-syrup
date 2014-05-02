@@ -167,7 +167,7 @@
                                 "content": {
                                     "run_list": [ "recipe[keboola-syrup]"],
                                     "papertrail": {
-                                        "remote_port": {
+                                        "port": {
                                             "Ref": "PapertrailPort"
                                         }
                                     },
