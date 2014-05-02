@@ -1,6 +1,6 @@
 
 
-action = node['syrup']['cron_gooddata_writer_enabled'].to_i > 0 ? :create : :delete
+action = node['keboola-syrup']['cron_gooddata_writer_enabled'].to_i > 0 ? :create : :delete
 
 cron "gooddata_writer_queue" do
   user "apache"

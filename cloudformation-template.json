@@ -1,6 +1,6 @@
 {
     "AWSTemplateFormatVersion": "2010-09-09",
-    "Description": "AWS CloudFormation template installs and configures the Elasticsearch search engine with instance store.",
+    "Description": "Keboola syrup server",
     "Parameters": {
         "InstanceType": {
             "Description": "WebServer EC2 instance type",
@@ -17,7 +17,7 @@
             "Default": "sg-8f9c8aed"
         },
         "Zone": {
-            "Description": "Run instance in zone a or b",
+            "Description": "Run instance in zone A or B",
             "Type": "String",
             "Default": "A",
             "AllowedValues": ["A", "B"]
@@ -196,7 +196,7 @@
                                         }
 
                                     },
-                                    "syrup": {
+                                    "keboola-syrup": {
                                         "cron_gooddata_writer_enabled": {
                                             "Ref": "CronGoodDataWriterEnabled"
                                         }
