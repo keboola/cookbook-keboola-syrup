@@ -1,21 +1,15 @@
-syrup Cookbook
+Keboola Syrup Cookbook
 ==============
-TODO: Enter the cookbook description here.
 
-e.g.
-This cookbook makes your favorite breakfast sandwich.
+This cookbook installs Syrup with all it's dependencies.
+Cloudformation template is also provided with cookbook and performs these actions:
+ * Creates EC2 instance in VPC and provision it with Syrup using this cookbook. Node name is same as stack name
+ * Creates and associate DNS entry for instance `stack_name.keboola.com`
 
-Requirements
-------------
-TODO: List your cookbook requirements. Be sure to include any requirements this cookbook has on platforms, libraries, other cookbooks, packages, operating systems, etc.
 
-e.g.
-#### packages
-- `toaster` - syrup needs toaster to brown your bagel.
 
 Attributes
 ----------
-TODO: List your cookbook attributes here.
 
 e.g.
 #### syrup::default
@@ -27,42 +21,24 @@ e.g.
     <th>Default</th>
   </tr>
   <tr>
-    <td><tt>['syrup']['bacon']</tt></td>
+    <td><tt>['keboola-syrup']['cron_gooddata_writer_enabled'] </tt></td>
     <td>Boolean</td>
-    <td>whether to include bacon</td>
-    <td><tt>true</tt></td>
+    <td>whether to start gooddata writer cron tasks</td>
+    <td><tt>false</tt></td>
   </tr>
 </table>
 
 Usage
 -----
-#### syrup::default
-TODO: Write usage instructions for each cookbook.
+#### keboola-syrup::default
 
-e.g.
-Just include `syrup` in your node's `run_list`:
+Just include `keboola-syrup` in your node's `run_list`:
 
 ```json
 {
   "name":"my_node",
   "run_list": [
-    "recipe[syrup]"
+    "recipe[keboola-syrup]"
   ]
 }
 ```
-
-Contributing
-------------
-TODO: (optional) If this is a public cookbook, detail the process for contributing. If this is a private cookbook, remove this section.
-
-e.g.
-1. Fork the repository on Github
-2. Create a named feature branch (like `add_component_x`)
-3. Write your change
-4. Write tests for your change (if applicable)
-5. Run the tests, ensuring they all pass
-6. Submit a Pull Request using Github
-
-License and Authors
--------------------
-Authors: TODO: List authors
