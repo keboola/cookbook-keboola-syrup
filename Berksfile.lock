@@ -6,7 +6,7 @@
     "keboola-logging": {
       "locked_version": "0.1.0",
       "git": "git://github.com/keboola/cookbook-keboola-logging.git",
-      "ref": "94d56284e155861e5ef3617cd55f8be1ed736969"
+      "ref": "e046179885f6dc953094b27a715960cd329ad4fb"
     },
     "aws": {
       "locked_version": "2.1.1"
