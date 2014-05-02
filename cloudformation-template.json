@@ -10,16 +10,24 @@
             "ConstraintDescription": "must be a valid EC2 instance type."
         },
         "SecurityGroupVpcId": {
-            "Description": "Security group id in VPC (will be assigned to Elasticsearch EC2 instace)",
+            "Description": "Security group id in VPC",
             "Type": "String",
             "MinLength": 2,
             "MaxLength": 255,
             "Default": "sg-8f9c8aed"
         },
-        "SubnetId": {
+        "Zone": {
+            "Description": "Run instance in zone a or b",
             "Type": "String",
-            "Description": "SubnetId of an existing subnet in your Virtual Private Cloud (VPC)",
-            "Default": "subnet-22f1d956"
+            "Default": "A",
+            "AllowedValues": ["A", "B"]
+        },
+        "CronGoodDataWriterEnabled": {
+            "Description": "Start GoodData writer crons",
+            "Type": "Number",
+            "MinValue": 0,
+            "MaxValue": 1,
+            "Default": 0
         },
         "PapertrailPort": {
             "Description": "Papertrail port number",
@@ -97,6 +105,14 @@
         "AWSRegionArch2AMI": {
             "us-east-1": {
                 "PV64": "ami-fb8e9292"
+            }
+        },
+        "ZoneToSubnet": {
+            "A": {
+                "SubnetId": "subnet-22f1d956"
+            },
+            "B": {
+                "SubnetId": "subnet-5ac4b172"
             }
         }
     },
@@ -179,6 +195,11 @@
                                             "Fn::GetAtt": [ "HostKeys", "SecretAccessKey" ]
                                         }
 
+                                    },
+                                    "syrup": {
+                                        "cron_gooddata_writer_enabled": {
+                                            "Ref": "CronGoodDataWriterEnabled"
+                                        }
                                     }
                                 },
                                 "mode": "000644",
@@ -270,9 +291,7 @@
                         "AssociatePublicIpAddress": "true",
                         "DeviceIndex": "0",
                         "DeleteOnTermination": "true",
-                        "SubnetId": {
-                            "Ref": "SubnetId"
-                        }
+                        "SubnetId": { "Fn::FindInMap" : [ "ZoneToSubnet", { "Ref" : "Zone" }, "SubnetId" ]}
                     }
                 ],
                 "KeyName": {
