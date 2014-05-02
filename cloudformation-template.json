@@ -219,7 +219,6 @@
                             "/var/init/bootstrap.sh": {
                                 "content": {
                                     "Fn::Join": ["\n", [
-                                        "curl -s https://s3.amazonaws.com/keboola-configs/servers/devel_ssh_public_keys.txt > /home/ec2-user/.ssh/authorized_keys",
                                         "curl -# -L -k -o /tmp/cookbook-keboola-syrup-master.tar.gz https://github.com/keboola/cookbook-keboola-syrup/archive/master.tar.gz",
                                         "gem install json --no-ri --no-rdoc",
                                         "curl -# -L http://www.opscode.com/chef/install.sh | bash -s --",
