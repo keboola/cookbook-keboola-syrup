@@ -136,3 +136,5 @@ web_app "#{node['fqdn']}" do
   enable true
 end
 
+include_recipe "keboola-syrup::gooddata-cl"
+include_recipe "keboola-syrup::cron"

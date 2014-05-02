@@ -7,7 +7,7 @@ remote_file cltool_path do
   mode "0644"
 end
 
-directory /www/gooddata-cli-current  do
+directory "/www/gooddata-cli-current"  do
   owner "deploy"
   group "apache"
   mode "0755"
@@ -16,6 +16,6 @@ directory /www/gooddata-cli-current  do
 end
 
 execute "untar-cl-tool" do
-  cwd /www/gooddata-cli-current
+  cwd "/www/gooddata-cli-current"
   command "tar --strip-components 1 -xzf " + cltool_path
 end

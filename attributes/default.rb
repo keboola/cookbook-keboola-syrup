@@ -1,3 +1,6 @@
+
+default['syrup']['cron_gooddata_writer_enabled'] = '0'
+
 default['aws']['aws_access_key_id'] = ''
 default['aws']['aws_secret_access_key'] = ''
 
