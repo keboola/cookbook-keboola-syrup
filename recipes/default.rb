@@ -39,6 +39,7 @@ include_recipe "keboola-logging"
 include_recipe "php"
 include_recipe "apache2"
 
+
 unless node['apache']['listen_ports'].include?('443')
   node.set['apache']['listen_ports'] = node['apache']['listen_ports'] + ['443']
 end
@@ -136,5 +137,14 @@ web_app "#{node['fqdn']}" do
   enable true
 end
 
+cookbook_file "/home/#{node['current_user']}/upload-syrup.sh" do
+  source "upload-syrup.sh"
+  mode 0755
+  owner "root"
+  group "root"
+end
+
 include_recipe "keboola-syrup::gooddata-cl"
 include_recipe "keboola-syrup::cron"
+include_recipe "keboola-syrup::aws"
+
