@@ -1,12 +1,12 @@
 {
     "AWSTemplateFormatVersion": "2010-09-09",
-    "Description": "Keboola syrup server",
+    "Description": "Keboola Syrup Server",
     "Parameters": {
         "InstanceType": {
             "Description": "WebServer EC2 instance type",
             "Type": "String",
-            "Default": "m3.large",
-            "AllowedValues": [ "t1.micro", "m1.small", "m1.medium", "m3.medium", "m3.large", "m1.large", "m1.xlarge", "m3.xlarge", "m3.2xlarge", "m2.xlarge", "m2.2xlarge", "m2.4xlarge", "c1.medium", "c1.xlarge", "cc1.4xlarge", "cc2.8xlarge", "cg1.4xlarge", "hi1.4xlarge", "hs1.8xlarge"],
+            "Default": "c3.xlarge",
+            "AllowedValues": [ "t1.micro", "m1.small", "m1.medium", "m3.medium", "m3.large", "c3.large", "c3.xlarge", "m1.large", "m1.xlarge", "m3.xlarge", "m3.2xlarge", "m2.xlarge", "m2.2xlarge", "m2.4xlarge", "c1.medium", "c1.xlarge", "cc1.4xlarge", "cc2.8xlarge", "cg1.4xlarge", "hi1.4xlarge", "hs1.8xlarge"],
             "ConstraintDescription": "must be a valid EC2 instance type."
         },
         "SecurityGroupVpcId": {
@@ -14,20 +14,13 @@
             "Type": "String",
             "MinLength": 2,
             "MaxLength": 255,
-            "Default": "sg-8f9c8aed"
+            "Default": "sg-bd1cc3d2"
         },
         "Zone": {
             "Description": "Run instance in zone A or B",
             "Type": "String",
             "Default": "A",
             "AllowedValues": ["A", "B"]
-        },
-        "CronGoodDataWriterEnabled": {
-            "Description": "Start GoodData writer crons",
-            "Type": "Number",
-            "MinValue": 0,
-            "MaxValue": 1,
-            "Default": 0
         },
         "PapertrailPort": {
             "Description": "Papertrail port number",
@@ -38,6 +31,25 @@
             "Description": "Name of an existing EC2 KeyPair to enable SSH access to the web server",
             "Type": "String",
             "Default": "Martin",
+            "MinLength": 2,
+            "MaxLength": 255
+        },
+        "NewRelicLicenseKey": {
+            "Description": "New Relic license key",
+            "Type": "String",
+            "MinLength": 2,
+            "MaxLength": 255
+        },
+        "SendgridName": {
+            "Description": "Sendgrid user name",
+            "Default": "Keboola_Centrum",
+            "Type": "String",
+            "MinLength": 2,
+            "MaxLength": 255
+        },
+        "SendgridPassword": {
+            "Description": "Sendgrid password",
+            "Type": "String",
             "MinLength": 2,
             "MaxLength": 255
         }
@@ -84,6 +96,12 @@
                 "Arch": "PV64"
             },
             "c1.xlarge": {
+                "Arch": "PV64"
+            },
+            "c3.large": {
+                "Arch": "PV64"
+            },
+            "c3.xlarge": {
                 "Arch": "PV64"
             },
             "cc1.4xlarge": {
@@ -134,8 +152,9 @@
                                     ],
                                     "Effect": "Allow",
                                     "Resource": [
-                                        "arn:aws:s3:::syrup-releases/*",
-                                        "arn:aws:s3:::keboola-configs/certificates/*"
+                                        "arn:aws:s3:::keboola-configs/certificates/*",
+                                        "arn:aws:s3:::keboola-configs/deploy-keys/*",
+                                        "arn:aws:s3:::keboola-configs/syrup/*"
                                     ]
                                 }
                             ]
@@ -174,7 +193,6 @@
                                 "libxslt-devel": [],
                                 "curl": [],
                                 "git": [],
-                                "php55": [],
                                 "xfsprogs": []
                             }
                         },
@@ -196,9 +214,23 @@
                                         }
 
                                     },
-                                    "keboola-syrup": {
-                                        "cron_gooddata_writer_enabled": {
-                                            "Ref": "CronGoodDataWriterEnabled"
+                                    "newrelic": {
+                                        "license": {
+                                            "Ref": "NewRelicLicenseKey"
+                                        }
+                                    },
+                                    "postfix": {
+                                        "main": {
+                                            "smtp_sasl_password_maps": { "Fn::Join" : ["", [
+                                                "static:",
+                                                {
+                                                    "Ref": "SendgridName"
+                                                },
+                                                ":",
+                                                {
+                                                    "Ref": "SendgridPassword"
+                                                }
+                                            ]]}
                                         }
                                     }
                                 },
@@ -210,7 +242,7 @@
                                 "content" : { "Fn::Join" : ["\n", [
                                     "log_level :info",
                                     "log_location STDOUT",
-                                    "cookbook_path [\"/var/chef/cookbooks\", \"/var/chef/berks-cookbooks\"]"
+                                    "cookbook_path [\"/var/chef/berks-cookbooks\"]"
                                 ]] },
                                 "mode" : "000644",
                                 "owner" : "root",
@@ -219,14 +251,13 @@
                             "/var/init/bootstrap.sh": {
                                 "content": {
                                     "Fn::Join": ["\n", [
-                                        "curl -# -L -k -o /tmp/cookbook-keboola-syrup-master.tar.gz https://github.com/keboola/cookbook-keboola-syrup/archive/master.tar.gz",
-                                        "gem install json --no-ri --no-rdoc",
-                                        "curl -# -L http://www.opscode.com/chef/install.sh | bash -s --",
-                                        "mkdir -p /etc/chef/",
+                                        "curl -# -L -k -o /tmp/cookbook-keboola-syrup.tar.gz https://github.com/keboola/cookbook-keboola-syrup/archive/master.tar.gz",
+                                        "curl https://opscode-omnibus-packages.s3.amazonaws.com/el/6/x86_64/chefdk-0.1.0-1.el6.x86_64.rpm > /tmp/chefdk.rpm",
+                                        "rpm -i /tmp/chefdk.rpm",
                                         "mkdir -p /var/chef/cookbooks/keboola-syrup",
-                                        "tar --strip 1 -C /var/chef/cookbooks/keboola-syrup -xf /tmp/cookbook-keboola-syrup-master.tar.gz",
-                                        "/opt/chef/embedded/bin/gem install berkshelf --version 2.0.16 --no-rdoc --no-ri",
-                                        "/opt/chef/embedded/bin/berks install --path /var/chef/berks-cookbooks/ --berksfile=/var/chef/cookbooks/keboola-syrup/Berksfile"
+                                        "tar --strip 1 -C /var/chef/cookbooks/keboola-syrup -xf /tmp/cookbook-keboola-syrup.tar.gz",
+                                        "export HOME=/root",
+                                        "cd /var/chef/cookbooks/keboola-syrup && /usr/bin/berks vendor /var/chef/berks-cookbooks/"
                                     ]]
                                 },
                                 "mode": "000644",
@@ -236,6 +267,7 @@
                             "/var/init/storage.sh": {
                                 "content": {
                                     "Fn::Join": ["\n", [
+                                        "umount /media/ephemeral0/; echo y | mdadm -C /dev/md0 --level=raid0 --raid-devices=2 /dev/xvdb /dev/xvdc ; mkfs.xfs /dev/md0; mount /dev/md0 /media/ephemeral0/",
                                         "mkdir /media/ephemeral0/tmp",
                                         "chmod a+xw /media/ephemeral0/tmp/",
                                         "chmod +t /media/ephemeral0/tmp/",
@@ -245,9 +277,7 @@
                                         "swapon /media/ephemeral0/swap1.bin",
                                         "dd if=/dev/zero of=/media/ephemeral0/swap2.bin count=10000 bs=102400",
                                         "mkswap /media/ephemeral0/swap2.bin",
-                                        "swapon /media/ephemeral0/swap2.bin",
-                                        "mkdir -p /media/ephemeral0/www",
-                                        "ln -s /media/ephemeral0/www/ /www"
+                                        "swapon /media/ephemeral0/swap2.bin"
                                     ]]
                                 },
                                 "mode": "000644",
@@ -280,6 +310,22 @@
                 "InstanceType": {
                     "Ref": "InstanceType"
                 },
+                "BlockDeviceMappings": [
+                    {
+                        "DeviceName": "/dev/sda1",
+                        "Ebs" : {
+                            "VolumeType": "gp2"
+                        }
+                    },
+                    {
+                        "DeviceName":"/dev/sdb",
+                        "VirtualName" : "ephemeral0"
+                    },
+                    {
+                        "DeviceName": "/dev/sdc",
+                        "VirtualName" : "ephemeral1"
+                    }
+                ],
                 "NetworkInterfaces": [
                     {
                         "GroupSet": [
@@ -296,16 +342,6 @@
                 "KeyName": {
                     "Ref": "KeyName"
                 },
-                "BlockDeviceMappings": [
-                    {
-                        "DeviceName":"/dev/sdb",
-                        "VirtualName" : "ephemeral0"
-                    },
-                    {
-                        "DeviceName": "/dev/sdc",
-                        "VirtualName" : "ephemeral1"
-                    }
-                ],
                 "UserData": {
                     "Fn::Base64": {
                         "Fn::Join": ["", [
@@ -326,10 +362,10 @@
                             "         --region ", {
                                 "Ref": "AWS::Region"
                             }, " || error_exit 'Failed to initialize Chef Solo'\n",
-                            "bash /var/init/bootstrap.sh > /var/init/bootstrap.log 2>&1\n",
                             "bash /var/init/storage.sh > /var/init/storage.log 2>&1\n",
-                            "sed 's/\"--no--\"/null/g' /var/init/node.json > /var/init/node-final.json\n",
-                            "chef-solo -j /var/init/node-final.json --config /var/init/solo.rb --node-name ",
+                            "bash /var/init/bootstrap.sh > /var/init/bootstrap.log 2>&1\n",
+                            "export HOME=/root\n",
+                            "chef-solo -j /var/init/node.json --config /var/init/solo.rb --node-name ",
                             {
                                 "Ref": "AWS::StackName"
                             },
@@ -349,7 +385,7 @@
             "Type": "AWS::Route53::RecordSet",
             "Properties": {
                 "HostedZoneName": "keboola.com.",
-                "Comment": "DNS name for my Elasticsearch instance.",
+                "Comment": "DNS name for instance.",
                 "Name": {
                     "Fn::Join": [ "", [
                         {

@@ -1,5 +1,5 @@
-site :opscode
+source "https://api.berkshelf.com"
 
 metadata
 
-cookbook 'keboola-logging', git: 'git://github.com/keboola/cookbook-keboola-logging.git'
+cookbook 'keboola-common', git: 'git://github.com/keboola/cookbook-keboola-common.git'
