@@ -52,6 +52,10 @@
             "Type": "String",
             "MinLength": 2,
             "MaxLength": 255
+        },
+        "BitbucketToken": {
+            "Description": "Bitbucket token",
+            "Type": "String"
         }
     },
     "Mappings": {
@@ -231,6 +235,11 @@
                                                     "Ref": "SendgridPassword"
                                                 }
                                             ]]}
+                                        }
+                                    },
+                                    "keboola-syrup": {
+                                        "bitbucket_token":  {
+                                            "Ref": "BitbucketToken"
                                         }
                                     }
                                 },

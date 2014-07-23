@@ -1,4 +1,6 @@
 
+default['keboola-syrup']['bitbucket_token'] = ''
+default['keboola-syrup']['github_token'] = ''
 
 
 default['aws']['aws_access_key_id'] = ''
