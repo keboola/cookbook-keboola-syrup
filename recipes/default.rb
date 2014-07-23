@@ -15,6 +15,20 @@ package "mysql-common"
 package "mysql55"
 
 
+# required by gooddata writer#
+execute "install rvm" do
+ command "curl -sSL https://get.rvm.io | bash -s stable --ruby=2.1.2"
+end
+
+execute "rvm use" do
+ command "/usr/local/rvm/bin/rvm use 2.1.2 --default"
+end
+
+execute "rvm use for deploy user" do
+ user "deploy"
+ command "/usr/local/rvm/bin/rvm use 2.1.2 --default"
+end
+
 aws_s3_file "/root/.ssh/kbc_id_rsa" do
   bucket "keboola-configs"
   remote_path "deploy-keys/kbc_id_rsa"
@@ -99,9 +113,15 @@ execute "copy parameters.yml" do
   user "deploy"
 end
 
-execute "install dependencies" do
+execute "install compopser dependencies" do
   cwd "/www/syrup-router/components/gooddata-writer/releases/#{time}"
   command "/usr/local/bin/composer install --no-dev --verbose --prefer-dist --optimize-autoloader --no-progress --no-interaction"
+end
+
+execute "install bundler dependencies" do
+  cwd "/www/syrup-router/components/gooddata-writer/releases/#{time}"
+  user "deploy"
+  command "/usr/local/rvm/gems/ruby-2.1.2@global/bin/bundle install --gemfile ./Gemfile --path ../../shared/bundle --deployment --quiet --without development test"
 end
 
 execute "create revision file" do
