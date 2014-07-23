@@ -18,12 +18,6 @@ default['php']['packages'] = %w{ php54 php54-devel php-pear php54-pdo php54-mysq
 
 default['newrelic']['php-agent']['config_file'] = "/etc/php.d/newrelic.ini"
 
-# ruby is required by gooddata writer
-default['rvm']['global_gems'] = [
-  { 'name'    => 'bundler' }
-]
-
-default['rvm']['default_ruby'] = 'ruby-2.1.2'
 
 default['keboola-syrup']['github_token'] = ''
 

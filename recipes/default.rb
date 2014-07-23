@@ -15,7 +15,7 @@ package "mysql-common"
 package "mysql55"
 
 
-# required by gooddata writer#
+# ruby required by gooddata writer#
 execute "install rvm" do
  command "curl -sSL https://get.rvm.io | bash -s stable --ruby=2.1.2"
 end
