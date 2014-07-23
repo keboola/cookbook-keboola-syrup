@@ -1,8 +1,4 @@
 
-default['keboola-syrup']['bitbucket_token'] = ''
-default['keboola-syrup']['github_token'] = ''
-
-
 default['aws']['aws_access_key_id'] = ''
 default['aws']['aws_secret_access_key'] = ''
 
@@ -28,3 +24,26 @@ default['rvm']['global_gems'] = [
 ]
 
 default['rvm']['default_ruby'] = 'ruby-2.1.2'
+
+default['keboola-syrup']['github_token'] = ''
+
+
+default['keboola-syrup']['components'] = [
+	{
+		id: "gooddata-writer",
+		repository_name: "gooddata-writer",
+		bundle_install: true
+	},
+	{
+		id: "ex-google-drive",
+		repository_name: "google-drive-bundle",
+        bundle_install: false
+	},
+	{
+		id: "queue",
+		repository_name: "syrup-queue-bundle",
+		bundle_install: false
+	}
+]
+
+

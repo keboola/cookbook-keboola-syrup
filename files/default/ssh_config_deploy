@@ -1,5 +1,5 @@
-Host github.com
-Hostname github.com
+Host bitbucket.org
+Hostname bitbucket.org
 User git
-IdentityFile ~/.ssh/kbc_id_rsa
+IdentityFile ~/.ssh/bitbucket_id_rsa
 StrictHostKeyChecking no

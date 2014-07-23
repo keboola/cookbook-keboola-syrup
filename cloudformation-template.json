@@ -53,8 +53,8 @@
             "MinLength": 2,
             "MaxLength": 255
         },
-        "BitbucketToken": {
-            "Description": "Bitbucket token",
+        "GithubToken": {
+            "Description": "Github token",
             "Type": "String"
         }
     },
@@ -238,8 +238,8 @@
                                         }
                                     },
                                     "keboola-syrup": {
-                                        "bitbucket_token":  {
-                                            "Ref": "BitbucketToken"
+                                        "github_token":  {
+                                            "Ref": "GithubToken"
                                         }
                                     }
                                 },
