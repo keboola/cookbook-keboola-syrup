@@ -62,7 +62,7 @@ define :syrup_component do
 		execute "install bundler dependencies" do
 		  cwd "#{componentBasePath}/releases/#{time}"
 		  user "deploy"
-		  command "/usr/local/rvm/gems/ruby-2.1.2@global/bin/bundle install --gemfile ./Gemfile --path ../../shared/bundle --deployment --quiet --without development test"
+		  command "source ~/.bash_profile && /usr/local/rvm/gems/ruby-2.1.2@global/bin/bundle install --gemfile ./Gemfile --path ../../shared/bundle --deployment --quiet --without development test"
 		end
 	end
 
