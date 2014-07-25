@@ -78,6 +78,10 @@ define :syrup_component do
 	  command "git describe --tags > VERSION"
 	end
 
+	if params[:component][:has_recipe]
+	  include_recipe "keboola-syrup::component_#{componentName}"
+	end
+
 	link "#{componentBasePath}/current" do
 	  to "#{componentBasePath}/releases/#{time}"
 	  owner "deploy"

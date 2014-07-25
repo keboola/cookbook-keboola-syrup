@@ -21,12 +21,14 @@ default['newrelic']['php-agent']['config_file'] = "/etc/php.d/newrelic.ini"
 
 default['keboola-syrup']['github_token'] = ''
 
+default['keboola-syrup']['gooddata']['cl_tool_version'] = '1.2.73'
 
 default['keboola-syrup']['components'] = [
 	{
 		id: "gooddata-writer",
 		repository_name: "gooddata-writer",
-		bundle_install: true
+		bundle_install: true,
+		has_recipe: true
 	},
 	{
 		id: "ex-google-drive",
