@@ -286,7 +286,9 @@
                                         "swapon /media/ephemeral0/swap1.bin",
                                         "dd if=/dev/zero of=/media/ephemeral0/swap2.bin count=10000 bs=102400",
                                         "mkswap /media/ephemeral0/swap2.bin",
-                                        "swapon /media/ephemeral0/swap2.bin"
+                                        "swapon /media/ephemeral0/swap2.bin",
+                                        "mkdir -p /media/ephemeral0/www",
+                                        "ln -s /media/ephemeral0/www/ /www"
                                     ]]
                                 },
                                 "mode": "000644",
