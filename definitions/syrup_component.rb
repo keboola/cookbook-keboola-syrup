@@ -52,11 +52,16 @@ define :syrup_component do
 	  user "deploy"
 	end
 
+	if params[:component][:has_recipe]
+	  include_recipe "keboola-syrup::component_#{componentName}"
+	end
+
 	execute "install composer dependencies" do
 	  user "deploy"
 	  cwd "#{componentBasePath}/releases/#{time}"
 	  command "/usr/local/bin/composer install --no-dev --verbose --prefer-dist --optimize-autoloader --no-progress --no-interaction"
 	end
+
 
 	if params[:component][:bundle_install]
 		execute "install bundler dependencies" do
@@ -76,10 +81,6 @@ define :syrup_component do
 	execute "create version file" do
 	  cwd "#{componentBasePath}/releases/#{time}"
 	  command "git describe --tags > VERSION"
-	end
-
-	if params[:component][:has_recipe]
-	  include_recipe "keboola-syrup::component_#{componentName}"
 	end
 
 	link "#{componentBasePath}/current" do
