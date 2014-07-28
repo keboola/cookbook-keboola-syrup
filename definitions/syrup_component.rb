@@ -58,7 +58,12 @@ define :syrup_component do
 
 	execute "install composer dependencies" do
 	  user "deploy"
+	  group "apache"
 	  cwd "#{componentBasePath}/releases/#{time}"
+	  environment(
+       'COMPOSER_HOME' => '/home/deploy/.composer',
+       'COMPOSER_CACHE_DIR' => '/home/deploy/.composer/cache'
+      )
 	  command "/usr/local/bin/composer install --no-dev --verbose --prefer-dist --optimize-autoloader --no-progress --no-interaction"
 	end
 
@@ -67,6 +72,7 @@ define :syrup_component do
 		execute "install bundler dependencies" do
 		  cwd "#{componentBasePath}/releases/#{time}"
 		  user "deploy"
+		  group "apache"
 		  command "export PATH=/usr/local/rvm/gems/ruby-2.1.2/bin:/usr/local/rvm/gems/ruby-2.1.2@global/bin:/usr/local/rvm/rubies/ruby-2.1.2/bin:$PATH && bundle install --gemfile ./Gemfile --path ../../shared/bundle --deployment --quiet --without development test"
 		end
 	end
@@ -76,11 +82,15 @@ define :syrup_component do
 	execute "create revision file" do
 	  cwd "#{componentBasePath}/releases/#{time}"
 	  command "git rev-parse HEAD > REVISION"
+	  user "deploy"
+      group "apache"
 	end
 
 	execute "create version file" do
 	  cwd "#{componentBasePath}/releases/#{time}"
 	  command "git describe --tags > VERSION"
+	  user "deploy"
+      group "apache"
 	end
 
 	link "#{componentBasePath}/current" do
