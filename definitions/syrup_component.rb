@@ -77,7 +77,17 @@ define :syrup_component do
 		end
 	end
 
+	directory "#{componentBasePath}/releases/#{time}/vendor/keboola/syrup/app/cache" do
+		owner "deploy"
+        group "apache"
+        mode 00775
+	end
 
+	directory "#{componentBasePath}/releases/#{time}/vendor/keboola/syrup/app/logs" do
+		owner "deploy"
+		group "apache"
+		mode 00775
+	end
 
 	execute "create revision file" do
 	  cwd "#{componentBasePath}/releases/#{time}"

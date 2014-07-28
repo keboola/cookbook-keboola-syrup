@@ -194,7 +194,7 @@
                                     ]
                                 },
                                 {
-                                    "Sid": "Update configs",
+                                    "Sid": "UpdateSyrupConfigs",
                                     "Action": [
                                         "s3:PutObject"
                                     ],
