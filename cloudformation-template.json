@@ -160,6 +160,16 @@
                                         "arn:aws:s3:::keboola-configs/deploy-keys/*",
                                         "arn:aws:s3:::keboola-configs/syrup/*"
                                     ]
+                                },
+                                {
+                                    "Sid": "Update configs",
+                                    "Action": [
+                                        "s3:PutObject"
+                                    ],
+                                    "Effect": "Allow",
+                                    "Resource": [
+                                        "arn:aws:s3:::keboola-configs/syrup/*"
+                                    ]
                                 }
                             ]
                         }
@@ -287,8 +297,10 @@
                                         "dd if=/dev/zero of=/media/ephemeral0/swap2.bin count=10000 bs=102400",
                                         "mkswap /media/ephemeral0/swap2.bin",
                                         "swapon /media/ephemeral0/swap2.bin",
-                                        "mkdir -p /media/ephemeral0/www",
-                                        "ln -s /media/ephemeral0/www/ /www"
+
+                                        "mkfs -t xfs /dev/xvdd",
+                                        "mkdir /www",
+                                        "mount /dev/xvdd /www"
                                     ]]
                                 },
                                 "mode": "000644",
@@ -335,6 +347,14 @@
                     {
                         "DeviceName": "/dev/sdc",
                         "VirtualName" : "ephemeral1"
+                    },
+                    {
+                        "DeviceName": "/dev/sdd",
+                        "Ebs" : {
+                            "VolumeSize": "100",
+                            "VolumeType": "gp2",
+                            "DeleteOnTermination": "true"
+                        }
                     }
                 ],
                 "NetworkInterfaces": [
@@ -358,6 +378,7 @@
                         "Fn::Join": ["", [
                             "#!/bin/bash\n",
                             "yum update -y aws-cfn-bootstrap\n",
+                            "yum update\n",
 
                             "function error_exit\n",
                             "{\n",
