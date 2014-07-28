@@ -56,6 +56,38 @@
         "GithubToken": {
             "Description": "Github token",
             "Type": "String"
+        },
+        "GoodDataWriterEnableCron": {
+            "Description": "Start gooddata-writer crons (clean, accept invitations)",
+            "Type": "Number",
+            "MinValue": 0,
+            "MaxValue": 1,
+            "Default": 0
+        },
+        "GoodDataWriterWorkersCount": {
+            "Description": "gooddata-writer workers count",
+            "Type": "Number",
+            "MinValue": 0,
+            "Default": 0
+        },
+        "QueueWorkersCount": {
+            "Description": "syrup queue workers count",
+            "Type": "Number",
+            "MinValue": 0,
+            "Default": 0
+        },
+        "OrchestratorWorkersCount": {
+            "Description": "orchestrator workers count",
+            "Type": "Number",
+            "MinValue": 0,
+            "Default": 0
+        },
+        "OrchestratorEnableScheduler": {
+            "Description": "Enable orchestrator scheduler",
+            "Type": "Number",
+            "MinValue": 0,
+            "MaxValue": 1,
+            "Default": 0
         }
     },
     "Mappings": {
@@ -250,6 +282,27 @@
                                     "keboola-syrup": {
                                         "github_token":  {
                                             "Ref": "GithubToken"
+                                        },
+                                        "gooddata-writer": {
+                                            "enable_cron": {
+                                                "Ref": "GoodDataWriterEnableCron"
+                                            },
+                                            "workers_count": {
+                                                "Ref": "GoodDataWriterWorkersCount"
+                                            }
+                                        },
+                                        "queue": {
+                                            "workers_count": {
+                                                "Ref": "QueueWorkersCount"
+                                            }
+                                        },
+                                        "orchestrator": {
+                                            "enable_scheduler": {
+                                                "Ref": "OrchestratorEnableScheduler"
+                                            },
+                                            "workers_count": {
+                                                "Ref": "OrchestratorWorkersCount"
+                                            }
                                         }
                                     }
                                 },

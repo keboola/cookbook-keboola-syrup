@@ -39,6 +39,18 @@ aws_s3_file "/home/deploy/.ssh/bitbucket_id_rsa" do
   mode "0600"
 end
 
+directory "/home/deploy/.aws" do
+   owner 'deploy'
+   group 'apache'
+end
+
+template "/home/deploy/.aws/credentials" do
+  source 'aws-credentials.erb'
+  owner 'deploy'
+  group 'apache'
+  mode 00500
+end
+
 cookbook_file "/home/deploy/.ssh/config" do
   source "ssh_config_deploy"
   mode "0600"
@@ -64,6 +76,17 @@ git "/www/syrup-router" do
    action :sync
    user "deploy"
    group "apache"
+end
+
+execute "install composer dependencies" do
+  user "deploy"
+  group "apache"
+  cwd "/www/syrup-router"
+  environment(
+   'COMPOSER_HOME' => '/home/deploy/.composer',
+   'COMPOSER_CACHE_DIR' => '/home/deploy/.composer/cache'
+  )
+  command "/usr/local/bin/composer install --no-dev --verbose --prefer-dist --optimize-autoloader --no-progress --no-interaction"
 end
 
 # install syrup components

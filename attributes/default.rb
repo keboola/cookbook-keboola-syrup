@@ -21,7 +21,18 @@ default['newrelic']['php-agent']['config_file'] = "/etc/php.d/newrelic.ini"
 
 default['keboola-syrup']['github_token'] = ''
 
-default['keboola-syrup']['gooddata']['cl_tool_version'] = '1.2.73'
+
+# GoodData Writer attributes
+default['keboola-syrup']['gooddata-writer']['cl_tool_version'] = '1.2.73'
+default['keboola-syrup']['gooddata-writer']['enable_cron'] = 0
+default['keboola-syrup']['gooddata-writer']['workers_count'] = 0
+
+# Syrup queue attributes
+default['keboola-syrup']['queue']['workers_count'] = 0
+
+# Orchestrator attributes
+default['keboola-syrup']['orchestrator']['workers_count'] = 0
+default['keboola-syrup']['orchestrator']['enable_scheduler'] = 0
 
 default['keboola-syrup']['components'] = [
 	{
@@ -127,12 +138,14 @@ default['keboola-syrup']['components'] = [
 	{
 		id: "queue",
 		repository_name: "syrup-queue-bundle",
-		bundle_install: false
+		bundle_install: false,
+		has_recipe: true
 	},
 	{
 		id: "orchestrator",
 		repository_name: "orchestrator-bundle",
-		bundle_install: false
+		bundle_install: false,
+		has_recipe: true
 	},
 	{
 		id: "ex-gooddata",
