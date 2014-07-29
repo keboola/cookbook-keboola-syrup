@@ -190,7 +190,8 @@
                                     "Resource": [
                                         "arn:aws:s3:::keboola-configs/certificates/*",
                                         "arn:aws:s3:::keboola-configs/deploy-keys/*",
-                                        "arn:aws:s3:::keboola-configs/syrup/*"
+                                        "arn:aws:s3:::keboola-configs/syrup/*",
+                                        "arn:aws:s3:::keboola-configs/transformation/*"
                                     ]
                                 },
                                 {
@@ -245,7 +246,7 @@
                         "files": {
                             "/var/init/node.json": {
                                 "content": {
-                                    "run_list": [ "recipe[keboola-syrup]"],
+                                    "run_list": [ "recipe[keboola-syrup]" ],
                                     "papertrail": {
                                         "port": {
                                             "Ref": "PapertrailPort"
@@ -477,6 +478,29 @@
                             "Ref": "AWS::StackName"
                         },
                         ".keboola.com"
+                    ] ]
+                },
+                "Type": "A",
+                "TTL": "900",
+                "ResourceRecords": [
+                    {
+                        "Fn::GetAtt": [ "Ec2Instance", "PublicIp" ]
+                    }
+                ]
+            }
+        },
+
+        "publicDNStransformation": {
+            "Type": "AWS::Route53::RecordSet",
+            "Properties": {
+                "HostedZoneName": "keboola.com.",
+                "Comment": "DNS name for transformations.",
+                "Name": {
+                    "Fn::Join": [ "", [
+                        {
+                            "Ref": "AWS::StackName"
+                        },
+                        "-transformation.keboola.com"
                     ] ]
                 },
                 "Type": "A",

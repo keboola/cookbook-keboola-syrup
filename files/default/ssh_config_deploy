@@ -3,3 +3,4 @@ Hostname bitbucket.org
 User git
 IdentityFile ~/.ssh/bitbucket_id_rsa
 StrictHostKeyChecking no
+

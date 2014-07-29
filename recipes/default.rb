@@ -58,6 +58,7 @@ cookbook_file "/home/deploy/.ssh/config" do
   group "apache"
 end
 
+
 execute "install composer" do
   command "curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer"
 end
@@ -69,6 +70,7 @@ directory "/www" do
 	mode "0750"
 end
 
+include_recipe "keboola-syrup::transformation"
 
 git "/www/syrup-router" do
    repository "https://#{node['keboola-syrup']['github_token']}@github.com/keboola/syrup-router.git"
@@ -97,7 +99,7 @@ node['keboola-syrup']['components'].each do | component |
 	end
 end
 
-web_app "#{node['fqdn']}" do
+web_app "syrup.keboola.com" do
   template "syrup.keboola.com.conf.erb"
   server_name node['fqdn']
   server_aliases [node['hostname'], 'syrup.keboola.com']
