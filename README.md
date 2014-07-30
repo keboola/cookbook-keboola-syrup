@@ -30,6 +30,7 @@ Description
  * Cookbook Keboola common is used for installation of basic packages https://github.com/keboola/cookbook-keboola-common
  * Syrup router is cloned and then all components are fetched. All components are listed in https://github.com/keboola/cookbook-keboola-syrup/blob/master/attributes/default.rb
  * `parameters.yml` file for each component is downloaded from S3
+ * Transformation api is fetched and installed
 
 
 Troubleshooting
