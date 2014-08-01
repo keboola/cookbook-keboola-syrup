@@ -27,7 +27,7 @@ default['keboola-syrup']['github_token'] = ''
 
 
 # GoodData Writer attributes
-default['keboola-syrup']['gooddata-writer']['cl_tool_version'] = '1.2.73'
+default['keboola-syrup']['gooddata-writer']['cl_tool_version'] = '1.2.71'
 default['keboola-syrup']['gooddata-writer']['enable_cron'] = 0
 default['keboola-syrup']['gooddata-writer']['workers_count'] = 0
 
