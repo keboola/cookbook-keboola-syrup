@@ -14,6 +14,10 @@ default['apache']['default_modules'] = %w[
 ]
 
 default['php']['packages'] = %w{ php54 php54-devel php-pear php54-pdo php54-mysql php54-mbstring php54-pgsql php54-mcrypt php54-pecl-apc }
+default['php']['directives'] = {
+	'date.timezone' => 'Europe/Prague'
+}
+
 
 
 default['newrelic']['php-agent']['config_file'] = "/etc/php.d/newrelic.ini"
@@ -35,6 +39,10 @@ default['keboola-syrup']['orchestrator']['workers_count'] = 0
 default['keboola-syrup']['orchestrator']['enable_scheduler'] = 0
 
 default['keboola-syrup']['components'] = [
+	{
+		id: "ex-google-analytics",
+		repository_name: "google-analytics-bundle"
+    },
 	{
 		id: "rt-json",
 		repository_name: "jsonparser-bundle"
@@ -159,10 +167,6 @@ default['keboola-syrup']['components-broken'] = [
 		id: "rt-lucky-guess",
 		repository_name: "luckyguess-bundle",
 		bundle_install: false
-	},
-	{
-		id: "ex-google-analytics",
-		repository_name: "google-analytics-bundle"
 	}
 ]
 
