@@ -98,7 +98,8 @@ default['keboola-syrup']['components'] = [
 	},
 	{
 		id: "ex-db",
-		repository_name: "db-extractor-bundle"
+		repository_name: "db-extractor-bundle",
+		has_recipe: true
 	},
 	{
 		id: "ex-currency",
