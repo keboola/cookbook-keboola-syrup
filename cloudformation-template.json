@@ -14,7 +14,7 @@
             "Type": "String",
             "MinLength": 2,
             "MaxLength": 255,
-            "Default": "sg-bd1cc3d2"
+            "Default": "sg-8f9c8aed"
         },
         "Zone": {
             "Description": "Run instance in zone A or B",
