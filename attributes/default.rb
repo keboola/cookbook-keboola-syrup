@@ -180,6 +180,11 @@ default['keboola-syrup']['components'] = [
 				id: "ex-forecastio",
 				repository_name: "forecastio-extractor-bundle",
 				bundle_install: false
+		},
+		{
+				id: "wr-iot",
+				repository_name: "iot-writer-bundle",
+				bundle_install: false
 		}
 ]
 
