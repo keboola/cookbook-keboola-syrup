@@ -165,13 +165,24 @@ default['keboola-syrup']['components'] = [
                 id: "ex-gooddata",
                 repository_name: "gooddata-extractor-bundle",
                 bundle_install: false
-        }
+        },
+        {
+				id: "rt-lucky-guess",
+				repository_name: "luckyguess-bundle",
+				bundle_install: false
+		},
+		{
+				id: "pigeon",
+				repository_name: "mailimport-bundle",
+				bundle_install: false
+		},
+		{
+				id: "ex-forecastio",
+				repository_name: "forecastio-extractor-bundle",
+				bundle_install: false
+		}
 ]
 
 default['keboola-syrup']['components-broken'] = [
-        {
-                id: "rt-lucky-guess",
-                repository_name: "luckyguess-bundle",
-                bundle_install: false
-        }
+
 ]
