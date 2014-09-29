@@ -14,6 +14,9 @@ include_recipe "newrelic::php-agent"
 package "mysql-common"
 package "mysql55"
 
+# fixed yum instal php54-pgsql
+package "postgresql9"
+
 
 # ruby required by gooddata writer#
 execute "install rvm" do
