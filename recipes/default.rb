@@ -48,7 +48,7 @@ template "/home/deploy/.aws/credentials" do
   source 'aws-credentials.erb'
   owner 'deploy'
   group 'apache'
-  mode 00500
+  mode "0600"
 end
 
 cookbook_file "/home/deploy/.ssh/config" do

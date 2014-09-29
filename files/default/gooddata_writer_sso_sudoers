@@ -1,0 +1,3 @@
+Defaults:apache !requiretty
+Cmnd_Alias	SSO = /usr/local/bin/gooddata-sso.sh
+apache 	ALL = (ALL) NOPASSWD: SSO

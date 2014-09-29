@@ -28,6 +28,8 @@ define :syrup_component do
 
 	time = Time.now.to_i
 
+	node.set['keboola-syrup'][componentName]['current-release-path'] = "#{componentBasePath}/releases/#{time}"
+
 	git "#{componentBasePath}/releases/#{time}" do
 	   repository "git@bitbucket.org:keboola/#{params[:component][:repository_name]}.git"
 	   revision "master"
