@@ -185,6 +185,11 @@ default['keboola-syrup']['components'] = [
 				id: "wr-iot",
 				repository_name: "iot-writer-bundle",
 				bundle_install: false
+		},
+		{
+				id: "rt-split",
+				repository_name: "textsplitter-bundle",
+				bundle_install: false
 		}
 ]
 
