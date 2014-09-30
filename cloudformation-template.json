@@ -433,6 +433,7 @@
                         "Fn::Join": ["", [
                             "#!/bin/bash\n",
                             "yum update -y aws-cfn-bootstrap\n",
+                            "yum update -y\n",
 
                             "function error_exit\n",
                             "{\n",
