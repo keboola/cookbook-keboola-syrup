@@ -32,7 +32,7 @@ define :syrup_component do
 
 	git "#{componentBasePath}/releases/#{time}" do
 	   repository "git@bitbucket.org:keboola/#{params[:component][:repository_name]}.git"
-	   revision "master"
+	   revision "production"
 	   action :sync
 	   user "deploy"
 	   group "apache"
