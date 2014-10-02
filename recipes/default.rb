@@ -5,7 +5,7 @@
 
 include_recipe "aws"
 include_recipe "keboola-common"
-include_recipe "keboola-syrup::php"
+include_recipe "keboola-php"
 include_recipe "keboola-apache2"
 include_recipe "newrelic::php_agent"
 
@@ -13,7 +13,7 @@ include_recipe "newrelic::php_agent"
 package "mysql-common"
 package "mysql55"
 
-# fixed yum instal php54-pgsql
+# fixed yum install php54-pgsql
 package "postgresql9"
 
 
