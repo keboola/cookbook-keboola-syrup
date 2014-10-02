@@ -166,34 +166,34 @@ default['keboola-syrup']['components'] = [
         bundle_install: false
     },
     {
-				id: "rt-lucky-guess",
-				repository_name: "luckyguess-bundle",
-				bundle_install: false
-		},
-		{
-				id: "pigeon",
-				repository_name: "mailimport-bundle",
-				bundle_install: false
-		},
-		{
-				id: "ex-forecastio",
-				repository_name: "forecastio-extractor-bundle",
-				bundle_install: false
-		},
-		{
-				id: "wr-iot",
-				repository_name: "iot-writer-bundle",
-				bundle_install: false
-		},
-		{
-				id: "rt-split",
-				repository_name: "textsplitter-bundle",
-				bundle_install: false
-		},
-		{
-				id: "timeout",
-				repository_name: "timeout-bundle"
-		},
+        id: "rt-lucky-guess",
+        repository_name: "luckyguess-bundle",
+        bundle_install: false
+    },
+    {
+        id: "pigeon",
+        repository_name: "mailimport-bundle",
+        bundle_install: false
+    },
+    {
+        id: "ex-forecastio",
+        repository_name: "forecastio-extractor-bundle",
+        bundle_install: false
+    },
+    {
+        id: "wr-iot",
+        repository_name: "iot-writer-bundle",
+        bundle_install: false
+    },
+    {
+        id: "rt-split",
+        repository_name: "textsplitter-bundle",
+        bundle_install: false
+    },
+    {
+        id: "timeout",
+        repository_name: "timeout-bundle"
+    },
     {
         id: "ex-sklik",
         repository_name: "sklik-extractor-bundle"
