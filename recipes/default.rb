@@ -5,7 +5,7 @@
 
 include_recipe "aws"
 include_recipe "keboola-common"
-include_recipe "keboola-connection::php"
+include_recipe "keboola-syrup::php"
 include_recipe "keboola-apache2"
 include_recipe "newrelic::php_agent"
 
