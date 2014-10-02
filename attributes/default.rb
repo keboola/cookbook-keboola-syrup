@@ -190,6 +190,10 @@ default['keboola-syrup']['components'] = [
 				id: "rt-split",
 				repository_name: "textsplitter-bundle",
 				bundle_install: false
+		},
+		{
+				id: "timeout",
+				repository_name: "timeout-bundle"
 		}
 ]
 
