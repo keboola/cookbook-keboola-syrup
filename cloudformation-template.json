@@ -353,9 +353,9 @@
                                         "mkswap /media/ephemeral0/swap2.bin",
                                         "swapon /media/ephemeral0/swap2.bin",
 
-                                        "mkfs -t xfs /dev/xvdd",
+                                        "mkfs -t xfs /dev/xvdf",
                                         "mkdir /www",
-                                        "mount /dev/xvdd /www"
+                                        "mount /dev/xvdf /www"
                                     ]]
                                 },
                                 "mode": "000644",
@@ -404,7 +404,7 @@
                         "VirtualName" : "ephemeral1"
                     },
                     {
-                        "DeviceName": "/dev/sdd",
+                        "DeviceName": "/dev/sdf",
                         "Ebs" : {
                             "VolumeSize": "100",
                             "VolumeType": "gp2",
