@@ -63,6 +63,7 @@ define :syrup_component do
 	  group "apache"
 	  cwd "#{componentBasePath}/releases/#{time}"
 	  environment(
+	   'HOME' => '/home/deploy',
        'COMPOSER_HOME' => '/home/deploy/.composer',
        'COMPOSER_CACHE_DIR' => '/home/deploy/.composer/cache'
       )
