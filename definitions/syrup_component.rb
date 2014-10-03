@@ -46,7 +46,7 @@ define :syrup_component do
 	  aws_secret_access_key node[:aws][:aws_secret_access_key]
 	  owner "deploy"
 	  group "apache"
-	  mode "0555"
+	  mode "0644"
 	end
 
 	execute "copy parameters.yml" do
