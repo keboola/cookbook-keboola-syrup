@@ -101,3 +101,11 @@ web_app "transformation.keboola.com" do
   server_aliases ["#{node.name}-transformation.keboola.com"]
   enable true
 end
+
+web_app "transformation-test.keboola.com" do
+  template "transformation-test.keboola.com.conf.erb"
+  server_name 'transformation-test.keboola.com'
+  server_aliases ["#{node.name}-transformation-test.keboola.com"]
+  enable true
+end
+

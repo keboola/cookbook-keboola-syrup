@@ -24,61 +24,16 @@ default['keboola-syrup']['orchestrator']['enable_scheduler'] = 0
 
 default['keboola-syrup']['components'] = [
     {
-        id: "ex-google-analytics",
-        repository_name: "google-analytics-bundle"
+        id: "ex-adwords",
+        repository_name: "adwords-extractor-bundle"
     },
     {
-        id: "rt-json",
-        repository_name: "jsonparser-bundle"
+        id: "ex-cloudsearch",
+        repository_name: "cloudsearch-extractor"
     },
     {
-        id: "rt-hierarchy",
-        repository_name: "hierarchy-bundle"
-    },
-    {
-        id: "restbox",
-        repository_name: "restbox-bundle"
-    },
-    {
-        id: "provisioning",
-        repository_name: "keboola-provisioning-bundle"
-    },
-    {
-        id: "ex-zendesk",
-        repository_name: "zendesk-extractor-bundle"
-    },
-    {
-        id: "ex-telfa",
-        repository_name: "telfa-extractor-bundle"
-    },
-    {
-        id: "ex-recurly",
-        repository_name: "recurly-bundle"
-    },
-    {
-        id: "ex-pingdom",
-        repository_name: "keboola-pingdom-bundle"
-    },
-    {
-        id: "ex-ooyala",
-        repository_name: "ooyala-extractor-bundle"
-    },
-    {
-        id: "ex-marketo",
-        repository_name: "marketo-extractor-bundle",
-        has_recipe: true
-    },
-    {
-        id: "ex-instagram",
-        repository_name: "instagram-extractor-bundle"
-    },
-    {
-        id: "ex-google-youtube",
-        repository_name: "google-youtube-bundle"
-    },
-    {
-        id: "ex-elasticsearch",
-        repository_name: "elasticsearch-extractor-bundle"
+        id: "ex-currency",
+        repository_name: "currency-bundle"
     },
     {
         id: "ex-db",
@@ -86,47 +41,26 @@ default['keboola-syrup']['components'] = [
         has_recipe: true
     },
     {
-        id: "ex-currency",
-        repository_name: "currency-bundle"
-    },
-    {
-        id: "ex-cloudsearch",
-        repository_name: "cloudsearch-extractor"
-    },
-    {
-        id: "ex-mailchimp",
-        repository_name: "mailchimp-extractor-bundle"
-    },
-    {
         id: "ex-doubleclick",
         repository_name: "doubleclick-extractor-bundle"
     },
     {
-        id: "ex-twitter",
-        repository_name: "twitter-extractor-bundle",
-        has_recipe: true
+        id: "ex-elasticsearch",
+        repository_name: "elasticsearch-extractor-bundle"
     },
     {
-        id: "sapi-importer",
-        repository_name: "sapi-importer-bundle"
+        id: "ex-forecastio",
+        repository_name: "forecastio-extractor-bundle",
+        bundle_install: false
     },
     {
-        id: "wr-elasticsearch",
-        repository_name: "elasticsearch-writer-bundle"
+        id: "ex-gooddata",
+        repository_name: "gooddata-extractor-bundle",
+        bundle_install: false
     },
     {
-        id: "wr-db",
-        repository_name: "db-writer-bundle"
-    },
-    {
-        id: "wr-cloudsearch",
-        repository_name: "cloudsearch-writer"
-    },
-    {
-        id: "gooddata-writer",
-        repository_name: "gooddata-writer",
-        bundle_install: true,
-        has_recipe: true
+        id: "ex-google-analytics",
+        repository_name: "google-analytics-bundle"
     },
     {
         id: "ex-google-drive",
@@ -134,9 +68,55 @@ default['keboola-syrup']['components'] = [
         bundle_install: false
     },
     {
-        id: "queue",
-        repository_name: "syrup-queue-bundle",
-        bundle_install: false,
+        id: "ex-google-youtube",
+        repository_name: "google-youtube-bundle"
+    },
+    {
+        id: "ex-instagram",
+        repository_name: "instagram-extractor-bundle"
+    },
+    {
+        id: "ex-mailchimp",
+        repository_name: "mailchimp-extractor-bundle"
+    },
+    {
+        id: "ex-marketo",
+        repository_name: "marketo-extractor-bundle",
+        has_recipe: true
+    },
+    {
+        id: "ex-ooyala",
+        repository_name: "ooyala-extractor-bundle"
+    },
+    {
+        id: "ex-pingdom",
+        repository_name: "keboola-pingdom-bundle"
+    },
+    {
+        id: "ex-recurly",
+        repository_name: "recurly-bundle"
+    },
+    {
+        id: "ex-sklik",
+        repository_name: "sklik-extractor-bundle"
+    },
+    {
+        id: "ex-telfa",
+        repository_name: "telfa-extractor-bundle"
+    },
+    {
+        id: "ex-twitter",
+        repository_name: "twitter-extractor-bundle",
+        has_recipe: true
+    },
+    {
+        id: "ex-zendesk",
+        repository_name: "zendesk-extractor-bundle"
+    },
+    {
+        id: "gooddata-writer",
+        repository_name: "gooddata-writer",
+        bundle_install: true,
         has_recipe: true
     },
     {
@@ -146,28 +126,35 @@ default['keboola-syrup']['components'] = [
         has_recipe: true
     },
     {
-        id: "ex-gooddata",
-        repository_name: "gooddata-extractor-bundle",
-        bundle_install: false
-    },
-    {
-        id: "rt-lucky-guess",
-        repository_name: "luckyguess-bundle",
-        bundle_install: false
-    },
-    {
         id: "pigeon",
         repository_name: "mailimport-bundle",
         bundle_install: false
     },
     {
-        id: "ex-forecastio",
-        repository_name: "forecastio-extractor-bundle",
-        bundle_install: false
+        id: "provisioning",
+        repository_name: "keboola-provisioning-bundle"
     },
     {
-        id: "wr-iot",
-        repository_name: "iot-writer-bundle",
+        id: "queue",
+        repository_name: "syrup-queue-bundle",
+        bundle_install: false,
+        has_recipe: true
+    },
+    {
+        id: "restbox",
+        repository_name: "restbox-bundle"
+    },
+    {
+        id: "rt-hierarchy",
+        repository_name: "hierarchy-bundle"
+    },
+    {
+        id: "rt-json",
+        repository_name: "jsonparser-bundle"
+    },
+    {
+        id: "rt-lucky-guess",
+        repository_name: "luckyguess-bundle",
         bundle_install: false
     },
     {
@@ -176,19 +163,36 @@ default['keboola-syrup']['components'] = [
         bundle_install: false
     },
     {
+        id: "sapi-importer",
+        repository_name: "sapi-importer-bundle"
+    },
+    {
         id: "timeout",
         repository_name: "timeout-bundle"
     },
     {
-        id: "ex-sklik",
-        repository_name: "sklik-extractor-bundle"
+        id: "wr-cloudsearch",
+        repository_name: "cloudsearch-writer"
+    },
+    {
+        id: "wr-db",
+        repository_name: "db-writer-bundle"
     },
     {
 	   id: "rt-lucky-guess-r",
 		repository_name: "luckyguess-r-bundle",
 		bundle_install: false,
 		has_recipe: true
-	}
+	},
+	{
+        id: "wr-elasticsearch",
+        repository_name: "elasticsearch-writer-bundle"
+    },
+    {
+        id: "wr-iot",
+        repository_name: "iot-writer-bundle",
+        bundle_install: false
+    }
 ]
 
 default['keboola-syrup']['components-broken'] = [
