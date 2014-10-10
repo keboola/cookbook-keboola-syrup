@@ -43,14 +43,16 @@ git "/www/transformation/releases/#{time}" do
    repository "https://#{node['keboola-syrup']['github_token']}@github.com/keboola/transformation-api.git"
    revision "production"
    action :sync
-   user "root"
-   group "root"
+   user "deploy"
+   group "apache"
 end
 
 
 execute "create revision file" do
   cwd "/www/transformation/releases/#{time}"
   command "git rev-parse HEAD > REVISION"
+  user "deploy"
+  group "apache"
 end
 
 execute "chown-data-www" do
