@@ -70,8 +70,8 @@ define :syrup_component do
 	  command "/usr/local/bin/composer install --no-dev --verbose --prefer-dist --optimize-autoloader --no-progress --no-interaction"
 	end
 
-
 	if params[:component][:bundle_install]
+		include_recipe "keboola-syrup::ruby"
 		execute "install bundler dependencies" do
 		  cwd "#{componentBasePath}/releases/#{time}"
 		  user "deploy"

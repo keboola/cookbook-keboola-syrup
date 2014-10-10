@@ -16,21 +16,6 @@ package "mysql55"
 # fixed yum install php54-pgsql
 package "postgresql9"
 
-
-# ruby required by gooddata writer#
-execute "install rvm" do
- command "curl -sSL https://get.rvm.io | bash -s stable --ruby=2.1.2"
-end
-
-execute "rvm use" do
- command "/usr/local/rvm/bin/rvm use 2.1.2 --default"
-end
-
-execute "rvm use for deploy user" do
- user "deploy"
- command "/usr/local/rvm/bin/rvm use 2.1.2 --default"
-end
-
 aws_s3_file "/home/deploy/.ssh/bitbucket_id_rsa" do
   bucket "keboola-configs"
   remote_path "deploy-keys/bitbucket_id_rsa"
@@ -71,8 +56,6 @@ directory "/www" do
 	group "apache"
 	mode "0750"
 end
-
-include_recipe "keboola-syrup::transformation"
 
 git "/www/syrup-router" do
    repository "https://#{node['keboola-syrup']['github_token']}@github.com/keboola/syrup-router.git"

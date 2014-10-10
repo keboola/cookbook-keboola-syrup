@@ -182,7 +182,13 @@ default['keboola-syrup']['components'] = [
     {
         id: "ex-sklik",
         repository_name: "sklik-extractor-bundle"
-    }
+    },
+    {
+	   id: "rt-lucky-guess-r",
+		repository_name: "luckyguess-r-bundle",
+		bundle_install: false,
+		has_recipe: true
+	}
 ]
 
 default['keboola-syrup']['components-broken'] = [
