@@ -9,6 +9,8 @@ default['newrelic']['php_agent']['config_file'] = "/etc/php.d/newrelic.ini"
 
 default['keboola-syrup']['github_token'] = ''
 
+default['sysctl']['params']['vm']['vfs_cache_pressure'] = 10000
+
 
 # GoodData Writer attributes
 default['keboola-syrup']['gooddata-writer']['cl_tool_version'] = '1.2.71'
