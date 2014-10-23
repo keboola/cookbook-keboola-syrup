@@ -65,6 +65,17 @@ git "/www/syrup-router" do
    group "apache"
 end
 
+execute "configure composer" do
+  user "deploy"
+  group "apache"
+  cwd "/www/syrup-router"
+  environment(
+    'COMPOSER_HOME' => '/home/deploy/.composer',
+    'COMPOSER_CACHE_DIR' => '/home/deploy/.composer/cache'
+  )
+  command "/usr/local/bin/composer config -g github-oauth.github.com #{node['keboola-syrup']['github_token']}"
+end
+
 execute "install composer dependencies" do
   user "deploy"
   group "apache"
@@ -75,6 +86,9 @@ execute "install composer dependencies" do
   )
   command "/usr/local/bin/composer install --no-dev --verbose --prefer-dist --optimize-autoloader --no-progress --no-interaction"
 end
+
+
+
 
 # install syrup components
 
