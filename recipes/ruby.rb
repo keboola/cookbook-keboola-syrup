@@ -1,7 +1,7 @@
 
 
 execute "install rvm" do
- command "curl -sSL https://get.rvm.io | bash -s stable --ruby=2.1.2"
+ command "curl -sSL https://get.rvm.io | bash -s stable --ruby=2.1.2 --version 1.25.32"
 end
 
 execute "rvm use" do
