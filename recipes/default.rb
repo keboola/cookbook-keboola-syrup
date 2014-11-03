@@ -88,8 +88,12 @@ execute "install composer dependencies" do
   command "/usr/local/bin/composer install --no-dev --verbose --prefer-dist --optimize-autoloader --no-progress --no-interaction"
 end
 
-
-
+cron "graceful apache" do
+  user "root"
+  hour "17"
+  minute "12"
+  command "/etc/init.d/httpd graceful"
+end
 
 # install syrup components
 
