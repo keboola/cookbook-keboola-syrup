@@ -1,1 +1,1 @@
-package "php54-pecl-oauth"
+package "php55-pecl-oauth"
