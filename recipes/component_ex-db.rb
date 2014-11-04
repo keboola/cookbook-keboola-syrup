@@ -1,3 +1,3 @@
 
 
-package "php54-mssql"
+package "php55-mssql"

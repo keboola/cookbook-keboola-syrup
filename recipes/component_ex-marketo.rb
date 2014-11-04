@@ -1,3 +1,3 @@
 
 
-package "php54-soap"
+package "php55-soap"
