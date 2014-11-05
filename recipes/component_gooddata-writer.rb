@@ -1,32 +1,5 @@
 
 
-version = node['keboola-syrup']['gooddata-writer']['cl_tool_version']
-cltool_path = Chef::Config[:file_cache_path] + "/cl-tool-#{version}.tar.gz"
-
-remote_file cltool_path do
-  source "https://s3.amazonaws.com/gooddata-cl/gooddata-cli-#{version}.tar.gz"
-  mode "0644"
-end
-
-directory "/www/gooddata-cli-#{version}"  do
-  owner "deploy"
-  group "apache"
-  mode "0755"
-  action :create
-  recursive true
-end
-
-execute "untar-cl-tool" do
-  cwd "/www/gooddata-cli-#{version}"
-  command "tar --strip-components 2 -xzf " + cltool_path
-end
-
-link "/www/gooddata-cli-current" do
-  to "/www/gooddata-cli-#{version}"
-  owner "deploy"
-  group "apache"
-end
-
 # init job
 
 template "/etc/init/gooddata-writer.queue-receive.conf" do

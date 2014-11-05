@@ -13,7 +13,6 @@ default['sysctl']['params']['vm']['vfs_cache_pressure'] = 10000
 
 
 # GoodData Writer attributes
-default['keboola-syrup']['gooddata-writer']['cl_tool_version'] = '1.2.71'
 default['keboola-syrup']['gooddata-writer']['enable_cron'] = 0
 default['keboola-syrup']['gooddata-writer']['workers_count'] = 0
 
