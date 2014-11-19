@@ -4,3 +4,9 @@ User git
 IdentityFile ~/.ssh/bitbucket_id_rsa
 StrictHostKeyChecking no
 
+Host github.com
+Hostname github.com
+User git
+StrictHostKeyChecking no
+
+
