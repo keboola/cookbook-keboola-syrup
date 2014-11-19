@@ -31,7 +31,8 @@ default['keboola-syrup']['components'] = [
     },
     {
         id: "ex-adwords",
-        repository_name: "adwords-extractor-bundle"
+        repository_name: "adwords-extractor-bundle",
+        has_ecipe: true
     },
     {
         id: "ex-cloudsearch",
@@ -44,7 +45,7 @@ default['keboola-syrup']['components'] = [
     {
         id: "ex-db",
         repository_name: "db-extractor-bundle",
-        has_recipe: true
+        has_ecipe: true
     },
     {
         id: "ex-doubleclick",
