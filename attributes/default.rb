@@ -25,6 +25,11 @@ default['keboola-syrup']['orchestrator']['enable_scheduler'] = 0
 
 default['keboola-syrup']['components'] = [
     {
+        id: "ex-salesforce",
+        repository_name: "ex-salesforce",
+        source: "github"
+    },
+    {
         id: "ex-adwords",
         repository_name: "adwords-extractor-bundle"
     },
