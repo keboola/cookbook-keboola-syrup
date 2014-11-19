@@ -30,7 +30,7 @@ define :syrup_component do
 
 	node.set['keboola-syrup'][componentName]['current-release-path'] = "#{componentBasePath}/releases/#{time}"
 
-	if params[:component][:repository] && params[:component][:repository] == 'github'
+	if params[:component][:source] && params[:component][:source] == 'github'
 		git "#{componentBasePath}/releases/#{time}" do
 		   repository "https://#{node['keboola-syrup']['github_token']}@github.com/keboola/#{params[:component][:repository_name]}.git"
 		   revision "production"
