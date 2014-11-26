@@ -25,6 +25,10 @@ default['keboola-syrup']['orchestrator']['enable_scheduler'] = 0
 
 default['keboola-syrup']['components'] = [
     {
+        id: "ex-appannie",
+        repository_name: "appannie-extractor-bundle"
+    },
+    {
         id: "ex-salesforce",
         repository_name: "ex-salesforce",
         source: "github"
