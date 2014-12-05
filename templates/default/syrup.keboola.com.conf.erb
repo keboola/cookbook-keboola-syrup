@@ -20,7 +20,10 @@
 
     <Directory /www/syrup-router/web>
         AllowOverride All
-         Require all granted
+        Require all granted
+
+        SetOutputFilter DEFLATE
+        AddOutputFilterByType DEFLATE text/html text/plain text/xml application/json text/javascript
     </Directory>
 
 #AWS ELB http > https on client side
@@ -54,7 +57,10 @@
 
     <Directory /www/syrup-router/web>
         AllowOverride All
-         Require all granted
+        Require all granted
+
+        SetOutputFilter DEFLATE
+        AddOutputFilterByType DEFLATE text/html text/plain text/xml application/json text/javascript
     </Directory>
     
 SSLEngine on
