@@ -25,6 +25,16 @@ default['keboola-syrup']['orchestrator']['enable_scheduler'] = 0
 
 default['keboola-syrup']['components'] = [
     {
+        id: "ex-facebook",
+        repository_name: "ex-facebook-bundle",
+        source: "github"
+    },
+    {
+        id: "table-importer",
+        repository_name: "sapi-table-importer",
+        source: "github"
+    },
+    {
         id: "ag-geocoding",
         repository_name: "geocoding-bundle",
         source: "github"
