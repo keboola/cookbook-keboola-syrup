@@ -28,6 +28,10 @@ default['keboola-syrup']['transformation']['workers_count'] = 0
 
 default['keboola-syrup']['components'] = [
     {
+        id: "ex-generic",
+        repository_name: "generic-extractor-bundle"
+    },
+    {
         id: "transformation",
         repository_name: "transformation-bundle",
         source: "github",
