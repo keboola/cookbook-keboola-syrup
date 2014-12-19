@@ -30,7 +30,7 @@ default['keboola-syrup']['components'] = [
     {
         id: "transformation",
         repository_name: "transformation-bundle",
-        source: "github"
+        source: "github",
         has_recipe: true
     },
     {
@@ -45,7 +45,7 @@ default['keboola-syrup']['components'] = [
     },
     {
         id: "ag-geocoding",
-        repository_name: "geocoding-bundle",
+        repository_name: "geocoding-augmentation",
         source: "github"
     },
     {
@@ -84,9 +84,10 @@ default['keboola-syrup']['components'] = [
         repository_name: "elasticsearch-extractor-bundle"
     },
     {
-        id: "ex-forecastio",
-        repository_name: "forecastio-extractor-bundle",
-        bundle_install: false
+        id: "ag-forecastio",
+        repository_name: "forecastio-augmentation",
+        bundle_install: false,
+        source: "github"
     },
     {
         id: "ex-gooddata",
