@@ -23,7 +23,15 @@ default['keboola-syrup']['queue']['workers_count'] = 0
 default['keboola-syrup']['orchestrator']['workers_count'] = 0
 default['keboola-syrup']['orchestrator']['enable_scheduler'] = 0
 
+# Transformation attributes
+default['keboola-syrup']['transformation']['workers_count'] = 0
+
 default['keboola-syrup']['components'] = [
+    {
+        id: "transformation",
+        repository_name: "transformation-bundle",
+        source: "github"
+    },
     {
         id: "ex-facebook",
         repository_name: "ex-facebook-bundle",
