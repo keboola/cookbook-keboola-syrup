@@ -31,6 +31,7 @@ default['keboola-syrup']['components'] = [
         id: "transformation",
         repository_name: "transformation-bundle",
         source: "github"
+        has_recipe: true
     },
     {
         id: "ex-facebook",
