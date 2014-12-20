@@ -77,7 +77,7 @@ default['keboola-syrup']['components'] = [
     {
         id: "ex-db",
         repository_name: "db-extractor-bundle",
-        has_ecipe: true
+        has_recipe: true
     },
     {
         id: "ex-doubleclick",
