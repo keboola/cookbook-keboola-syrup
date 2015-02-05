@@ -8,8 +8,25 @@ cookbook_file "/etc/sudoers.d/docker" do
   group "root"
 end
 
+# http://jpetazzo.github.io/2014/01/29/docker-device-mapper-resize/
+directory "/var/lib/docker/devicemapper/devicemapper" do
+  action :create
+  owner "root"
+  group "root"
+end
+
+link "/var/lib/docker/devicemapper/devicemapper" do
+  to "#{node['keboola-syrup']['docker']['data_device']}"
+  owner "root"
+  group "root"
+end
+
 service "docker" do
   action :enable
+end
+
+service "docker" do
+  action :start
 end
 
 # init job
