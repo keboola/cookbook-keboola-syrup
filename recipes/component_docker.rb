@@ -8,9 +8,11 @@ cookbook_file "/etc/sudoers.d/docker" do
   group "root"
 end
 
+service "docker" do
+  action :enable
+end
 
 # init job
-
 template "/etc/init/queue.queue-receive.conf" do
   source 'queue.queue-receive.conf.erb'
   owner 'root'
