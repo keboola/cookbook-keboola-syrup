@@ -26,6 +26,9 @@ default['keboola-syrup']['orchestrator']['enable_scheduler'] = 0
 # Transformation attributes
 default['keboola-syrup']['transformation']['workers_count'] = 0
 
+# Docker attributes
+default['keboola-syrup']['docker']['workers_count'] = 0
+
 # install only listed components if not empty
 default['keboola-syrup']['install-components'] = []
 
