@@ -98,12 +98,6 @@ end
 # install syrup components
 
 node['keboola-syrup']['components'].each do | component |
-	syrup_component component['id'] do
-		component component
-	end
-end
-
-node['keboola-syrup']['components'].each do | component |
   if node['keboola-syrup']['install-components'].empty? || node['keboola-syrup']['install-components'].index(component[:id])
     syrup_component component['id'] do
       component component
