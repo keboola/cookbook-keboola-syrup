@@ -26,6 +26,9 @@ default['keboola-syrup']['orchestrator']['enable_scheduler'] = 0
 # Transformation attributes
 default['keboola-syrup']['transformation']['workers_count'] = 0
 
+# install only listed components if not empty
+default['keboola-syrup']['install-components'] = []
+
 default['keboola-syrup']['components'] = [
     {
         id: "ex-generic",
@@ -232,6 +235,12 @@ default['keboola-syrup']['components'] = [
         id: "wr-iot",
         repository_name: "iot-writer-bundle",
         bundle_install: false
+    },
+    {
+      id: "docker",
+      repository_name: "docker-bundle",
+      source: "github",
+      has_recipe: true
     }
 ]
 

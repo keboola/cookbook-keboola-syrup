@@ -103,6 +103,14 @@ node['keboola-syrup']['components'].each do | component |
 	end
 end
 
+node['keboola-syrup']['components'].each do | component |
+  if node['keboola-syrup']['install-components'].empty? || node['keboola-syrup']['install-components'].index(component[:id])
+    syrup_component component['id'] do
+      component component
+    end
+  end
+end
+
 web_app "syrup.keboola.com" do
   template "syrup.keboola.com.conf.erb"
   server_name node['fqdn']
