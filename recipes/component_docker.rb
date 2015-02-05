@@ -11,11 +11,13 @@ end
 # http://jpetazzo.github.io/2014/01/29/docker-device-mapper-resize/
 directory "/var/lib/docker/devicemapper/devicemapper" do
   action :create
+  recursive true
   owner "root"
   group "root"
 end
 
-link "/var/lib/docker/devicemapper/devicemapper" do
+# put dosker device mapper to EBS in RAID
+link "/var/lib/docker/devicemapper/devicemapper/data" do
   to "#{node['keboola-syrup']['docker']['data_device']}"
   owner "root"
   group "root"
