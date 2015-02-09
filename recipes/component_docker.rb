@@ -23,16 +23,16 @@ link "/var/lib/docker/devicemapper/devicemapper/data" do
   group "root"
 end
 
-execute "reject connections to local subnets" do
-  command "iptables -I FORWARD 1 -o eth0 -d 10.0.0.0/8 -j REJECT"
-end
-
 service "docker" do
   action :enable
 end
 
 service "docker" do
   action :start
+end
+
+execute "reject connections to local subnets" do
+  command "iptables -I FORWARD 1 -o eth0 -d 10.0.0.0/8 -j REJECT"
 end
 
 # init job
