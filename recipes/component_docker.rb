@@ -1,5 +1,11 @@
 package "docker"
 
+cookbook_file "/etc/default/docker" do
+  source "docker_defaults"
+  mode "0600"
+  owner "root"
+  group "root"
+end
 
 cookbook_file "/etc/sudoers.d/docker" do
   source "docker_sudoers"
@@ -32,8 +38,21 @@ service "docker" do
 end
 
 execute "reject connections to local subnets" do
-  command "iptables -I FORWARD 1 -o eth0 -d 10.0.0.0/8 -j REJECT"
+  command "iptables -A FORWARD -d 10.0.0.0/8 -o eth0 -j REJECT --reject-with icmp-port-unreachable"
 end
+
+execute "docker iptables - 1" do
+  command "iptables -A FORWARD -o docker0 -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT"
+end
+
+execute "docker iptables - 2" do
+  command "iptables -A FORWARD -i docker0 ! -o docker0 -j ACCEPT"
+end
+
+execute "docker iptables - 3" do
+  command "iptables -A FORWARD -i docker0 -o docker0 -j ACCEPT"
+end
+
 
 # init job
 template "/etc/init/queue.queue-receive.conf" do
