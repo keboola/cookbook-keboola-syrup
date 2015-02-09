@@ -34,7 +34,7 @@ service "docker" do
 end
 
 service "docker" do
-  action :start, :immediately
+  action :start
 end
 
 execute "reject connections to local subnets" do
