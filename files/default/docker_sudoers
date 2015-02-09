@@ -1,2 +1,4 @@
+Defaults:apache !requiretty
+Defaults:deploy !requiretty
 %apache ALL = NOPASSWD: /usr/bin/docker
 %deploy ALL = NOPASSWD: /usr/bin/docker
