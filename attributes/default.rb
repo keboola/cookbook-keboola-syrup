@@ -28,6 +28,16 @@ default['keboola-syrup']['transformation']['workers_count'] = 0
 
 default['keboola-syrup']['components'] = [
     {
+        id: "ex-mandrill",
+        repository_name: "mandrill-extractor-bundle",
+        source: "github"
+    },
+    {
+        id: "ex-youtube",
+        repository_name: "youtube-extractor-bundle",
+        source: "github"
+    },
+    {
         id: "ex-generic",
         repository_name: "generic-extractor-bundle"
     },
