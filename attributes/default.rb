@@ -73,7 +73,8 @@ default['keboola-syrup']['components'] = [
     },
     {
         id: "ex-adwords",
-        repository_name: "adwords-extractor-bundle",
+        repository_name: "adwords-extractor",
+        source: "github",
         has_recipe: true
     },
     {
