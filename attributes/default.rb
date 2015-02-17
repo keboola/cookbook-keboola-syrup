@@ -149,7 +149,8 @@ default['keboola-syrup']['components'] = [
     },
     {
         id: "ex-sklik",
-        repository_name: "sklik-extractor-bundle"
+        repository_name: "sklik-extractor",
+        source: "github"
     },
     {
         id: "ex-telfa",
