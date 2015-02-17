@@ -1,6 +1,6 @@
 package "docker"
 
-cookbook_file "/etc/default/docker" do
+cookbook_file "/etc/sysconfig/docker" do
   source "docker_defaults"
   mode "0600"
   owner "root"

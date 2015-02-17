@@ -1,1 +1,1 @@
-DOCKER_OPTS="--iptables=false"
+OPTIONS="--iptablse=false --dns=8.8.8.8"
