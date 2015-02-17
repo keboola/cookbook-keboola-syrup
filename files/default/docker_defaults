@@ -1,1 +1,1 @@
-OPTIONS="--iptablse=false --dns=8.8.8.8"
+OPTIONS="--iptables=false --dns=8.8.8.8"
