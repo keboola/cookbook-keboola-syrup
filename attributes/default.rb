@@ -11,6 +11,8 @@ default['keboola-syrup']['github_token'] = ''
 
 default['sysctl']['params']['vm']['vfs_cache_pressure'] = 10000
 
+default['rsyslog']['max_message_size'] = '32k'
+
 
 # GoodData Writer attributes
 default['keboola-syrup']['gooddata-writer']['enable_cron'] = 0
