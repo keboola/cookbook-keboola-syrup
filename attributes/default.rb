@@ -30,6 +30,30 @@ default['keboola-syrup']['transformation']['workers_count'] = 0
 
 default['keboola-syrup']['components'] = [
     {
+      id: "ex-linkdex",
+      repository_name: "linkdex-extractor-bundle",
+      source: "github"
+    },
+    {
+      id: "ex-getstat",
+      repository_name: "getstat-extractor-bundle",
+      source: "github"
+    },
+    {
+      id: "wr-google-drive",
+      repository_name: "google-drive-wirter-bundle"
+    },
+    {
+      id: "ex-fb-ads",
+      repository_name: "facebookads-extractor-bundle",
+      source: "github"
+    },
+    {
+        id: "ex-db",
+        repository_name: "db-extractor-bundle",
+        has_recipe: true
+    },
+    {
         id: "ex-mandrill",
         repository_name: "mandrill-extractor-bundle",
         source: "github"
@@ -86,11 +110,6 @@ default['keboola-syrup']['components'] = [
     {
         id: "ex-currency",
         repository_name: "currency-bundle"
-    },
-    {
-        id: "ex-db",
-        repository_name: "db-extractor-bundle",
-        has_recipe: true
     },
     {
         id: "ex-doubleclick",
