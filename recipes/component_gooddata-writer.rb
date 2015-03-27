@@ -1,4 +1,4 @@
-
+package "php54-imap"
 
 # init job
 
