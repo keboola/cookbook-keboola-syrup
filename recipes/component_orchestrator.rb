@@ -5,7 +5,7 @@ action = node['keboola-syrup']['orchestrator']['enable_scheduler'].to_i > 0 ? :c
 cron "orchestrator scheduler" do
   user "deploy"
   minute "*"
-  command "php /www/syrup-router/components/orchestrator/current/vendor/keboola/syrup/app/console orchestrator:scheduler > | /usr/bin/logger -t 'cron_scheduler' -p local1.info"
+  command "php /www/syrup-router/components/orchestrator/current/vendor/keboola/syrup/app/console orchestrator:scheduler 2>&1 | /usr/bin/logger -t 'cron_scheduler' -p local1.info"
   action action
 end
 
