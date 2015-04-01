@@ -190,7 +190,6 @@ default['keboola-syrup']['components'] = [
         id: "gooddata-writer",
         repository_name: "gooddata-writer",
         source: "github",
-        bundle_install: true,
         has_recipe: true
     },
     {
