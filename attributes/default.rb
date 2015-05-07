@@ -205,6 +205,10 @@ default['keboola-syrup']['components'] = [
         bundle_install: false
     },
     {
+        id: "ex-google-bigquery",
+        repository_name: "google-bigquery-bundle"
+    },
+    {
         id: "provisioning",
         repository_name: "keboola-provisioning-bundle"
     },
