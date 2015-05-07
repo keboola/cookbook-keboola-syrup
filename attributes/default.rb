@@ -24,6 +24,7 @@ default['keboola-syrup']['queue']['workers_count'] = 0
 # Orchestrator attributes
 default['keboola-syrup']['orchestrator']['workers_count'] = 0
 default['keboola-syrup']['orchestrator']['enable_scheduler'] = 0
+default['keboola-syrup']['orchestrator']['enable_watchdog'] = 0
 
 # Transformation attributes
 default['keboola-syrup']['transformation']['workers_count'] = 0
