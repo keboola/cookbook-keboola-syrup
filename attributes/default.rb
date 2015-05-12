@@ -281,7 +281,8 @@ default['keboola-syrup']['components'] = [
     {
       id: "docker",
       repository_name: "docker-bundle",
-      source: "github"
+      source: "github",
+      has_recipe: true
     }
 ]
 
