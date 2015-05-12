@@ -1,4 +1,6 @@
-package "docker"
+package "docker" do
+  version "1.6.0"
+end
 
 cookbook_file "/etc/sysconfig/docker" do
   source "docker_defaults"
