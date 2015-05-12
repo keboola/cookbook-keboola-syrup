@@ -11,6 +11,8 @@ default['keboola-syrup']['github_token'] = ''
 
 default['sysctl']['params']['vm']['vfs_cache_pressure'] = 10000
 
+default['rsyslog']['max_message_size'] = '32k'
+
 
 # GoodData Writer attributes
 default['keboola-syrup']['gooddata-writer']['enable_cron'] = 0
@@ -22,6 +24,7 @@ default['keboola-syrup']['queue']['workers_count'] = 0
 # Orchestrator attributes
 default['keboola-syrup']['orchestrator']['workers_count'] = 0
 default['keboola-syrup']['orchestrator']['enable_scheduler'] = 0
+default['keboola-syrup']['orchestrator']['enable_watchdog'] = 0
 
 # Transformation attributes
 default['keboola-syrup']['transformation']['workers_count'] = 0
@@ -34,6 +37,40 @@ default['keboola-syrup']['docker']['data_device'] = "/dev/md1"
 default['keboola-syrup']['install-components'] = []
 
 default['keboola-syrup']['components'] = [
+    {
+      id: "ex-linkdex",
+      repository_name: "linkdex-extractor-bundle",
+      source: "github"
+    },
+    {
+      id: "ex-getstat",
+      repository_name: "getstat-extractor-bundle",
+      source: "github"
+    },
+    {
+      id: "wr-google-drive",
+      repository_name: "google-drive-wirter-bundle"
+    },
+    {
+      id: "ex-fb-ads",
+      repository_name: "facebookads-extractor-bundle",
+      source: "github"
+    },
+    {
+        id: "ex-db",
+        repository_name: "db-extractor-bundle",
+        has_recipe: true
+    },
+    {
+        id: "ex-mandrill",
+        repository_name: "mandrill-extractor-bundle",
+        source: "github"
+    },
+    {
+        id: "ex-youtube",
+        repository_name: "youtube-extractor-bundle",
+        source: "github"
+    },
     {
         id: "ex-generic",
         repository_name: "generic-extractor-bundle"
@@ -70,7 +107,8 @@ default['keboola-syrup']['components'] = [
     },
     {
         id: "ex-adwords",
-        repository_name: "adwords-extractor-bundle",
+        repository_name: "adwords-extractor",
+        source: "github",
         has_recipe: true
     },
     {
@@ -80,11 +118,6 @@ default['keboola-syrup']['components'] = [
     {
         id: "ex-currency",
         repository_name: "currency-bundle"
-    },
-    {
-        id: "ex-db",
-        repository_name: "db-extractor-bundle",
-        has_recipe: true
     },
     {
         id: "ex-doubleclick",
@@ -145,7 +178,8 @@ default['keboola-syrup']['components'] = [
     },
     {
         id: "ex-sklik",
-        repository_name: "sklik-extractor-bundle"
+        repository_name: "sklik-extractor",
+        source: "github"
     },
     {
         id: "ex-telfa",
@@ -163,7 +197,7 @@ default['keboola-syrup']['components'] = [
     {
         id: "gooddata-writer",
         repository_name: "gooddata-writer",
-        bundle_install: true,
+        source: "github",
         has_recipe: true
     },
     {
@@ -176,6 +210,10 @@ default['keboola-syrup']['components'] = [
         id: "pigeon",
         repository_name: "mailimport-bundle",
         bundle_install: false
+    },
+    {
+        id: "ex-google-bigquery",
+        repository_name: "google-bigquery-bundle"
     },
     {
         id: "provisioning",
@@ -243,8 +281,7 @@ default['keboola-syrup']['components'] = [
     {
       id: "docker",
       repository_name: "docker-bundle",
-      source: "github",
-      has_recipe: true
+      source: "github"
     }
 ]
 

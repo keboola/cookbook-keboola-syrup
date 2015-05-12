@@ -1,13 +1,7 @@
-
+package "php54-imap"
 
 # init job
 
-template "/etc/init/gooddata-writer.queue-receive.conf" do
-  source 'gooddata-writer.queue-receive.conf.erb'
-  owner 'root'
-  group 'root'
-  mode 00644
-end
 
 # SSO
 aws_s3_file "/tmp/gnupg.tgz" do
@@ -57,23 +51,22 @@ cron "gooddata writer clean" do
   action action
 end
 
-cron "gooddata writer accept-invitations" do
+cron "gooddata writer process-invitations" do
   user "deploy"
   minute "*/5"
-  command "cd /www/syrup-router/components/gooddata-writer/current; php vendor/keboola/syrup/app/console gooddata-writer:accept-invitations >/dev/null 2>&1"
+  command "cd /www/syrup-router/components/gooddata-writer/current; php vendor/keboola/syrup/app/console gooddata-writer:process-invitations >/dev/null 2>&1"
   action action
 end
 
 
 # start workers
-
-$i = 1
 $num = node['keboola-syrup']['gooddata-writer']['workers_count'].to_i
 
+$i = 1
 while $i <= $num  do
-   execute "start gooddata writer worker N=#{$i}" do
-	 command "start gooddata-writer.queue-receive N=#{$i}"
-	 not_if "status gooddata-writer.queue-receive N=#{$i}"
+   execute "start queue worker N=#{$i}" do
+	 command "start queue.queue-receive N=#{$i} QUEUE=gooddata-writer"
+	 not_if "status queue.queue-receive N=#{$i} QUEUE=gooddata-writer"
    end
    $i +=1
 end
