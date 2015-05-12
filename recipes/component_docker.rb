@@ -1,6 +1,4 @@
-package "docker" do
-  version "1.6.0"
-end
+yum_package "docker = 1.6.0-1.3.amzn1"
 
 cookbook_file "/etc/sysconfig/docker" do
   source "docker_defaults"
