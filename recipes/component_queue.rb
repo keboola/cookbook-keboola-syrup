@@ -15,6 +15,13 @@ template "/etc/init/queue.queue-receive-kill.conf" do
   mode 00644
 end
 
+cookbook_file "/etc/sudoers.d/kill" do
+  source "queue_kill_sudoers"
+  mode "0600"
+  owner "root"
+  group "root"
+end
+
 # start workers
 
 
