@@ -13,6 +13,7 @@ template "/etc/init/queue.queue-receive-kill.conf" do
   owner 'root'
   group 'root'
   mode 00644
+  notifies :reload, 'service[rsyslog]', :immediately
 end
 
 cookbook_file "/etc/sudoers.d/kill" do
