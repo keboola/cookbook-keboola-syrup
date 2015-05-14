@@ -116,6 +116,10 @@ define :syrup_component do
       group "apache"
 	end
 
+	if params[:component][:has_post_recipe]
+		include_recipe "keboola-syrup::component_#{componentName}_post"
+	end
+
 	link "#{componentBasePath}/current" do
 	  to "#{componentBasePath}/releases/#{time}"
 	  owner "deploy"

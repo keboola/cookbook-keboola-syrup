@@ -223,7 +223,8 @@ default['keboola-syrup']['components'] = [
         id: "queue",
         repository_name: "syrup-queue-bundle",
         bundle_install: false,
-        has_recipe: true
+        has_recipe: true,
+        has_post_recipe: true
     },
     {
         id: "restbox",
@@ -282,7 +283,8 @@ default['keboola-syrup']['components'] = [
       id: "docker",
       repository_name: "docker-bundle",
       source: "github",
-      has_recipe: true
+      has_recipe: true,
+      has_post_recipe: true
     }
 ]
 
