@@ -3,8 +3,8 @@
 
 # run kill queue on all servers
 execute "start queue kill queue" do
-  command "start queue.queue-receive-kill"
-  not_if "status queue.queue-receive-kill"
+  command "start queue.queue-receive-kill N=1"
+  not_if "status queue.queue-receive-kill N=1"
 end
 
 $num = node['keboola-syrup']['queue']['workers_count'].to_i
