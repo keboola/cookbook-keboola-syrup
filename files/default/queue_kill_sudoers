@@ -1,0 +1,6 @@
+Defaults:apache !requiretty
+Defaults:deploy !requiretty
+%apache ALL = NOPASSWD: /usr/bin/kill
+%deploy ALL = NOPASSWD: /usr/bin/kill
+%apache ALL = NOPASSWD: /usr/bin/pkill
+%deploy ALL = NOPASSWD: /usr/bin/pkill
