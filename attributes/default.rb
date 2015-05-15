@@ -285,6 +285,11 @@ default['keboola-syrup']['components'] = [
       source: "github",
       has_recipe: true,
       has_post_recipe: true
+    },
+    {
+      id: "shiny",
+      repository_name: "shiny-bundle",
+      has_recipe: true
     }
 ]
 
