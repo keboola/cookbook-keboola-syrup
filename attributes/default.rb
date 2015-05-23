@@ -275,6 +275,11 @@ default['keboola-syrup']['components'] = [
       id: "docker",
       repository_name: "docker-bundle",
       source: "github"
+    },
+    {
+      id: "ex-magento",
+      repository_name: "magento-extractor-bundle",
+      source: "github"
     }
 ]
 
