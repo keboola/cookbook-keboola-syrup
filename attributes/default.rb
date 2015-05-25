@@ -265,12 +265,6 @@ default['keboola-syrup']['components'] = [
         repository_name: "db-writer-bundle"
     },
     {
-        id: "rt-lucky-guess-r",
-        repository_name: "luckyguess-r-bundle",
-        bundle_install: false,
-        has_recipe: true
-    },
-    {
         id: "wr-elasticsearch",
         repository_name: "elasticsearch-writer-bundle"
     },
