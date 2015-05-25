@@ -121,4 +121,10 @@ define :syrup_component do
 	  owner "deploy"
 	  group "apache"
 	end
+
+	# in post recipe should be only execution of workers started
+	if params[:component][:has_post_recipe]
+		include_recipe "keboola-syrup::component_#{componentName}_post"
+	end
+
 end

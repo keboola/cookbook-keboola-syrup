@@ -217,6 +217,7 @@ default['keboola-syrup']['components'] = [
         repository_name: "syrup-queue-bundle",
         bundle_install: false,
         has_recipe: true
+        has_post_recipe: true
     },
     {
         id: "restbox",
