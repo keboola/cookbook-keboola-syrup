@@ -13,6 +13,7 @@ template "/etc/init/queue.queue-receive-kill.conf" do
   owner 'root'
   group 'root'
   mode 00644
+  notifies :restart, 'service[rsyslog]', :immediately
 end
 
 cookbook_file "/etc/sudoers.d/kill" do
@@ -29,8 +30,8 @@ $num = node['keboola-syrup']['queue']['workers_count'].to_i
 
 if $num > 0 then
   execute "start queue kill queue" do
-    command "start queue.queue-receive-kill"
-    not_if "status queue.queue-receive-kill"
+    command "start queue.queue-receive-kill N=1"
+    not_if "status queue.queue-receive-kill N=1"
   end
 end
 
