@@ -8,7 +8,6 @@ install.packages(
 				 	pkgs, 
 					repos='http://cran.us.r-project.org',
 					quiet = TRUE,
-					verbose = FALSE,
-					INSTALL_OPTS = c("--no-html")
+					verbose = FALSE
 				)
 
