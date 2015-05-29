@@ -2,6 +2,11 @@
 # install R
 package "R"
 
+# some R packages (such as devtools) require openssl-devel library be installed
+execute "install openssl-devel" do
+	command "yum -y install openssl-devel"
+end
+
 cookbook_file "/tmp/initR.R" do
 	source "init_R_shiny"
 	mode "0644"
