@@ -1,4 +1,3 @@
-
 # start workers
 
 # run kill queue on all servers

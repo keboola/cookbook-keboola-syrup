@@ -57,16 +57,3 @@ cron "gooddata writer process-invitations" do
   command "cd /www/syrup-router/components/gooddata-writer/current; php vendor/keboola/syrup/app/console gooddata-writer:process-invitations >/dev/null 2>&1"
   action action
 end
-
-
-# start workers
-$num = node['keboola-syrup']['gooddata-writer']['workers_count'].to_i
-
-$i = 1
-while $i <= $num  do
-   execute "start queue worker N=#{$i}" do
-	 command "start queue.queue-receive N=#{$i} QUEUE=gooddata-writer"
-	 not_if "status queue.queue-receive N=#{$i} QUEUE=gooddata-writer"
-   end
-   $i +=1
-end
