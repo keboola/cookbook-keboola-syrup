@@ -2,6 +2,8 @@
   ServerName <%= @params[:server_name] %>
   ServerAlias <% @params[:server_aliases].each do |a| %><%= a %> <% end %>
 
+  DocumentRoot /www/jsonparser-api/web/
+  
     ErrorLog "|/usr/bin/logger -t 'apache_json-parser_err' -p local1.info"
     CustomLog "|/usr/bin/logger -t 'apache_json-parser' -p local1.info" combined
 

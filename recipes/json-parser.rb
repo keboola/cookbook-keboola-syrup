@@ -26,10 +26,28 @@ execute "install composer dependencies" do
   command "/usr/local/bin/composer install --verbose --prefer-dist --optimize-autoloader --no-progress --no-interaction"
 end
 
+directory "/www/jsonparser-api/app/cache" do
+  owner "deploy"
+  group "apache"
+  mode 00775
+end
 
-web_app "json-parser.keboola.com" do
+directory "/www/jsonparser-api/app/logs" do
+  owner "deploy"
+  group "apache"
+  mode 00775
+end
+
+file "/www/jsonparser-api/symfony-jsonparser.log" do
+  owner 'root'
+  group 'apache'
+  mode '0755'
+  action :touch
+end
+
+web_app "zz_json-parser.keboola.com" do
   template "json-parser.keboola.com.conf.erb"
-  server_name node['json-parser.keboola.com']
+  server_name 'json-parser.keboola.com'
   server_aliases []
   enable true
 end
