@@ -191,13 +191,15 @@ default['keboola-syrup']['components'] = [
         id: "gooddata-writer",
         repository_name: "gooddata-writer",
         source: "github",
-        has_recipe: true
+        has_recipe: true,
+        has_post_recipe: true
     },
     {
         id: "orchestrator",
         repository_name: "orchestrator-bundle",
         bundle_install: false,
-        has_recipe: true
+        has_recipe: true,
+        has_post_recipe: true
     },
     {
         id: "pigeon",
