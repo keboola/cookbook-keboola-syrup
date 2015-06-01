@@ -39,9 +39,9 @@ directory "/www/jsonparser-api/app/logs" do
 end
 
 file "/www/jsonparser-api/symfony-jsonparser.log" do
-  owner 'root'
+  owner 'deploy'
   group 'apache'
-  mode '0755'
+  mode '0664'
   action :touch
 end
 
