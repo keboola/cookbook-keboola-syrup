@@ -7,8 +7,11 @@ include_recipe "aws"
 include_recipe "keboola-common"
 include_recipe "keboola-php"
 include_recipe "keboola-apache2"
-include_recipe "newrelic::php_agent"
 include_recipe 'sysctl::apply'
+
+if node['keboola-syrup']['enable_newrelic_apm'].to_i > 0
+  include_recipe "newrelic::php_agent"
+end
 
 # required for mysql exports using command line
 package "mysql-common"

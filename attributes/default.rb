@@ -13,6 +13,8 @@ default['sysctl']['params']['vm']['vfs_cache_pressure'] = 10000
 
 default['rsyslog']['max_message_size'] = '32k'
 
+# newrelic APM
+default['keboola-syrup']['enable_newrelic_apm'] = false
 
 # GoodData Writer attributes
 default['keboola-syrup']['gooddata-writer']['enable_cron'] = 0
