@@ -33,6 +33,11 @@ default['keboola-syrup']['transformation']['workers_count'] = 0
 
 default['keboola-syrup']['components'] = [
     {
+      id: "oauth",
+      repository_name: "oauth-bundle",
+      source: "github"
+    },
+    {
       id: "ex-linkdex",
       repository_name: "linkdex-extractor-bundle",
       source: "github"
