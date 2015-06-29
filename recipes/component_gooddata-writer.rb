@@ -6,7 +6,7 @@ package "php54-imap"
 # SSO
 aws_s3_file "/tmp/gnupg.tgz" do
   bucket "keboola-configs"
-  remote_path "syrup/gooddata-writer/gnupg.tgz"
+  remote_path "syrup/gooddata-writer/gnupg-2015.tar.gz"
   aws_access_key_id node[:aws][:aws_access_key_id]
   aws_secret_access_key node[:aws][:aws_secret_access_key]
 end
