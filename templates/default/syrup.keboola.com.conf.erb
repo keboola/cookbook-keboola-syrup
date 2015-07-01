@@ -1,37 +1,45 @@
 <VirtualHost *:80>
-    ServerName <%= @params[:server_name] %>
-    ServerAlias <% @params[:server_aliases].each do |a| %><%= a %> <% end %>
+  ServerName <%= @params[:server_name] %>
+  ServerAlias <% @params[:server_aliases].each do |a| %><%= a %> <% end %>
 
-    DocumentRoot /www/syrup-router/web
+  DocumentRoot /www/syrup-router/web
 
-    ErrorLog "|/usr/bin/logger -t 'apache_<%= @params[:server_name] %>_err' -p local1.info"
-    CustomLog "|/usr/bin/logger -t 'apache_<%= @params[:server_name] %>' -p local1.info" combined
+  ErrorLog "|/usr/bin/logger -t 'apache_ssl_<%= @params[:server_name] %>_err' -p local1.info"
+  CustomLog "|/usr/bin/logger -t 'apache_ssl_<%= @params[:server_name] %>' -p local1.info" combined
 
-    php_admin_value upload_tmp_dir /tmp/syrup-router
-    php_value include_path .:/www/syrup-router/:/usr/share/php
-    php_admin_value error_log syslog
-    php_flag display_startup_errors off
-    php_flag log_errors on
-    php_flag display_errors off
-    php_value post_max_size 2048M
-    php_value upload_max_filesize  2048M
-    php_value date.timezone "Europe/Prague"
-    php_admin_value short_open_tag on
+  RewriteEngine On
+   # force ssl
+   #Bypass ELB-Healthchecker from redirection. It will provide 301 output in the logs, that causes server shows out of service in elb
+   RewriteCond %{HTTP_USER_AGENT} !^ELB-HealthChecker
+   #By using HTTP:X-Forwarded-Proto does not contains HTTPS
+   RewriteCond %{HTTP:X-Forwarded-Proto} !https
+   #Request forward option
+   RewriteRule ^.*$ https://%{SERVER_NAME}%{REQUEST_URI}
 
-    <Directory /www/syrup-router/web>
-        AllowOverride All
-        Require all granted
+   KeepAlive on
+   # Timeout must be greater than timeout set for AWS ELB
+   KeepAliveTimeout 2800
 
-        SetOutputFilter DEFLATE
-        AddOutputFilterByType DEFLATE text/html text/plain text/xml application/json text/javascript
-    </Directory>
 
-#AWS ELB http > https on client side
-    <IfModule mod_rewrite.c>
-        RewriteEngine On
-        RewriteCond %{HTTP:X-Forwarded-Proto} !https
-        RewriteRule !/status\.php https://%{SERVER_NAME}%{REQUEST_URI} [L,R=301]
-    </IfModule>
+  php_admin_value upload_tmp_dir /tmp/syrup-router
+  php_value include_path .:/www/syrup-router/:/usr/share/php
+  php_admin_value error_log syslog
+  php_flag display_startup_errors off
+  php_flag log_errors on
+  php_flag display_errors off
+  php_value post_max_size 2048M
+  php_value upload_max_filesize  2048M
+  php_value date.timezone "Europe/Prague"
+  php_admin_value short_open_tag on
+
+  <Directory /www/syrup-router/web>
+      AllowOverride All
+      Require all granted
+
+      SetOutputFilter DEFLATE
+      AddOutputFilterByType DEFLATE text/html text/plain text/xml application/json text/javascript
+  </Directory>
+
 
 </VirtualHost>
 
@@ -62,7 +70,7 @@
         SetOutputFilter DEFLATE
         AddOutputFilterByType DEFLATE text/html text/plain text/xml application/json text/javascript
     </Directory>
-    
+
 SSLEngine on
 SSLProtocol all -SSLv3 -SSLv2
 SSLCipherSuite ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:DHE-DSS-AES128-GCM-SHA256:kEDH+AESGCM:ECDHE-RSA-AES128-SHA256:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA:ECDHE-ECDSA-AES128-SHA:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA:ECDHE-ECDSA-AES256-SHA:DHE-RSA-AES128-SHA256:DHE-RSA-AES128-SHA:DHE-DSS-AES128-SHA256:DHE-RSA-AES256-SHA256:DHE-DSS-AES256-SHA:DHE-RSA-AES256-SHA:!aNULL:!eNULL:!EXPORT:!DES:!RC4:!3DES:!MD5:!PSK
