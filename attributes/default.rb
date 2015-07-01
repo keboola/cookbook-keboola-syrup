@@ -35,7 +35,8 @@ default['keboola-syrup']['components'] = [
     {
       id: "oauth",
       repository_name: "oauth-bundle",
-      source: "github"
+      source: "github",
+      has_recipe: true
     },
     {
       id: "ex-linkdex",
