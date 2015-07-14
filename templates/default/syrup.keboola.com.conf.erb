@@ -52,6 +52,10 @@
     ErrorLog "|/usr/bin/logger -t 'apache_ssl_<%= @params[:server_name] %>_err' -p local1.info"
     CustomLog "|/usr/bin/logger -t 'apache_ssl_<%= @params[:server_name] %>' -p local1.info" combined
 
+    KeepAlive on
+    # Timeout must be greater than timeout set for AWS ELB
+    KeepAliveTimeout 2800
+    
     php_admin_value upload_tmp_dir /tmp/syrup-router
     php_value include_path .:/www/syrup-router/:/usr/share/php
     php_admin_value error_log syslog
