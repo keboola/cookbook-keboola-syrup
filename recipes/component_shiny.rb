@@ -22,6 +22,14 @@ execute "download shiny server" do
   command "curl https://s3.amazonaws.com/rstudio-shiny-server-pro-build/centos-5.9/x86_64/shiny-server-commercial-1.3.0.540-rh5-x86_64.rpm > /tmp/shiny.rpm"
 end
 
+execute "symlink libssl" do
+  command "ln -f -s /usr/lib64/libssl.so.10 /usr/lib64/libssl.so.6"
+end
+
+execute "symlink libcrypto" do
+	command "ln -f -s /usr/lib64/libcrypto.so /usr/lib64/libcrypto.so.6"
+end
+
 execute "install shiny-server" do
   	command "yum -y --nogpgcheck install /tmp/shiny.rpm"
 end
