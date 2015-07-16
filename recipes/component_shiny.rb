@@ -47,6 +47,7 @@ execute "library permissions" do
 	command "chmod -R 0777 /usr/lib64/R/library"
 end
 
-# execute "create shiny admin user" do
-#  command " echo 'somepassword' | /opt/shiny-server/bin/sspasswd /etc/shiny-server/passwd shiny-admin"
-# end
+# give apache ownership over shiny home
+execute "apache ownership" do
+	command "chown apache:apache /srv/shiny-server"
+end
