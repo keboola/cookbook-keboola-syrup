@@ -1,7 +1,9 @@
 # This script will be run when a new shiny-server gets deployed
 
 # packages to install by default from CRAN
-pkgs <- c("shiny","jsonlite","XML","ggplot2","rmarkdown","plyr","httr","devtools")
+pkgs <- c("shiny","jsonlite","XML","ggplot2","rmarkdown",
+			"plyr","httr","devtools","lubridate","reshape2","googleVis",
+			"stringi", "knitr", "data.table", "DT")
 
 # install packages from cran
 install.packages(
@@ -15,3 +17,5 @@ install.packages(
 library(devtools)
 devtools::install_github("cloudyr/aws.signature")
 devtools::install_github("keboola/sapi-r-client")
+devtools::install_github("keboola/shiny-lib")
+
