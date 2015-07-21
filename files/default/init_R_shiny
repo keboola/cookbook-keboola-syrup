@@ -3,7 +3,7 @@
 # packages to install by default from CRAN
 pkgs <- c("shiny","jsonlite","XML","ggplot2","rmarkdown",
 			"plyr","httr","devtools","lubridate","reshape2","googleVis",
-			"stringi", "knitr", "data.table", "DT", "arulesViz")
+			"stringi", "knitr", "data.table", "DT", "arulesViz", "rpart", "rpart.plot")
 
 # install packages from cran
 install.packages(
