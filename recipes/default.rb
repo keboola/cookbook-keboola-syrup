@@ -17,8 +17,6 @@ end
 package "mysql-common"
 package "mysql55"
 
-# fixed yum install php54-pgsql
-package "postgresql9"
 
 aws_s3_file "/home/deploy/.ssh/bitbucket_id_rsa" do
   bucket "keboola-configs"
