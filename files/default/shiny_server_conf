@@ -9,7 +9,7 @@ server {
 	listen 3838;
 	
 	# tell the server where the ssl cert is
-	# ssl /etc/shiny-server/ssl-key.pem /etc/shiny-server/ssl.cert;
+	ssl /etc/httpd/ssl/x.keboola.com.key /etc/httpd/ssl/x.keboola.com.crt;
 	
 	# allow the following request headers
 	whitelist_headers X_StorageApi_Token;
@@ -37,7 +37,7 @@ server {
 admin 4151 {
 	
 	# ssl cert for the administration site
-	# ssl /etc/shiny-server/ssl-key.pem /etc/shiny-server/ssl.cert;
+	ssl /etc/httpd/ssl/x.keboola.com.key /etc/httpd/ssl/x.keboola.com.crt;
 	
 	# only user by name shiny-admin can access the admin page
 	required_user shiny-admin;  
