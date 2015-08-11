@@ -2,7 +2,7 @@ default['aws']['aws_access_key_id'] = ''
 default['aws']['aws_secret_access_key'] = ''
 
 
-default['php']['packages'] = %w{ php55 php55-opcache php55-devel php-pear php55-pdo php55-mysqlnd php55-mbstring php55-mcrypt php55-pecl-apcu }
+default['php']['packages'] = %w{ php56 php56-opcache php56-devel php-pear php56-pdo php56-mysqlnd php56-mbstring php56-mcrypt php56-pecl-apcu }
 
 default['newrelic']['php_agent']['config_file'] = "/etc/php.d/newrelic.ini"
 

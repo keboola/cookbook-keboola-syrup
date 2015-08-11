@@ -1,4 +1,4 @@
-package "php55-mssql"
+package "php56-mssql"
 
 # create config for FreeTDS DB driver
 cookbook_file "/etc/freetds.conf" do

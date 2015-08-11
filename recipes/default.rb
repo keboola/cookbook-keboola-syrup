@@ -5,7 +5,7 @@
 
 include_recipe "aws"
 include_recipe "keboola-common"
-include_recipe "keboola-php55"
+include_recipe "keboola-php56"
 include_recipe "keboola-apache2"
 include_recipe 'sysctl::apply'
 
