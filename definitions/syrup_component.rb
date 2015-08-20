@@ -37,7 +37,6 @@ define :syrup_component do
 		   action :sync
 		   user "deploy"
 		   group "apache"
-		   depth 1
 		end
 	else
 		git "#{componentBasePath}/releases/#{time}" do
@@ -46,7 +45,6 @@ define :syrup_component do
 		   action :sync
 		   user "deploy"
 		   group "apache"
-		   depth 1
 		end
 	end
 
