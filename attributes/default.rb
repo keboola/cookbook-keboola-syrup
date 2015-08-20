@@ -241,10 +241,6 @@ default['keboola-syrup']['components'] = [
         repository_name: "restbox-bundle"
     },
     {
-        id: "rt-hierarchy",
-        repository_name: "hierarchy-bundle"
-    },
-    {
         id: "rt-lucky-guess",
         repository_name: "luckyguess-bundle",
         bundle_install: false
