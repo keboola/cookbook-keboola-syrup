@@ -37,10 +37,3 @@ end
 php_pear 'oci8' do
   action 'install'
 end
-
-cookbook_file "/etc/php.d/oci8.ini" do
-  source "oci8.ini"
-  mode "0644"
-  owner "root"
-  group "root"
-end
