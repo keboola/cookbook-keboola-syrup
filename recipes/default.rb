@@ -17,6 +17,34 @@ end
 package "mysql-common"
 package "mysql55"
 
+# limits
+set_limit '*' do
+  type 'hard'
+  item 'nofile'
+  value 50000
+  use_system true
+end
+
+set_limit '*' do
+  type 'soft'
+  item 'nofile'
+  value 50000
+  use_system true
+end
+
+set_limit 'root' do
+  type 'hard'
+  item 'nofile'
+  value 50000
+  use_system true
+end
+
+set_limit 'root' do
+  type 'soft'
+  item 'nofile'
+  value 50000
+  use_system true
+end
 
 aws_s3_file "/home/deploy/.ssh/bitbucket_id_rsa" do
   bucket "keboola-configs"
