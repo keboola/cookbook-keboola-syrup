@@ -164,10 +164,6 @@ default['keboola-syrup']['components'] = [
         repository_name: "instagram-extractor-bundle"
     },
     {
-        id: "ex-mailchimp",
-        repository_name: "mailchimp-extractor-bundle"
-    },
-    {
         id: "ex-marketo",
         repository_name: "marketo-extractor-bundle",
         has_recipe: true
