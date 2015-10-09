@@ -227,7 +227,7 @@ default['keboola-syrup']['components'] = [
     },
     {
         id: "queue",
-        repository_name: "syrup-queue-bundle",
+        repository_name: "syrup-queue",
         source: "github",
         bundle_install: false,
         has_recipe: true,
