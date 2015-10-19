@@ -4,7 +4,7 @@
 pkgs <- c("shiny","jsonlite","XML","ggplot2","rmarkdown",
 			"plyr","httr","devtools","lubridate","reshape2","googleVis",
 			"stringi", "knitr", "data.table", "DT", "arulesViz", "rpart", "rpart.plot",
-			"networkD3")
+			"networkD3", "rJava", "RJDBC")
 
 # install packages from cran
 install.packages(
@@ -18,5 +18,7 @@ install.packages(
 library(devtools)
 devtools::install_github("cloudyr/aws.signature")
 devtools::install_github("keboola/sapi-r-client")
+devtools::install_github("keboola/provisioning-r-client")
+devtools::install_github("keboola/redshift-r-client")
 devtools::install_github("keboola/shiny-lib")
 
