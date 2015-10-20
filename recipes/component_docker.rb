@@ -59,10 +59,19 @@ execute "install datadog agent" do
   command "DD_API_KEY=#{node['datadog']['api_key']} bash -c \"$(curl -L https://raw.githubusercontent.com/DataDog/dd-agent/master/packaging/datadog-agent/source/install_agent.sh)\""
 end
 
-execute "modify datadog agent" do
+execute "stop datadog agent" do
   command "dd-agent stop"
+end
+
+execute "modify datadog agent group" do
   command "usermod -a -G docker dd-agent"
+end
+
+execute "enable datadog config template" do
   command "cp /etc/dd-agent/conf.d/docker_daemon.yaml.example /etc/dd-agent/conf.d/docker_daemon.yaml"
+end
+  
+execute "start datadog agent" do
   command "/etc/init.d/datadog-agent restart"
 end
 
