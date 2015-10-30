@@ -86,12 +86,6 @@ default['keboola-syrup']['components'] = [
         repository_name: "generic-extractor-bundle"
     },
     {
-        id: "transformation",
-        repository_name: "transformation-bundle",
-        source: "github",
-        has_recipe: true
-    },
-    {
         id: "ex-facebook",
         repository_name: "ex-facebook-bundle",
         source: "github"
@@ -201,20 +195,6 @@ default['keboola-syrup']['components'] = [
         repository_name: "zendesk-extractor-bundle"
     },
     {
-        id: "gooddata-writer",
-        repository_name: "gooddata-writer",
-        source: "github",
-        has_recipe: true,
-        has_post_recipe: true
-    },
-    {
-        id: "orchestrator",
-        repository_name: "orchestrator-bundle",
-        bundle_install: false,
-        has_recipe: true,
-        has_post_recipe: true
-    },
-    {
         id: "pigeon",
         repository_name: "mailimport-bundle",
         bundle_install: false
@@ -226,14 +206,6 @@ default['keboola-syrup']['components'] = [
     {
         id: "provisioning",
         repository_name: "keboola-provisioning-bundle"
-    },
-    {
-        id: "queue",
-        repository_name: "syrup-queue",
-        source: "github",
-        bundle_install: false,
-        has_recipe: true,
-        has_post_recipe: true
     },
     {
         id: "restbox",
@@ -275,13 +247,6 @@ default['keboola-syrup']['components'] = [
         bundle_install: false
     },
     {
-      id: "docker",
-      repository_name: "docker-bundle",
-      source: "github",
-      has_recipe: true,
-      has_post_recipe: true
-    },
-    {
       id: "ex-magento",
       repository_name: "magento-extractor-bundle",
       source: "github"
@@ -290,6 +255,41 @@ default['keboola-syrup']['components'] = [
       id: "shiny",
       repository_name: "shiny-bundle",
       has_recipe: true
+    },
+    {
+        id: "queue",
+        repository_name: "syrup-queue",
+        source: "github",
+        bundle_install: false,
+        has_recipe: true,
+        has_post_recipe: true
+    },
+    {
+        id: "orchestrator",
+        repository_name: "orchestrator-bundle",
+        bundle_install: false,
+        has_recipe: true,
+        has_post_recipe: true
+    },
+    {
+      id: "docker",
+      repository_name: "docker-bundle",
+      source: "github",
+      has_recipe: true,
+      has_post_recipe: true
+    },
+    {
+        id: "transformation",
+        repository_name: "transformation-bundle",
+        source: "github",
+        has_recipe: true
+    },
+    {
+        id: "gooddata-writer",
+        repository_name: "gooddata-writer",
+        source: "github",
+        has_recipe: true,
+        has_post_recipe: true
     }
 ]
 
