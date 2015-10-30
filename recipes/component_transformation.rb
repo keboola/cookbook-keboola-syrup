@@ -51,9 +51,6 @@ execute "append SIMBAINI variable to profile" do
   command "echo \"export SIMBAINI=/etc/snowflake_odbc/conf/unixodbc.snowflake.ini\" >> /etc/profile"
 end
 
-execute "increase php memory limit" do 
-  command "sed -i -- 's/memory_limit = 128M/memory_limit = 256M/g' /etc/php.ini"
-end
 
 # start workers
 
