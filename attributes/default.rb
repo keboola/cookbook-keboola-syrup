@@ -18,6 +18,9 @@ default['rsyslog']['max_message_size'] = '32k'
 # newrelic APM
 default['keboola-syrup']['enable_newrelic_apm'] = 0
 
+# Docker monitoring
+default['keboola-syrup']['enable_docker_monitoring'] = 0
+
 # GoodData Writer attributes
 default['keboola-syrup']['gooddata-writer']['enable_cron'] = 0
 default['keboola-syrup']['gooddata-writer']['workers_count'] = 0
