@@ -270,6 +270,7 @@ default['keboola-syrup']['components'] = [
     {
         id: "orchestrator",
         repository_name: "orchestrator-bundle",
+        source: "github",
         bundle_install: false,
         has_recipe: true,
         has_post_recipe: true
