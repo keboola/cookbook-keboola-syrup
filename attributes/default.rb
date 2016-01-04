@@ -180,11 +180,6 @@ default['keboola-syrup']['components'] = [
         repository_name: "recurly-bundle"
     },
     {
-        id: "ex-sklik",
-        repository_name: "sklik-extractor",
-        source: "github"
-    },
-    {
         id: "ex-telfa",
         repository_name: "telfa-extractor-bundle"
     },
