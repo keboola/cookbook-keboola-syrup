@@ -34,6 +34,7 @@ cookbook_file "/etc/profile.d/oracle.sh" do
   group "root"
 end
 
-php_pear 'oci8-2.0.8' do
+php_pear 'oci8' do
+  version '2.0.8'
   action 'install'
 end
