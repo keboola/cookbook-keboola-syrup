@@ -80,11 +80,6 @@ default['keboola-syrup']['components'] = [
         source: "github"
     },
     {
-        id: "ex-youtube",
-        repository_name: "youtube-extractor-bundle",
-        source: "github"
-    },
-    {
         id: "ex-generic",
         repository_name: "generic-extractor-bundle"
     },
@@ -119,8 +114,9 @@ default['keboola-syrup']['components'] = [
         has_recipe: true
     },
     {
-        id: "ex-cloudsearch",
-        repository_name: "cloudsearch-extractor"
+         id: "ex-sklik",
+         repository_name: "sklik-extractor",
+         source: "github"
     },
     {
         id: "ex-currency",
@@ -166,18 +162,6 @@ default['keboola-syrup']['components'] = [
         id: "ex-marketo",
         repository_name: "marketo-extractor-bundle",
         has_recipe: true
-    },
-    {
-        id: "ex-ooyala",
-        repository_name: "ooyala-extractor-bundle"
-    },
-    {
-        id: "ex-pingdom",
-        repository_name: "keboola-pingdom-bundle"
-    },
-    {
-        id: "ex-recurly",
-        repository_name: "recurly-bundle"
     },
     {
         id: "ex-telfa",
@@ -229,21 +213,12 @@ default['keboola-syrup']['components'] = [
         repository_name: "timeout-bundle"
     },
     {
-        id: "wr-cloudsearch",
-        repository_name: "cloudsearch-writer"
-    },
-    {
         id: "wr-db",
         repository_name: "db-writer-bundle"
     },
     {
         id: "wr-elasticsearch",
         repository_name: "elasticsearch-writer-bundle"
-    },
-    {
-        id: "wr-iot",
-        repository_name: "iot-writer-bundle",
-        bundle_install: false
     },
     {
       id: "ex-magento",
