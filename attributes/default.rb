@@ -151,8 +151,9 @@ default['keboola-syrup']['components'] = [
         bundle_install: false
     },
     {
-        id: "ex-google-youtube",
-        repository_name: "google-youtube-bundle"
+        id: "ex-youtube",
+        repository_name: "youtube-extractor-bundle",
+        source: "github"
     },
     {
         id: "ex-instagram",
