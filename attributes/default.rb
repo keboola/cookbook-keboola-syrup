@@ -203,7 +203,8 @@ default['keboola-syrup']['components'] = [
     },
     {
         id: "provisioning",
-        repository_name: "keboola-provisioning-bundle"
+        repository_name: "provisioning-bundle",
+        source: "github"        
     },
     {
         id: "restbox",
