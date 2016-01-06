@@ -232,6 +232,10 @@ default['keboola-syrup']['components'] = [
       has_recipe: true
     },
     {
+        id: "shinyapps",
+        repository_name: "shinyapps-bundle"
+    },
+    {
         id: "queue",
         repository_name: "syrup-queue",
         source: "github",
