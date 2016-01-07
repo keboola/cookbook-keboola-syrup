@@ -148,7 +148,7 @@ default['keboola-syrup']['components'] = [
     {
         id: "ex-google-drive",
         repository_name: "google-drive-bundle",
-        bundle_install: false
+        source: "github"
     },
     {
         id: "ex-youtube",
