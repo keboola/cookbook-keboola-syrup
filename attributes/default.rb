@@ -143,7 +143,8 @@ default['keboola-syrup']['components'] = [
     },
     {
         id: "ex-google-analytics",
-        repository_name: "google-analytics-bundle"
+        repository_name: "google-analytics-bundle",
+        source: "github"
     },
     {
         id: "ex-google-drive",
