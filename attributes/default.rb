@@ -217,7 +217,8 @@ default['keboola-syrup']['components'] = [
     },
     {
         id: "wr-db",
-        repository_name: "db-writer-bundle"
+        repository_name: "db-writer-bundle",
+        source: "github"
     },
     {
         id: "wr-elasticsearch",
