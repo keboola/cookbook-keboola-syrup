@@ -72,6 +72,7 @@ default['keboola-syrup']['components'] = [
     {
         id: "ex-db",
         repository_name: "db-extractor-bundle",
+        source: "github",
         has_recipe: true
     },
     {
