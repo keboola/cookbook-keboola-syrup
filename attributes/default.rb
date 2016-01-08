@@ -140,7 +140,7 @@ default['keboola-syrup']['components'] = [
     {
         id: "ex-gooddata",
         repository_name: "gooddata-extractor-bundle",
-        bundle_install: false
+        source: "github"
     },
     {
         id: "ex-google-analytics",
