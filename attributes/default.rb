@@ -62,7 +62,8 @@ default['keboola-syrup']['components'] = [
     },
     {
       id: "wr-google-drive",
-      repository_name: "google-drive-writer-bundle"
+      repository_name: "google-drive-writer-bundle",
+      source: "github"
     },
     {
       id: "ex-fb-ads",
