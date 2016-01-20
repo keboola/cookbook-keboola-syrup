@@ -126,7 +126,8 @@ default['keboola-syrup']['components'] = [
     },
     {
         id: "ex-doubleclick",
-        repository_name: "doubleclick-extractor-bundle"
+        repository_name: "doubleclick-extractor-bundle",
+        source: "github"
     },
     {
         id: "ex-elasticsearch",
