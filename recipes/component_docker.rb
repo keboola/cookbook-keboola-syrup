@@ -1,4 +1,7 @@
-yum_package "docker =  1.7.1-1.9.amzn1"
+
+execute "install docker" do
+  command "yum install docker-1.7.1-1.9.amzn1"
+end
 
 cookbook_file "/etc/sysconfig/docker" do
   source "docker_defaults"
