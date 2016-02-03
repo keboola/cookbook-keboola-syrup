@@ -17,19 +17,21 @@ cookbook_file "/etc/sudoers.d/docker" do
   group "root"
 end
 
-# http://jpetazzo.github.io/2014/01/29/docker-device-mapper-resize/
-directory "/var/lib/docker/devicemapper/devicemapper" do
-  action :create
-  recursive true
-  owner "root"
-  group "root"
+## Device mapper - steps from https://docs.docker.com/engine/userguide/storagedriver/device-mapper-driver/
+execute "Create an LVM physical volume (PV)" do
+  command "pvcreate #{node['keboola-syrup']['docker']['data_device']}"
 end
 
-# put dosker device mapper to EBS in RAID
-link "/var/lib/docker/devicemapper/devicemapper/data" do
-  to "#{node['keboola-syrup']['docker']['data_device']}"
-  owner "root"
-  group "root"
+execute "Create a new volume group (VG) " do
+  command "vgcreate vg-docker  #{node['keboola-syrup']['docker']['data_device']}"
+end
+
+execute "Create a new 90GB logical volume (LV) called data " do
+  command "lvcreate -L 90G -n data vg-docker"
+end
+
+execute "Create a new logical volume (LV) called metadata" do
+  command "lvcreate -L 4G -n metadata vg-docker"
 end
 
 service "docker" do
