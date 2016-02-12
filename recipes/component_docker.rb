@@ -42,6 +42,10 @@ service "docker" do
   action :start
 end
 
+execute "allow access to subnet NetHost_VPN_1a" do
+  command "iptables -A FORWARD -d 10.0.222.0/24 -o eth0 -j ACCEPT"
+end
+
 execute "reject connections to local subnets" do
   command "iptables -A FORWARD -d 10.0.0.0/8 -o eth0 -j REJECT --reject-with icmp-port-unreachable"
 end
