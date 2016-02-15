@@ -39,6 +39,7 @@ default['keboola-syrup']['transformation']['workers_count'] = 0
 # Docker attributes
 default['keboola-syrup']['docker']['workers_count'] = 0
 default['keboola-syrup']['docker']['data_device'] = "/dev/md1"
+default['keboola-syrup']['docker']['install_docker'] = 0
 
 # install only listed components if not empty
 default['keboola-syrup']['install-components'] = []
@@ -199,7 +200,7 @@ default['keboola-syrup']['components'] = [
     {
         id: "provisioning",
         repository_name: "provisioning-bundle",
-        source: "github"        
+        source: "github"
     },
     {
         id: "restbox",
