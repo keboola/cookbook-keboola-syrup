@@ -137,10 +137,6 @@ default['keboola-syrup']['components'] = [
         source: "github"
     },
     {
-        id: "ex-elasticsearch",
-        repository_name: "elasticsearch-extractor-bundle"
-    },
-    {
         id: "ag-forecastio",
         repository_name: "forecastio-augmentation",
         bundle_install: false,
@@ -228,10 +224,6 @@ default['keboola-syrup']['components'] = [
         id: "wr-db",
         repository_name: "db-writer-bundle",
         source: "github"
-    },
-    {
-        id: "wr-elasticsearch",
-        repository_name: "elasticsearch-writer-bundle"
     },
     {
       id: "ex-magento",
