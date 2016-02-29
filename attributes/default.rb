@@ -89,10 +89,6 @@ default['keboola-syrup']['components'] = [
         source: "github"
     },
     {
-        id: "ex-generic",
-        repository_name: "generic-extractor-bundle"
-    },
-    {
         id: "ex-facebook",
         repository_name: "ex-facebook-bundle",
         source: "github"
