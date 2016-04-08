@@ -1,7 +1,7 @@
 if node['keboola-syrup']['docker']['install_docker'].to_i  > 0
 
-  execute "install docker" do
-    command "yum -y install docker"
+  execute "install docker 1.7.1 from amazon repo" do
+    command "yum -y install docker --releasever=2015.03"
   end
 
   cookbook_file "/etc/sysconfig/docker" do
