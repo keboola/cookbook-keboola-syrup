@@ -2,3 +2,5 @@ Defaults:apache !requiretty
 Defaults:deploy !requiretty
 %apache ALL = NOPASSWD: /usr/bin/docker
 %deploy ALL = NOPASSWD: /usr/bin/docker
+%apache ALL = NOPASSWD: /usr/bin/timeout
+%deploy ALL = NOPASSWD: /usr/bin/timeout
