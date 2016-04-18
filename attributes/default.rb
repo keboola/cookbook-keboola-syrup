@@ -113,17 +113,6 @@ default['keboola-syrup']['components'] = [
         source: "github"
     },
     {
-        id: "ex-adwords",
-        repository_name: "adwords-extractor",
-        source: "github",
-        has_recipe: true
-    },
-    {
-         id: "ex-sklik",
-         repository_name: "sklik-extractor",
-         source: "github"
-    },
-    {
         id: "ex-currency",
         repository_name: "currency-bundle"
     },
