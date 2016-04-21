@@ -58,11 +58,6 @@ default['keboola-syrup']['components'] = [
       has_recipe: true
     },
     {
-      id: "ex-linkdex",
-      repository_name: "linkdex-extractor-bundle",
-      source: "github"
-    },
-    {
       id: "ex-getstat",
       repository_name: "getstat-extractor-bundle",
       source: "github"
@@ -113,10 +108,6 @@ default['keboola-syrup']['components'] = [
         source: "github"
     },
     {
-        id: "ex-currency",
-        repository_name: "currency-bundle"
-    },
-    {
         id: "ex-doubleclick",
         repository_name: "doubleclick-extractor-bundle",
         source: "github"
@@ -152,15 +143,6 @@ default['keboola-syrup']['components'] = [
         repository_name: "instagram-extractor-bundle"
     },
     {
-        id: "ex-marketo",
-        repository_name: "marketo-extractor-bundle",
-        has_recipe: true
-    },
-    {
-        id: "ex-telfa",
-        repository_name: "telfa-extractor-bundle"
-    },
-    {
         id: "ex-twitter",
         repository_name: "twitter-extractor-bundle",
         has_recipe: true
@@ -190,11 +172,6 @@ default['keboola-syrup']['components'] = [
     {
         id: "rt-lucky-guess",
         repository_name: "luckyguess-bundle",
-        bundle_install: false
-    },
-    {
-        id: "rt-split",
-        repository_name: "textsplitter-bundle",
         bundle_install: false
     },
     {
