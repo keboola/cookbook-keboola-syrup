@@ -79,11 +79,6 @@ default['keboola-syrup']['components'] = [
         has_recipe: true
     },
     {
-        id: "ex-mandrill",
-        repository_name: "mandrill-extractor-bundle",
-        source: "github"
-    },
-    {
         id: "ex-facebook",
         repository_name: "ex-facebook-bundle",
         source: "github"
@@ -97,10 +92,6 @@ default['keboola-syrup']['components'] = [
         id: "ag-geocoding",
         repository_name: "geocoding-augmentation",
         source: "github"
-    },
-    {
-        id: "ex-appannie",
-        repository_name: "appannie-extractor-bundle"
     },
     {
         id: "ex-salesforce",
@@ -137,10 +128,6 @@ default['keboola-syrup']['components'] = [
         id: "ex-youtube",
         repository_name: "youtube-extractor-bundle",
         source: "github"
-    },
-    {
-        id: "ex-instagram",
-        repository_name: "instagram-extractor-bundle"
     },
     {
         id: "ex-twitter",
