@@ -159,6 +159,7 @@ default['keboola-syrup']['components'] = [
     {
         id: "rt-lucky-guess",
         repository_name: "luckyguess-bundle",
+        source: "github",
         bundle_install: false
     },
     {
