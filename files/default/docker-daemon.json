@@ -1,7 +1,7 @@
 {
   "dns": ["8.8.8.8"],
   "mtu": 1500,
-  "debug": true,
+  "debug": false,
   "storage-driver": "devicemapper",
      "storage-opts": [
          "dm.thinpooldev=/dev/mapper/docker-thinpool-tpool",
