@@ -30,10 +30,6 @@ if node['keboola-syrup']['docker']['install_docker'].to_i  > 0
     command "lvconvert -y --zero n -c 512K --thinpool docker/thinpool --poolmetadata docker/thinpoolmeta"
   end
 
-  execute "Convert the pool to a thin pool." do
-    command "lvconvert -y --zero n -c 512K --thinpool docker/thinpool --poolmetadata docker/thinpoolmeta"
-  end
-
   cookbook_file "/etc/lvm/profile/docker-thinpool.profile" do
     source "docker-thinpool.profile"
     mode "0600"
