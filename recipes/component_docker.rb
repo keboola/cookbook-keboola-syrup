@@ -41,6 +41,13 @@ if node['keboola-syrup']['docker']['install_docker'].to_i  > 0
     command "lvchange --metadataprofile docker-thinpool docker/thinpool"
   end
 
+  directory '/etc/docker' do
+    owner 'root'
+    group 'root'
+    mode '0755'
+    action :create
+  end
+
   cookbook_file "/etc/docker/daemon.json" do
     source "docker-daemon.json"
     mode "0600"
