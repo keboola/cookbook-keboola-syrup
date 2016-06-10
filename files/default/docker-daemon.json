@@ -1,0 +1,10 @@
+{
+  "dns": ["8.8.8.8"],
+  "mtu": 1500,
+  "debug": false,
+  "storage-driver": "devicemapper",
+     "storage-opts": [
+         "dm.thinpooldev=/dev/mapper/docker-thinpool-tpool",
+         "dm.use_deferred_removal=true"
+     ]
+}

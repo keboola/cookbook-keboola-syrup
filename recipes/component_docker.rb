@@ -1,14 +1,11 @@
 if node['keboola-syrup']['docker']['install_docker'].to_i  > 0
 
-  execute "install docker 1.7.1 from amazon repo" do
-    command "yum -y install docker --releasever=2015.03"
+  execute "install docker from amazon repo" do
+    command "yum -y install docker-1.11.1-1.2.amzn1 --releasever=2016.03"
   end
 
-  cookbook_file "/etc/sysconfig/docker" do
-    source "docker_defaults"
-    mode "0600"
-    owner "root"
-    group "root"
+  file '/etc/sysconfig/docker' do
+    action :delete
   end
 
   cookbook_file "/etc/sudoers.d/docker" do
@@ -16,7 +13,8 @@ if node['keboola-syrup']['docker']['install_docker'].to_i  > 0
     mode "0600"
     owner "root"
     group "root"
-  end
+ end
+
 
   ## Device mapper - steps from https://docs.docker.com/engine/userguide/storagedriver/device-mapper-driver/
   execute "Create an LVM physical volume (PV)" do
@@ -24,15 +22,44 @@ if node['keboola-syrup']['docker']['install_docker'].to_i  > 0
   end
 
   execute "Create a new volume group (VG) " do
-    command "vgcreate vg-docker  #{node['keboola-syrup']['docker']['data_device']}"
+    command "vgcreate docker  #{node['keboola-syrup']['docker']['data_device']}"
   end
 
   execute "Create a new 90GB logical volume (LV) called data " do
-    command "lvcreate -L 90G -n data vg-docker"
+    command "lvcreate --wipesignatures y -n thinpool docker -l 95%VG"
   end
 
   execute "Create a new logical volume (LV) called metadata" do
-    command "lvcreate -L 4G -n metadata vg-docker"
+    command "lvcreate --wipesignatures y -n thinpoolmeta docker -l 1%VG"
+  end
+
+  execute "Convert the pool to a thin pool." do
+    command "lvconvert -y --zero n -c 512K --thinpool docker/thinpool --poolmetadata docker/thinpoolmeta"
+  end
+
+  cookbook_file "/etc/lvm/profile/docker-thinpool.profile" do
+    source "docker-thinpool.profile"
+    mode "0600"
+    owner "root"
+    group "root"
+  end
+
+  execute "Apply your new lvm profile" do
+    command "lvchange --metadataprofile docker-thinpool docker/thinpool"
+  end
+
+  directory '/etc/docker' do
+    owner 'root'
+    group 'root'
+    mode '0755'
+    action :create
+  end
+
+  cookbook_file "/etc/docker/daemon.json" do
+    source "docker-daemon.json"
+    mode "0600"
+    owner "root"
+    group "root"
   end
 
   service "docker" do
