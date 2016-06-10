@@ -4,9 +4,16 @@ if node['keboola-syrup']['docker']['install_docker'].to_i  > 0
     command "yum -y install docker-1.11.1-1.2.amzn1 --releasever=2016.03"
   end
 
-  file '/ets/sysconfig/docker' do
+  file '/etc/sysconfig/docker' do
     action :delete
   end
+
+  cookbook_file "/etc/sudoers.d/docker" do
+    source "docker_sudoers"
+    mode "0600"
+    owner "root"
+    group "root"
+ end
 
 
   ## Device mapper - steps from https://docs.docker.com/engine/userguide/storagedriver/device-mapper-driver/
