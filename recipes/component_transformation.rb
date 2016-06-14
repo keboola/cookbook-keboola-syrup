@@ -17,9 +17,11 @@ execute "install php56-odbc" do
   command "yum -y install php56-odbc php56-odbc.x86_64"
 end
 
-execute "download snowflake drivers" do
-  command "aws s3 cp s3://keboola-configs/drivers/snowflake/snowflake_linux_x8664_odbc.2.12.73.tgz /tmp/snowflake_linux_x8664_odbc.tgz"
-end
+aws_s3_file "/tmp/snowflake_linux_x8664_odbc.tgz" do
+  bucket "keboola-configs"
+  remote_path "drivers/snowflake/snowflake_linux_x8664_odbc.2.12.73.tgz"
+  aws_access_key_id node[:aws][:aws_access_key_id]
+  aws_secret_access_key node[:aws][:aws_secret_access_key]
 
 execute "unpack snowflake driver" do
   command "gunzip /tmp/snowflake_linux_x8664_odbc.tgz"
