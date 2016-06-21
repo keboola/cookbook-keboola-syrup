@@ -22,6 +22,7 @@ aws_s3_file "/tmp/snowflake_linux_x8664_odbc.tgz" do
   remote_path "drivers/snowflake/snowflake_linux_x8664_odbc.2.12.73.tgz"
   aws_access_key_id node[:aws][:aws_access_key_id]
   aws_secret_access_key node[:aws][:aws_secret_access_key]
+end
 
 execute "unpack snowflake driver" do
   command "gunzip /tmp/snowflake_linux_x8664_odbc.tgz"
@@ -70,7 +71,7 @@ $num = node['keboola-syrup']['transformation']['workers_count'].to_i
 while $i <= $num  do
    execute "start tapi queue worker N=#{$i}" do
 	    command "start queue.queue-receive N=#{$i} QUEUE=tapi"
-	     not_if "status queue.queue-receive N=#{$i} QUEUE=tapi"
+	    not_if "status queue.queue-receive N=#{$i} QUEUE=tapi"
    end
    $i +=1
 end
