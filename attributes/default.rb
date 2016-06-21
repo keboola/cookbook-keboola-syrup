@@ -96,7 +96,8 @@ default['keboola-syrup']['components'] = [
     {
         id: "ex-salesforce",
         repository_name: "ex-salesforce",
-        source: "github"
+        source: "github",
+        has_recipe: true
     },
     {
         id: "ex-doubleclick",
