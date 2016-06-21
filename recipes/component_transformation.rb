@@ -49,6 +49,18 @@ cookbook_file "/etc/simba.snowflake.ini" do
   group "root"
 end
 
+execute "append SIMBAINI variable to profile" do
+  command "echo \"export SIMBAINI=/etc/simba.snowflake.ini\" >> /etc/profile"
+end
+
+execute "append LD_LIBRARY_PATH variable to profile" do
+  command "echo \"export LD_LIBRARY_PATH=/usr/bin/snowflake_odbc/lib\" >> /etc/profile"
+end
+
+execute "append LD_LIBRARY_PATH variable to profile" do
+  command "echo \"export SSL_DIR=/usr/bin/snowflake_odbc/SSLCertificates/nssdb\" >> /etc/profile"
+end
+
 
 # start workers
 
