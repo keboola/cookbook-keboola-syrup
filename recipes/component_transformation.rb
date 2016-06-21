@@ -17,20 +17,23 @@ execute "install php56-odbc" do
   command "yum -y install php56-odbc php56-odbc.x86_64"
 end
 
-# odbc driver
-aws_s3_file "/etc/snowflake_linux_x8664_odbc.tgz" do
+aws_s3_file "/tmp/snowflake_linux_x8664_odbc.tgz" do
   bucket "keboola-configs"
-  remote_path "syrup/transformation/snowflake/snowflake_linux_x8664_odbc.tgz"
+  remote_path "drivers/snowflake/snowflake_linux_x8664_odbc.2.12.73.tgz"
   aws_access_key_id node[:aws][:aws_access_key_id]
   aws_secret_access_key node[:aws][:aws_secret_access_key]
 end
 
 execute "unpack snowflake driver" do
-  command "cd /etc && tar xvfz /etc/snowflake_linux_x8664_odbc.tgz"
+  command "gunzip /tmp/snowflake_linux_x8664_odbc.tgz"
 end
 
-execute "install snowflake driver" do
-  command "cd /etc/snowflake_odbc && ./unixodbc_setup.sh"
+execute "untar snowflake driver" do
+  command "cd /tmp && tar -xvf snowflake_linux_x8664_odbc.tar"
+end
+
+execute "move snowflake driver" do
+  command "mv /tmp/snowflake_odbc /usr/bin/snowflake_odbc"
 end
 
 cookbook_file "/etc/odbcinst.ini" do
@@ -40,15 +43,23 @@ cookbook_file "/etc/odbcinst.ini" do
   group "root"
 end
 
-cookbook_file "/etc/snowflake_odbc/conf/unixodbc.snowflake.ini" do
-  source "unixodbc.snowflake.ini"
-  mode "06444"
+cookbook_file "/etc/simba.snowflake.ini" do
+  source "simba.snowflake.ini"
+  mode "0644"
   owner "root"
   group "root"
 end
 
 execute "append SIMBAINI variable to profile" do
-  command "echo \"export SIMBAINI=/etc/snowflake_odbc/conf/unixodbc.snowflake.ini\" >> /etc/profile"
+  command "echo \"export SIMBAINI=/etc/simba.snowflake.ini\" >> /etc/profile"
+end
+
+execute "append LD_LIBRARY_PATH variable to profile" do
+  command "echo \"export LD_LIBRARY_PATH=/usr/bin/snowflake_odbc/lib\" >> /etc/profile"
+end
+
+execute "append SSL_DIR variable to profile" do
+  command "echo \"export SSL_DIR=/usr/bin/snowflake_odbc/SSLCertificates/nssdb\" >> /etc/profile"
 end
 
 
@@ -59,8 +70,8 @@ $num = node['keboola-syrup']['transformation']['workers_count'].to_i
 
 while $i <= $num  do
    execute "start tapi queue worker N=#{$i}" do
-	 command "start queue.queue-receive N=#{$i} QUEUE=tapi"
-	 not_if "status queue.queue-receive N=#{$i} QUEUE=tapi"
+	    command "start queue.queue-receive N=#{$i} QUEUE=tapi"
+	    not_if "status queue.queue-receive N=#{$i} QUEUE=tapi"
    end
    $i +=1
 end
