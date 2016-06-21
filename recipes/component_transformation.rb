@@ -57,7 +57,7 @@ execute "append LD_LIBRARY_PATH variable to profile" do
   command "echo \"export LD_LIBRARY_PATH=/usr/bin/snowflake_odbc/lib\" >> /etc/profile"
 end
 
-execute "append LD_LIBRARY_PATH variable to profile" do
+execute "append SSL_DIR variable to profile" do
   command "echo \"export SSL_DIR=/usr/bin/snowflake_odbc/SSLCertificates/nssdb\" >> /etc/profile"
 end
 
@@ -69,8 +69,8 @@ $num = node['keboola-syrup']['transformation']['workers_count'].to_i
 
 while $i <= $num  do
    execute "start tapi queue worker N=#{$i}" do
-	 command "start queue.queue-receive N=#{$i} QUEUE=tapi"
-	 not_if "status queue.queue-receive N=#{$i} QUEUE=tapi"
+	    command "start queue.queue-receive N=#{$i} QUEUE=tapi"
+	     not_if "status queue.queue-receive N=#{$i} QUEUE=tapi"
    end
    $i +=1
 end
