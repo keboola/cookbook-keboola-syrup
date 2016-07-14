@@ -95,12 +95,23 @@ if node['keboola-syrup']['docker']['install_docker'].to_i  > 0
   end
 
 
-  # init job
+  # init job - receive docker jobs
   template "/etc/init/queue.queue-receive.conf" do
     source 'queue.queue-receive.conf.erb'
     owner 'root'
     group 'root'
     mode 00644
+  end
+
+  # collect container stats
+  template "/etc/init/docker.collect-container-stats.conf" do
+    source 'docker.collect-container-stats.conf.erb'
+    owner 'root'
+    group 'root'
+    mode 00644
+    variables({
+      :queue => node['keboola-syrup']['docker']['container_stats_queue']
+     })
   end
 
 end

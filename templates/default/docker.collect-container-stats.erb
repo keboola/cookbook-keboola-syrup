@@ -1,0 +1,15 @@
+instance ${N}
+respawn
+exec docker run \
+  -v /:/rootfs:ro \
+  -v /var/run:/var/run:rw \
+  -v /sys:/sys:ro \
+  -v /var/lib/docker/:/var/lib/docker:ro \
+  -e AWS_ACCESS_KEY_ID=<%= node['aws']['aws_access_key_id'] %> \
+  -e AWS_SECRET_ACCESS_KEY=<%= node['aws']['aws_secret_access_key'] %> \
+  quay.io/keboola/cadvisor-app:v0.10.0 \
+  ./cadvisor \
+  -docker_only \
+  -storage_driver="amazonsqs" \
+  -storage_driver_amazonsqs_queue="<%= @queue['url'] %>" \
+  -storage_driver_amazonsqs_region="<%= @queue['region'] %>"

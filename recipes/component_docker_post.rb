@@ -11,3 +11,16 @@ while $i <= $num  do
   end
   $i +=1
 end
+
+
+execute "start queue kill queue" do
+  command "start queue.queue-receive-kill N=1"
+  not_if "status queue.queue-receive-kill N=1"
+end
+
+if node['keboola-syrup']['docker']['install_docker'].to_i  > 0
+  execute "start container stats collect" do
+    command "start docker.collect-container-stats N=1"
+    not_if "status docker.collect-container-stats N=1"
+  end
+end
