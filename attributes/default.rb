@@ -40,6 +40,9 @@ default['keboola-syrup']['transformation']['workers_count'] = 0
 default['keboola-syrup']['docker']['workers_count'] = 0
 default['keboola-syrup']['docker']['data_device'] = "/dev/md1"
 default['keboola-syrup']['docker']['install_docker'] = 0
+default['keboola-syrup']['docker']['container_stats_queue']['url'] = 'https://sqs.us-east-1.amazonaws.com/147946154733/syrup-container-stats'
+default['keboola-syrup']['docker']['container_stats_queue']['region'] = 'us-east-1'
+
 
 # install only listed components if not empty
 default['keboola-syrup']['install-components'] = []
