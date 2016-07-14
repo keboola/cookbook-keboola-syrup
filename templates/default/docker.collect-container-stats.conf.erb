@@ -8,6 +8,7 @@ exec docker run \
   -v /cgroup:/sys/fs/cgroup:ro \
   -e AWS_ACCESS_KEY_ID=<%= node['aws']['aws_access_key_id'] %> \
   -e AWS_SECRET_ACCESS_KEY=<%= node['aws']['aws_secret_access_key'] %> \
+  --name=cadvisor \
   quay.io/keboola/cadvisor-app:v0.10.0 \
   ./cadvisor \
   -docker_only \
