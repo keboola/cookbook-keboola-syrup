@@ -16,6 +16,13 @@ template "/etc/init/queue.queue-receive-kill.conf" do
   notifies :restart, 'service[rsyslog]', :immediately
 end
 
+template "/etc/init/queue.queue-container-stats-process.conf" do
+  source 'queue.queue-container-stats-process.conf.erb'
+  owner 'root'
+  group 'root'
+  mode 00644
+end
+
 cookbook_file "/etc/sudoers.d/kill" do
   source "queue_kill_sudoers"
   mode "0600"

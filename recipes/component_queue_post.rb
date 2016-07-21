@@ -16,3 +16,14 @@ while $i <= $num  do
    end
    $i +=1
 end
+
+# container stats
+$num = node['keboola-syrup']['queue']['containers_stats_workers_count'].to_i
+$i = 1
+while $i <= $num  do
+    execute "start container stats queue worker N=#{$i}" do
+        command "start queue.queue-container-stats-process N=#{$i} QUEUE=container-stats"
+        not_if "status queue.queue-container-stats-process N=#{$i} QUEUE=container-stats"
+    end
+    $i +=1
+end
