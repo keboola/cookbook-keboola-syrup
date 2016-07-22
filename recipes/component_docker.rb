@@ -114,4 +114,12 @@ if node['keboola-syrup']['docker']['install_docker'].to_i  > 0
      })
   end
 
+  # process container stats
+  template "/etc/init/queue.queue-container-stats-process.conf" do
+    source 'queue.queue-container-stats-process.conf.erb'
+    owner 'root'
+    group 'root'
+    mode 00644
+  end
+
 end
