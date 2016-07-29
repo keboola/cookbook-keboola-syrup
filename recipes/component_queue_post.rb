@@ -17,7 +17,7 @@ while $i <= $num  do
    $i +=1
 end
 
-# container stats
+# process container stats
 $num = node['keboola-syrup']['queue']['containers_stats_workers_count'].to_i
 $i = 1
 while $i <= $num  do

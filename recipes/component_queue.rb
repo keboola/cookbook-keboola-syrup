@@ -16,6 +16,7 @@ template "/etc/init/queue.queue-receive-kill.conf" do
   notifies :restart, 'service[rsyslog]', :immediately
 end
 
+# process container stats
 template "/etc/init/queue.queue-container-stats-process.conf" do
   source 'queue.queue-container-stats-process.conf.erb'
   owner 'root'
