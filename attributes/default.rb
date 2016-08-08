@@ -134,11 +134,6 @@ default['keboola-syrup']['components'] = [
         source: "github"
     },
     {
-        id: "ex-twitter",
-        repository_name: "twitter-extractor-bundle",
-        has_recipe: true
-    },
-    {
         id: "ex-zendesk",
         repository_name: "zendesk-extractor-bundle"
     },
