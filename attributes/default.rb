@@ -1,6 +1,7 @@
 default['aws']['aws_access_key_id'] = ''
 default['aws']['aws_secret_access_key'] = ''
 
+default['apache']['package'] = 'httpd24-2.4.18-1.64.amzn1'
 
 default['php']['packages'] = %w{ php56 php56-opcache php56-devel php-pear php56-pdo php56-mysqlnd php56-pgsql php56-mbstring php56-mcrypt php56-pecl-apcu }
 
