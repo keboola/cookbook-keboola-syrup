@@ -1,6 +1,7 @@
 default['aws']['aws_access_key_id'] = ''
 default['aws']['aws_secret_access_key'] = ''
 
+default['apache']['package'] = 'httpd24'
 
 default['php']['packages'] = %w{ php56 php56-opcache php56-devel php-pear php56-pdo php56-mysqlnd php56-pgsql php56-mbstring php56-mcrypt php56-pecl-apcu }
 
@@ -132,11 +133,6 @@ default['keboola-syrup']['components'] = [
         id: "ex-youtube",
         repository_name: "youtube-extractor-bundle",
         source: "github"
-    },
-    {
-        id: "ex-twitter",
-        repository_name: "twitter-extractor-bundle",
-        has_recipe: true
     },
     {
         id: "ex-zendesk",

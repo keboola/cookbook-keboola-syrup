@@ -9,6 +9,12 @@ include_recipe "keboola-php56"
 include_recipe "keboola-apache2"
 include_recipe 'sysctl::apply'
 
+# apache homedir fix - gpg requires apache homedir
+directory '/var/www' do
+  owner 'apache'
+  group 'apache'
+end
+
 if node['keboola-syrup']['enable_newrelic_apm'].to_i > 0
   include_recipe "newrelic::php_agent"
 end
