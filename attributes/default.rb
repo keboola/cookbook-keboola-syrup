@@ -104,11 +104,6 @@ default['keboola-syrup']['components'] = [
         has_recipe: true
     },
     {
-        id: "ex-doubleclick",
-        repository_name: "doubleclick-extractor-bundle",
-        source: "github"
-    },
-    {
         id: "ag-forecastio",
         repository_name: "forecastio-augmentation",
         bundle_install: false,
