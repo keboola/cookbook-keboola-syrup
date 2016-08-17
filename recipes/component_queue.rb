@@ -30,6 +30,13 @@ template "/etc/init/queue.queue-storage-stats-process.conf" do
   mode 00644
 end
 
+template "/etc/init/queue.queue-elastic-stats-process.conf" do
+  source 'queue.queue-elastic-stats-process.conf.erb'
+  owner 'root'
+  group 'root'
+  mode 00644
+end
+
 cookbook_file "/etc/sudoers.d/kill" do
   source "queue_kill_sudoers"
   mode "0600"
