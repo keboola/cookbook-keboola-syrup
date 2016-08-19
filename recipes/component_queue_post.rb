@@ -27,3 +27,25 @@ while $i <= $num  do
     end
     $i +=1
 end
+
+# storage stats
+$num = node['keboola-syrup']['queue']['storage_stats_workers_count'].to_i
+$i = 1
+while $i <= $num  do
+    execute "start storage stats queue worker N=#{$i}" do
+        command "start queue.queue-storage-stats-process N=#{$i} QUEUE=storage-stats"
+        not_if "status queue.queue-storage-stats-process N=#{$i} QUEUE=storage-stats"
+    end
+    $i +=1
+end
+
+# elastic stats
+$num = node['keboola-syrup']['queue']['elastic_stats_workers_count'].to_i
+$i = 1
+while $i <= $num  do
+    execute "start elastic stats queue worker N=#{$i}" do
+        command "start queue.queue-elastic-stats-process N=#{$i}"
+        not_if "status queue.queue-elastic-stats-process N=#{$i}"
+    end
+    $i +=1
+end
