@@ -19,7 +19,7 @@ end
 
 aws_s3_file "/tmp/snowflake_linux_x8664_odbc.tgz" do
   bucket "keboola-configs"
-  remote_path "drivers/snowflake/snowflake_linux_x8664_odbc.2.12.73.tgz"
+  remote_path "drivers/snowflake/snowflake_linux_x8664_odbc.2.12.87.tgz"
   aws_access_key_id node[:aws][:aws_access_key_id]
   aws_secret_access_key node[:aws][:aws_secret_access_key]
 end
