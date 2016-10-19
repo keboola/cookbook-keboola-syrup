@@ -53,7 +53,7 @@ set_limit 'root' do
 end
 
 aws_s3_file "/home/deploy/.ssh/bitbucket_id_rsa" do
-  bucket "keboola-configs"
+  bucket node['keboola-syrup']['configs-bucket']
   remote_path "deploy-keys/bitbucket_2_id_rsa"
   aws_access_key_id node[:aws][:aws_access_key_id]
   aws_secret_access_key node[:aws][:aws_secret_access_key]
