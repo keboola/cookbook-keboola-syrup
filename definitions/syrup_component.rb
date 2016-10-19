@@ -50,7 +50,7 @@ define :syrup_component do
 
 
 	aws_s3_file "#{componentBasePath}/shared/parameters.yml" do
-	  bucket "keboola-configs"
+	  bucket node['keboola-syrup']['configs-bucket']
 	  remote_path "syrup/#{componentName}/parameters.yml"
 	  aws_access_key_id node[:aws][:aws_access_key_id]
 	  aws_secret_access_key node[:aws][:aws_secret_access_key]
