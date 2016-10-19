@@ -73,9 +73,11 @@ define :syrup_component do
 	  group "apache"
 	  cwd "#{componentBasePath}/releases/#{time}"
 	  environment(
-	   'HOME' => '/home/deploy',
+	   	'HOME' => '/home/deploy',
        'COMPOSER_HOME' => '/home/deploy/.composer',
-       'COMPOSER_CACHE_DIR' => '/home/deploy/.composer/cache'
+       'COMPOSER_CACHE_DIR' => '/home/deploy/.composer/cache',
+			 'AWS_REGION' => node['keboola-syrup']['region'],
+			 'KEBOOLA_SYRUP_CONFIGS_BUCKET' => node['keboola-syrup']['configs-bucket']
       )
 	  command "/usr/local/bin/composer install --no-dev --verbose --prefer-dist --optimize-autoloader --no-progress --no-interaction"
 	end
