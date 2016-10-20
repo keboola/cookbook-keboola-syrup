@@ -13,6 +13,7 @@ default['keboola-syrup']['github_token'] = ''
 default['datadog']['api_token'] = ''
 
 default['sysctl']['params']['vm']['vfs_cache_pressure'] = 10000
+default['sysctl']['params']['net']['ipv4']['ip_forward'] =  1
 
 default['rsyslog']['max_message_size'] = '32k'
 
