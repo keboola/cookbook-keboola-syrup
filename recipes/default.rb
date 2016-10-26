@@ -52,11 +52,15 @@ set_limit 'root' do
   use_system true
 end
 
-aws_s3_file "/home/deploy/.ssh/bitbucket_id_rsa" do
-  bucket node['keboola-syrup']['configs-bucket']
-  remote_path "deploy-keys/bitbucket_2_id_rsa"
-  aws_access_key_id node[:aws][:aws_access_key_id]
-  aws_secret_access_key node[:aws][:aws_secret_access_key]
+execute "download bitbucket key" do
+  command "aws s3 cp s3://#{node['keboola-syrup']['configs-bucket']}/deploy-keys/bitbucket_2_id_rsa /home/deploy/.ssh/bitbucket_id_rsa --region #{node['aws']['region']}"
+  environment(
+    'AWS_ACCESS_KEY_ID' => node['aws']['aws_access_key_id'],
+    'AWS_SECRET_ACCESS_KEY' => node['aws']['aws_secret_access_key']
+  )
+end
+
+file "/home/deploy/.ssh/bitbucket_id_rsa" do
   owner "deploy"
   group "apache"
   mode "0600"

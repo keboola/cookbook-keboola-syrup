@@ -48,16 +48,19 @@ define :syrup_component do
 		end
 	end
 
+	execute "download parameters" do
+	  command "aws s3 cp s3://#{node['keboola-syrup']['configs-bucket']}/syrup/#{componentName}/parameters.yml #{componentBasePath}/shared/parameters.yml --region #{node['aws']['region']}"
+	  environment(
+	   'AWS_ACCESS_KEY_ID' => node['aws']['aws_access_key_id'],
+	   'AWS_SECRET_ACCESS_KEY' => node['aws']['aws_secret_access_key']
+	  )
+  end
 
-	aws_s3_file "#{componentBasePath}/shared/parameters.yml" do
-	  bucket node['keboola-syrup']['configs-bucket']
-	  remote_path "syrup/#{componentName}/parameters.yml"
-	  aws_access_key_id node[:aws][:aws_access_key_id]
-	  aws_secret_access_key node[:aws][:aws_secret_access_key]
-	  owner "deploy"
-	  group "apache"
-	  mode "0644"
-	end
+  file "#{componentBasePath}/shared/parameters.yml" do
+     owner "deploy"
+     group "apache"
+     mode "0644"
+  end
 
 	execute "copy parameters.yml" do
 	  command "cp #{componentBasePath}/shared/parameters.yml #{componentBasePath}/releases/#{time}/parameters.yml"

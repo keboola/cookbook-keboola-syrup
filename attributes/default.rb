@@ -1,5 +1,6 @@
 default['aws']['aws_access_key_id'] = ''
 default['aws']['aws_secret_access_key'] = ''
+default['aws']['region'] = 'us-east-1'
 
 default['apache']['package'] = 'httpd24'
 

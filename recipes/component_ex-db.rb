@@ -9,18 +9,21 @@ cookbook_file "/etc/freetds.conf" do
 end
 
 # oracle
-aws_s3_file "/tmp/oracle-instantclient12.1-basic-12.1.0.2.0-1.x86_64.rpm" do
-  bucket "keboola-configs"
-  remote_path "syrup/ex-db/oracle/oracle-instantclient12.1-basic-12.1.0.2.0-1.x86_64.rpm"
-  aws_access_key_id node[:aws][:aws_access_key_id]
-  aws_secret_access_key node[:aws][:aws_secret_access_key]
+
+execute "download instantclient basic" do
+  command "aws s3 cp s3://#{node['keboola-syrup']['configs-bucket']}/syrup/ex-db/oracle/oracle-instantclient12.1-basic-12.1.0.2.0-1.x86_64.rpm /tmp/oracle-instantclient12.1-basic-12.1.0.2.0-1.x86_64.rpm --region #{node['aws']['region']}"
+  environment(
+   'AWS_ACCESS_KEY_ID' => node['aws']['aws_access_key_id'],
+   'AWS_SECRET_ACCESS_KEY' => node['aws']['aws_secret_access_key']
+  )
 end
 
-aws_s3_file "/tmp/oracle-instantclient12.1-devel-12.1.0.2.0-1.x86_64.rpm" do
-  bucket "keboola-configs"
-  remote_path "syrup/ex-db/oracle/oracle-instantclient12.1-devel-12.1.0.2.0-1.x86_64.rpm"
-  aws_access_key_id node[:aws][:aws_access_key_id]
-  aws_secret_access_key node[:aws][:aws_secret_access_key]
+execute "download instantclient devel" do
+  command "aws s3 cp s3://#{node['keboola-syrup']['configs-bucket']}/syrup/ex-db/oracle/oracle-instantclient12.1-devel-12.1.0.2.0-1.x86_64.rpm /tmp/oracle-instantclient12.1-devel-12.1.0.2.0-1.x86_64.rpm --region #{node['aws']['region']}"
+  environment(
+   'AWS_ACCESS_KEY_ID' => node['aws']['aws_access_key_id'],
+   'AWS_SECRET_ACCESS_KEY' => node['aws']['aws_secret_access_key']
+  )
 end
 
 execute "install oracle instantclient" do
