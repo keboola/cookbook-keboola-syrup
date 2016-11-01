@@ -85,6 +85,14 @@ cookbook_file "/home/deploy/.ssh/config" do
   group "apache"
 end
 
+execute "append REGION variable to profile" do
+  command "echo \"export AWS_REGION=#{node['keboola-syrup']['region']\" >> /etc/profile"
+end
+
+execute "append KEBOOLA_SYRUP_CONFIGS_BUCKET variable to profile" do
+  command "echo \"export KEBOOLA_SYRUP_CONFIGS_BUCKET=#{node['keboola-syrup']['configs-bucket']\" >> /etc/profile"
+end
+
 
 execute "install composer" do
   command "curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer"
