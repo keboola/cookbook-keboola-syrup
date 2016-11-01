@@ -86,11 +86,11 @@ cookbook_file "/home/deploy/.ssh/config" do
 end
 
 execute "append REGION variable to profile" do
-  command "echo \"export AWS_REGION=#{node['keboola-syrup']['region']}\" >> /etc/profile"
+  command "echo \"export AWS_REGION=#{node['keboola-syrup']['region']}\" >> /etc/profile.d/keboola.sh"
 end
 
 execute "append KEBOOLA_SYRUP_CONFIGS_BUCKET variable to profile" do
-  command "echo \"export KEBOOLA_SYRUP_CONFIGS_BUCKET=#{node['keboola-syrup']['configs-bucket']}\" >> /etc/profile"
+  command "echo \"export KEBOOLA_SYRUP_CONFIGS_BUCKET=#{node['keboola-syrup']['configs-bucket']}\" >> /etc/profile.d/keboola.sh"
 end
 
 
