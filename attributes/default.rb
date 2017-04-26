@@ -11,8 +11,6 @@ default['newrelic']['php_agent']['config_file'] = "/etc/php-5.6.d/newrelic.ini"
 
 default['keboola-syrup']['github_token'] = ''
 
-default['datadog']['api_token'] = ''
-
 default['sysctl']['params']['vm']['vfs_cache_pressure'] = 10000
 default['sysctl']['params']['net']['ipv4']['ip_forward'] =  1
 
