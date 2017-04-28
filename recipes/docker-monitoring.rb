@@ -1,5 +1,5 @@
 execute "install newrelic key" do
-  command "echo "license_key: #{node['newrelic_infra']['license_key']}" | tee -a /etc/newrelic-infra.yml"
+  command "echo \"license_key: #{node['newrelic_infra']['license_key']}\" | tee -a /etc/newrelic-infra.yml"
 end
 
 execute "create newrelic repo" do
