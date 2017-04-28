@@ -19,6 +19,10 @@ default['rsyslog']['max_message_size'] = '32k'
 # newrelic APM
 default['keboola-syrup']['enable_newrelic_apm'] = 0
 
+# newrelic infra
+default['newrelic_infra']['license_key'] = ''
+
+
 # Docker monitoring
 default['keboola-syrup']['enable_docker_monitoring'] = 0
 

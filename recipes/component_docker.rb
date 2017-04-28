@@ -90,6 +90,10 @@ if node['keboola-syrup']['docker']['install_docker'].to_i  > 0
     command "iptables -A FORWARD -i docker0 -o docker0 -j ACCEPT"
   end
 
+  if node['keboola-syrup']['enable_docker_monitoring'].to_i > 0
+    include_recipe "keboola-syrup::docker-monitoring"
+  end
+
   # init job - receive docker jobs
   template "/etc/init/queue.queue-receive.conf" do
     source 'queue.queue-receive.conf.erb'
