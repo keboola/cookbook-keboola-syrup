@@ -70,6 +70,10 @@ if node['keboola-syrup']['docker']['install_docker'].to_i  > 0
     action :start
   end
 
+  execute "allow access to AWS DNS server" do
+    command "iptables -A FORWARD -d 10.0.0.2/32 -o eth0 -j ACCEPT"
+  end
+
   execute "allow access to subnet NetHost_VPN_1a" do
     command "iptables -A FORWARD -d 10.0.222.0/24 -o eth0 -j ACCEPT"
   end
