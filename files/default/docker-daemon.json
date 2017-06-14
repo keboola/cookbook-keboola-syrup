@@ -1,5 +1,4 @@
 {
-  "dns": ["8.8.8.8"],
   "mtu": 1500,
   "debug": false,
   "storage-driver": "devicemapper",
