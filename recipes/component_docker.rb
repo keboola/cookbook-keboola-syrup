@@ -74,6 +74,14 @@ if node['keboola-syrup']['docker']['install_docker'].to_i  > 0
     command "iptables -A FORWARD -d 10.0.0.2/32 -o eth0 -j ACCEPT"
   end
 
+  execute "allow access to Redshift Subnet 1" do
+    command "iptables -A FORWARD -d 10.0.151.0/24 -o eth0 -j ACCEPT"
+  end
+
+  execute "allow access to Redshift Subnet 2" do
+    command "iptables -A FORWARD -d 10.0.150.0/24 -o eth0 -j ACCEPT"
+  end
+
   execute "allow access to subnet NetHost_VPN_1a" do
     command "iptables -A FORWARD -d 10.0.222.0/24 -o eth0 -j ACCEPT"
   end
