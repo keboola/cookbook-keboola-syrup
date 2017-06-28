@@ -48,6 +48,9 @@ default['keboola-syrup']['docker']['install_docker'] = 0
 default['keboola-syrup']['docker']['container_stats_queue']['url'] = 'https://sqs.us-east-1.amazonaws.com/147946154733/syrup-container-stats'
 default['keboola-syrup']['docker']['container_stats_queue']['region'] = 'us-east-1'
 
+# Provisioning attributes
+default['keboola-syrup']['provisioning']['workers_count'] = 0
+
 # config bitbucket_id_rsa
 default['keboola-syrup']['configs-bucket'] = 'keboola-configs'
 
