@@ -154,13 +154,6 @@ default['keboola-syrup']['components'] = [
         repository_name: "google-bigquery-bundle"
     },
     {
-        id: "provisioning",
-        repository_name: "provisioning-bundle",
-        source: "github",
-        has_recipe: true,
-        has_post_recipe: true
-    },
-    {
         id: "restbox",
         repository_name: "restbox-bundle"
     },
@@ -229,6 +222,13 @@ default['keboola-syrup']['components'] = [
     {
         id: "gooddata-writer",
         repository_name: "gooddata-writer",
+        source: "github",
+        has_recipe: true,
+        has_post_recipe: true
+    },
+    {
+        id: "provisioning",
+        repository_name: "provisioning-bundle",
         source: "github",
         has_recipe: true,
         has_post_recipe: true
