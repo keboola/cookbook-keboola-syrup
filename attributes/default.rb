@@ -156,7 +156,8 @@ default['keboola-syrup']['components'] = [
     {
         id: "provisioning",
         repository_name: "provisioning-bundle",
-        source: "github"
+        source: "github",
+        has_post_recipe: true
     },
     {
         id: "restbox",
