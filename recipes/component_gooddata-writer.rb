@@ -15,7 +15,6 @@ end
 
 cron "gooddata writer cleanup deleted projects" do
   user "deploy"
-  week "4"
   hour "02"
   minute "18"
   command "/www/syrup-router/components/gooddata-writer/current/vendor/keboola/syrup/app/console gooddata-writer:cleanup-writers >/dev/null 2>&1"
