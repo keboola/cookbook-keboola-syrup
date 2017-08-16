@@ -1,7 +1,7 @@
 if node['keboola-syrup']['docker']['install_docker'].to_i  > 0
 
   execute "install docker from amazon repo" do
-    command "yum -y install docker-1.11.2-1.6.amzn1 --releasever=2016.03"
+    command "yum -y install docker-17.03.1ce-1.50.amzn1"
   end
 
   file '/etc/sysconfig/docker' do
