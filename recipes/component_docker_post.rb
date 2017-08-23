@@ -22,7 +22,7 @@ if node['keboola-syrup']['docker']['install_docker'].to_i  > 0
     user "deploy"
     hour "15"
     minute "23"
-    command "/www/syrup-router/components/docker/current/vendor/keboola/syrup/app/console docker:garbage-collect >/dev/null 2>&1"
+    command "/www/syrup-router/components/docker/current/vendor/keboola/syrup/app/console docker:garbage-collect 2>&1 | /usr/bin/logger -t 'cron_docker_gc' -p local1.info"
     action action
   end
 
