@@ -88,12 +88,6 @@ default['keboola-syrup']['components'] = [
       source: "github"
     },
     {
-        id: "ex-db",
-        repository_name: "db-extractor-bundle",
-        source: "github",
-        has_recipe: true
-    },
-    {
         id: "ex-facebook",
         repository_name: "ex-facebook-bundle",
         source: "github"
@@ -155,7 +149,8 @@ default['keboola-syrup']['components'] = [
     {
         id: "wr-db",
         repository_name: "db-writer-bundle",
-        source: "github"
+        source: "github",
+        has_recipe: true
     },
     {
       id: "ex-magento",
