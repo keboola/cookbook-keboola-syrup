@@ -104,11 +104,6 @@ default['keboola-syrup']['components'] = [
         source: "github"
     },
     {
-        id: "ag-geocoding",
-        repository_name: "geocoding-augmentation",
-        source: "github"
-    },
-    {
         id: "ex-salesforce",
         repository_name: "ex-salesforce",
         source: "github",
