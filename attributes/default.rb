@@ -150,10 +150,6 @@ default['keboola-syrup']['components'] = [
         bundle_install: false
     },
     {
-        id: "ex-google-bigquery",
-        repository_name: "google-bigquery-bundle"
-    },
-    {
         id: "restbox",
         repository_name: "restbox-bundle"
     },
