@@ -155,7 +155,8 @@ default['keboola-syrup']['components'] = [
     },
     {
         id: "restbox",
-        repository_name: "restbox-bundle"
+        repository_name: "restbox-bundle",
+        source: "github"        
     },
     {
         id: "rt-lucky-guess",
