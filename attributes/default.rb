@@ -88,12 +88,6 @@ default['keboola-syrup']['components'] = [
       source: "github"
     },
     {
-        id: "ex-db",
-        repository_name: "db-extractor-bundle",
-        source: "github",
-        has_recipe: true
-    },
-    {
         id: "ex-facebook",
         repository_name: "ex-facebook-bundle",
         source: "github"
@@ -101,11 +95,6 @@ default['keboola-syrup']['components'] = [
     {
         id: "table-importer",
         repository_name: "sapi-table-importer",
-        source: "github"
-    },
-    {
-        id: "ag-geocoding",
-        repository_name: "geocoding-augmentation",
         source: "github"
     },
     {
@@ -118,16 +107,6 @@ default['keboola-syrup']['components'] = [
         id: "ag-forecastio",
         repository_name: "forecastio-augmentation",
         bundle_install: false,
-        source: "github"
-    },
-    {
-        id: "ex-gooddata",
-        repository_name: "gooddata-extractor-bundle",
-        source: "github"
-    },
-    {
-        id: "ex-google-analytics",
-        repository_name: "google-analytics-bundle",
         source: "github"
     },
     {
@@ -150,10 +129,6 @@ default['keboola-syrup']['components'] = [
         bundle_install: false
     },
     {
-        id: "ex-google-bigquery",
-        repository_name: "google-bigquery-bundle"
-    },
-    {
         id: "restbox",
         repository_name: "restbox-bundle"
     },
@@ -174,21 +149,13 @@ default['keboola-syrup']['components'] = [
     {
         id: "wr-db",
         repository_name: "db-writer-bundle",
-        source: "github"
+        source: "github",
+        has_recipe: true
     },
     {
       id: "ex-magento",
       repository_name: "magento-extractor-bundle",
       source: "github"
-    },
-    {
-      id: "shiny",
-      repository_name: "shiny-bundle",
-      has_recipe: true
-    },
-    {
-        id: "shinyapps",
-        repository_name: "shinyapps-bundle"
     },
     {
         id: "queue",
