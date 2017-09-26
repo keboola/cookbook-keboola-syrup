@@ -90,6 +90,10 @@ if node['keboola-syrup']['docker']['install_docker'].to_i  > 0
     command "iptables -A FORWARD -d 10.0.0.0/8 -o eth0 -j REJECT --reject-with icmp-port-unreachable"
   end
 
+  execute "reject connections to instance metadata" do
+    command "iptables -A FORWARD -d 169.254.169.254/32 -o eth0 -j REJECT --reject-with icmp-port-unreachable"
+  end
+
   execute "docker iptables - 1" do
     command "iptables -A FORWARD -o docker0 -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT"
   end
