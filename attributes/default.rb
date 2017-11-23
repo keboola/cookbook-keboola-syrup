@@ -185,7 +185,8 @@ default['keboola-syrup']['components'] = [
         id: "transformation",
         repository_name: "transformation-bundle",
         source: "github",
-        has_recipe: true
+        has_recipe: true,
+        has_post_recipe: true
     },
     {
         id: "gooddata-writer",
