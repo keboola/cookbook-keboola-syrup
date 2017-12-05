@@ -61,21 +61,10 @@ default['keboola-syrup']['install-components'] = []
 
 default['keboola-syrup']['components'] = [
     {
-      id: "oauth",
-      repository_name: "oauth-bundle",
-      source: "github",
-      has_recipe: true
-    },
-    {
       id: "oauth-v2",
       repository_name: "oauth-v2-bundle",
       source: "github",
       has_recipe: true
-    },
-    {
-      id: "ex-getstat",
-      repository_name: "getstat-extractor-bundle",
-      source: "github"
     },
     {
       id: "wr-google-drive",
@@ -86,11 +75,6 @@ default['keboola-syrup']['components'] = [
       id: "ex-fb-ads",
       repository_name: "facebookads-extractor-bundle",
       source: "github"
-    },
-    {
-        id: "ex-facebook",
-        repository_name: "ex-facebook-bundle",
-        source: "github"
     },
     {
         id: "table-importer",
@@ -107,11 +91,6 @@ default['keboola-syrup']['components'] = [
         id: "ag-forecastio",
         repository_name: "forecastio-augmentation",
         bundle_install: false,
-        source: "github"
-    },
-    {
-        id: "ex-google-drive",
-        repository_name: "google-drive-bundle",
         source: "github"
     },
     {
@@ -140,18 +119,8 @@ default['keboola-syrup']['components'] = [
         bundle_install: false
     },
     {
-        id: "sapi-importer",
-        repository_name: "sapi-importer-bundle"
-    },
-    {
         id: "timeout",
         repository_name: "timeout-bundle"
-    },
-    {
-        id: "wr-db",
-        repository_name: "db-writer-bundle",
-        source: "github",
-        has_recipe: true
     },
     {
       id: "ex-magento",
