@@ -9,7 +9,7 @@ DEPENDENCIES
     tag: 0.2.7
   keboola-php56
     git: git://github.com/keboola/cookbook-keboola-php56.git
-    revision: 9b2deee70f778177bd32165554163c90a045a0e1
+    revision: ed09c4a8808696c83a7a9ddb686e13a65467e790
     tag: 0.1.7
   keboola-syrup
     path: .
@@ -41,7 +41,7 @@ GRAPH
     newrelic (~> 2.0.0)
     papertrail-rsyslog (~> 1.2.0)
     postfix (= 3.3.1)
-  keboola-php56 (0.1.6)
+  keboola-php56 (0.1.8)
     php (~> 1.4.6)
   keboola-syrup (0.1.0)
     aws (~> 2.4.0)
