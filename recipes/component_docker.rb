@@ -86,6 +86,10 @@ if node['keboola-syrup']['docker']['install_docker'].to_i  > 0
     command "iptables -A FORWARD -d 10.0.222.0/24 -o eth0 -j ACCEPT"
   end
 
+  execute "allow access to VPN VPC subnet" do
+    command "iptables -A FORWARD -d 10.2.0.0/24 -o eth0 -j ACCEPT"
+  end
+
   execute "reject connections to local subnets" do
     command "iptables -A FORWARD -d 10.0.0.0/8 -o eth0 -j REJECT --reject-with icmp-port-unreachable"
   end
