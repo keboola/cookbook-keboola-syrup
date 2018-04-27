@@ -66,8 +66,8 @@ if node['keboola-syrup']['docker']['install_docker'].to_i  > 0
     action :enable
   end
 
-  service "docker" do
-    action :start, :immediately
+  execute "start docker" do
+     command "service docker start"
   end
 
   execute "reject connections to instance metadata" do
