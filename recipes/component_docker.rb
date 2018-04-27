@@ -67,7 +67,7 @@ if node['keboola-syrup']['docker']['install_docker'].to_i  > 0
   end
 
   service "docker" do
-    action :start
+    action :start, :immediately
   end
 
   execute "reject connections to instance metadata" do
