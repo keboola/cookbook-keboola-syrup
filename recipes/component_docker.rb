@@ -67,7 +67,7 @@ if node['keboola-syrup']['docker']['install_docker'].to_i  > 0
   end
 
   service "docker" do
-    action :start, :immediately
+    action :start
   end
 
   execute "allow access to AWS DNS server" do
