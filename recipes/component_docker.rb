@@ -70,32 +70,32 @@ if node['keboola-syrup']['docker']['install_docker'].to_i  > 0
     action :start
   end
 
-  execute "allow access to AWS DNS server" do
-    command "iptables --append DOCKER-USER --in-interface docker+ --destination 10.0.0.2/32 --jump ACCEPT"
-  end
-
-  execute "allow access to Redshift Subnet 1" do
-    command "iptables --append DOCKER-USER --in-interface docker+ --destination 10.0.151.0/24 --jump ACCEPT"
-  end
-
-  execute "allow access to Redshift Subnet 2" do
-    command "iptables --append DOCKER-USER --in-interface docker+ --destination 10.0.150.0/24 --jump ACCEPT"
-  end
-
-  execute "allow access to subnet NetHost_VPN_1a" do
-    command "iptables --append DOCKER-USER --in-interface docker+ --destination 10.0.222.0/24  --jump ACCEPT"
-  end
-
-  execute "allow access to VPN VPC subnet" do
-    command "iptables --append DOCKER-USER --in-interface docker+ --destination 10.2.0.0/24  --jump ACCEPT"
-  end
-
   execute "reject connections to local subnets" do
-    command "iptables --append DOCKER-USER --in-interface docker+ --destination 10.0.0.0/8 --jump REJECT  --reject-with icmp-port-unreachable"
+    command "iptables --insert DOCKER-USER --in-interface docker+ --destination 10.0.0.0/8 --jump REJECT  --reject-with icmp-port-unreachable"
   end
 
   execute "reject connections to instance metadata" do
-    command "iptables --append DOCKER-USER --in-interface docker+ --destination 169.254.169.254/32 --jump REJECT  --reject-with icmp-port-unreachable"
+    command "iptables --insert DOCKER-USER --in-interface docker+ --destination 169.254.169.254/32 --jump REJECT  --reject-with icmp-port-unreachable"
+  end
+
+  execute "allow access to AWS DNS server" do
+    command "iptables --insert DOCKER-USER --in-interface docker+ --destination 10.0.0.2/32 --jump ACCEPT"
+  end
+
+  execute "allow access to Redshift Subnet 1" do
+    command "iptables --insert DOCKER-USER --in-interface docker+ --destination 10.0.151.0/24 --jump ACCEPT"
+  end
+
+  execute "allow access to Redshift Subnet 2" do
+    command "iptables --insert DOCKER-USER --in-interface docker+ --destination 10.0.150.0/24 --jump ACCEPT"
+  end
+
+  execute "allow access to subnet NetHost_VPN_1a" do
+    command "iptables --insert DOCKER-USER --in-interface docker+ --destination 10.0.222.0/24  --jump ACCEPT"
+  end
+
+  execute "allow access to VPN VPC subnet" do
+    command "iptables --insert DOCKER-USER --in-interface docker+ --destination 10.2.0.0/24  --jump ACCEPT"
   end
 
   execute "save iptables" do
