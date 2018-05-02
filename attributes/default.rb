@@ -103,11 +103,6 @@ default['keboola-syrup']['components'] = [
         repository_name: "zendesk-extractor-bundle"
     },
     {
-        id: "pigeon",
-        repository_name: "mailimport-bundle",
-        bundle_install: false
-    },
-    {
         id: "restbox",
         repository_name: "restbox-bundle",
         source: "github"        
