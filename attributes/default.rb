@@ -113,11 +113,6 @@ default['keboola-syrup']['components'] = [
         repository_name: "timeout-bundle"
     },
     {
-      id: "ex-magento",
-      repository_name: "magento-extractor-bundle",
-      source: "github"
-    },
-    {
         id: "queue",
         repository_name: "syrup-queue",
         source: "github",
