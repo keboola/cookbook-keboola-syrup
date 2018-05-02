@@ -72,11 +72,6 @@ default['keboola-syrup']['components'] = [
       source: "github"
     },
     {
-      id: "ex-fb-ads",
-      repository_name: "facebookads-extractor-bundle",
-      source: "github"
-    },
-    {
         id: "table-importer",
         repository_name: "sapi-table-importer",
         source: "github"
@@ -116,11 +111,6 @@ default['keboola-syrup']['components'] = [
     {
         id: "timeout",
         repository_name: "timeout-bundle"
-    },
-    {
-      id: "ex-magento",
-      repository_name: "magento-extractor-bundle",
-      source: "github"
     },
     {
         id: "queue",
