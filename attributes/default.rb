@@ -72,11 +72,6 @@ default['keboola-syrup']['components'] = [
       source: "github"
     },
     {
-      id: "ex-fb-ads",
-      repository_name: "facebookads-extractor-bundle",
-      source: "github"
-    },
-    {
         id: "table-importer",
         repository_name: "sapi-table-importer",
         source: "github"
