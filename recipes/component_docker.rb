@@ -16,50 +16,64 @@ if node['keboola-syrup']['docker']['install_docker'].to_i  > 0
  end
 
 
-  ## Device mapper - steps from https://docs.docker.com/engine/userguide/storagedriver/device-mapper-driver/
-  execute "Create an LVM physical volume (PV)" do
-    command "pvcreate #{node['keboola-syrup']['docker']['data_device']}"
+  if node['keboola-syrup']['docker']['storage_driver'] == 'devicemapper'
+    ## Device mapper - steps from https://docs.docker.com/engine/userguide/storagedriver/device-mapper-driver/
+    execute "Create an LVM physical volume (PV)" do
+      command "pvcreate #{node['keboola-syrup']['docker']['data_device']}"
+    end
+
+    execute "Create a new volume group (VG) " do
+      command "vgcreate docker  #{node['keboola-syrup']['docker']['data_device']}"
+    end
+
+    execute "Create a new 90GB logical volume (LV) called data " do
+      command "lvcreate --wipesignatures y -n thinpool docker -l 95%VG"
+    end
+
+    execute "Create a new logical volume (LV) called metadata" do
+      command "lvcreate --wipesignatures y -n thinpoolmeta docker -l 1%VG"
+    end
+
+    execute "Convert the pool to a thin pool." do
+      command "lvconvert -y --zero n -c 512K --thinpool docker/thinpool --poolmetadata docker/thinpoolmeta"
+    end
+
+    cookbook_file "/etc/lvm/profile/docker-thinpool.profile" do
+      source "docker-thinpool.profile"
+      mode "0600"
+      owner "root"
+      group "root"
+    end
+
+    execute "Apply your new lvm profile" do
+      command "lvchange --metadataprofile docker-thinpool docker/thinpool"
+    end
+
+    directory '/etc/docker' do
+      owner 'root'
+      group 'root'
+      mode '0755'
+      action :create
+    end
+
+    cookbook_file "/etc/docker/daemon.json" do
+      source "docker-daemon-devicemapper.json"
+      mode "0600"
+      owner "root"
+      group "root"
+    end
+
   end
 
-  execute "Create a new volume group (VG) " do
-    command "vgcreate docker  #{node['keboola-syrup']['docker']['data_device']}"
-  end
-
-  execute "Create a new 90GB logical volume (LV) called data " do
-    command "lvcreate --wipesignatures y -n thinpool docker -l 95%VG"
-  end
-
-  execute "Create a new logical volume (LV) called metadata" do
-    command "lvcreate --wipesignatures y -n thinpoolmeta docker -l 1%VG"
-  end
-
-  execute "Convert the pool to a thin pool." do
-    command "lvconvert -y --zero n -c 512K --thinpool docker/thinpool --poolmetadata docker/thinpoolmeta"
-  end
-
-  cookbook_file "/etc/lvm/profile/docker-thinpool.profile" do
-    source "docker-thinpool.profile"
-    mode "0600"
-    owner "root"
-    group "root"
-  end
-
-  execute "Apply your new lvm profile" do
-    command "lvchange --metadataprofile docker-thinpool docker/thinpool"
-  end
-
-  directory '/etc/docker' do
-    owner 'root'
-    group 'root'
-    mode '0755'
-    action :create
-  end
-
-  cookbook_file "/etc/docker/daemon.json" do
-    source "docker-daemon.json"
-    mode "0600"
-    owner "root"
-    group "root"
+  if node['keboola-syrup']['docker']['storage_driver'] == 'overlay2'
+    ## overlay2 https://github.com/keboola/docker-bundle/issues/198
+    cookbook_file "/etc/docker/daemon.json" do
+      source "docker-daemon-overlay2.json"
+      mode "0600"
+      owner "root"
+      group "root"
+    end
+    
   end
 
   service "docker" do
