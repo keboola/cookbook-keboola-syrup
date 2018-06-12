@@ -47,6 +47,7 @@ default['keboola-syrup']['docker']['data_device'] = "/dev/md1"
 default['keboola-syrup']['docker']['install_docker'] = 0
 default['keboola-syrup']['docker']['container_stats_queue']['url'] = 'https://sqs.us-east-1.amazonaws.com/147946154733/syrup-container-stats'
 default['keboola-syrup']['docker']['container_stats_queue']['region'] = 'us-east-1'
+default['keboola-syrup']['docker']['storage_driver'] = 'devicemapper'
 
 # Provisioning attributes
 default['keboola-syrup']['provisioning']['workers_count'] = 0
@@ -100,7 +101,7 @@ default['keboola-syrup']['components'] = [
     {
         id: "restbox",
         repository_name: "restbox-bundle",
-        source: "github"        
+        source: "github"
     },
     {
         id: "rt-lucky-guess",
