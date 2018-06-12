@@ -15,6 +15,13 @@ if node['keboola-syrup']['docker']['install_docker'].to_i  > 0
     group "root"
  end
 
+ directory '/etc/docker' do
+   owner 'root'
+   group 'root'
+   mode '0755'
+   action :create
+ end
+
 
   if node['keboola-syrup']['docker']['storage_driver'] == 'devicemapper'
     ## Device mapper - steps from https://docs.docker.com/engine/userguide/storagedriver/device-mapper-driver/
@@ -47,13 +54,6 @@ if node['keboola-syrup']['docker']['install_docker'].to_i  > 0
 
     execute "Apply your new lvm profile" do
       command "lvchange --metadataprofile docker-thinpool docker/thinpool"
-    end
-
-    directory '/etc/docker' do
-      owner 'root'
-      group 'root'
-      mode '0755'
-      action :create
     end
 
     cookbook_file "/etc/docker/daemon.json" do
