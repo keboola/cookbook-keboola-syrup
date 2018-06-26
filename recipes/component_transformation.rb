@@ -18,7 +18,7 @@ execute "install php56-odbc" do
 end
 
 execute "download snowflake drivers" do
-  command "aws s3 cp s3://#{node['keboola-syrup']['configs-bucket']}/drivers/snowflake/snowflake_linux_x8664_odbc-2.13.13.tgz /tmp/snowflake_linux_x8664_odbc.tgz --region #{node['aws']['region']}"
+  command "aws s3 cp s3://#{node['keboola-syrup']['configs-bucket']}/drivers/snowflake/snowflake_linux_x8664_odbc-2.16.3.tgz /tmp/snowflake_linux_x8664_odbc.tgz --region #{node['aws']['region']}"
   environment(
    'AWS_ACCESS_KEY_ID' => node['aws']['aws_access_key_id'],
    'AWS_SECRET_ACCESS_KEY' => node['aws']['aws_secret_access_key']
@@ -45,22 +45,11 @@ cookbook_file "/etc/odbcinst.ini" do
   group "root"
 end
 
-cookbook_file "/etc/simba.snowflake.ini" do
+cookbook_file "/usr/bin/snowflake_odbc/lib/simba.snowflake.ini" do
   source "simba.snowflake.ini"
   mode "0644"
   owner "root"
   group "root"
 end
 
-execute "append SIMBAINI variable to profile" do
-  command "echo \"export SIMBAINI=/etc/simba.snowflake.ini\" >> /etc/profile"
-end
-
-execute "append LD_LIBRARY_PATH variable to profile" do
-  command "echo \"export LD_LIBRARY_PATH=/usr/bin/snowflake_odbc/lib\" >> /etc/profile"
-end
-
-execute "append SSL_DIR variable to profile" do
-  command "echo \"export SSL_DIR=/usr/bin/snowflake_odbc/SSLCertificates/nssdb\" >> /etc/profile"
-end
 
