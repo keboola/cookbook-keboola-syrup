@@ -49,3 +49,11 @@ while $i <= $num  do
     end
     $i +=1
 end
+
+cron "queue snapshot elastic" do
+    user "deploy"
+    hour "21,09"
+    minute "23"
+    command "/www/syrup-router/components/queue/current/vendor/keboola/syrup/app/console syrup:queue:elastic-snapshot 2>&1 | /usr/bin/logger -t 'cron_elastic_snapshot' -p local1.info"
+    action action
+end
