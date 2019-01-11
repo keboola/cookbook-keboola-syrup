@@ -90,28 +90,10 @@ default['keboola-syrup']['components'] = [
         source: "github"
     },
     {
-        id: "ex-youtube",
-        repository_name: "youtube-extractor-bundle",
-        source: "github"
-    },
-    {
-        id: "ex-zendesk",
-        repository_name: "zendesk-extractor-bundle"
-    },
-    {
-        id: "restbox",
-        repository_name: "restbox-bundle",
-        source: "github"
-    },
-    {
         id: "rt-lucky-guess",
         repository_name: "luckyguess-bundle",
         source: "github",
         bundle_install: false
-    },
-    {
-        id: "timeout",
-        repository_name: "timeout-bundle"
     },
     {
         id: "queue",
