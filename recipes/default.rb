@@ -158,3 +158,19 @@ web_app "syrup.keboola.com" do
   server_aliases [node['hostname'], 'syrup.keboola.com']
   enable true
 end
+
+execute "set dirty_background_bytes to 128m" do
+  command "sysctl -w vm.dirty_background_bytes=134217728"
+end
+
+execute "set dirty_background_ratio to 0" do
+  command "sysctl -w vm.dirty_background_ratio=0"
+end
+
+execute "set dirty_bytes to 256m" do
+  command "sysctl -w vm.dirty_background_bytes=268435456"
+end
+
+execute "set dirty_ratio to 0" do
+  command "sysctl -w vm.dirty_ratio=0"
+end
