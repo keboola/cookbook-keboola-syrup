@@ -68,34 +68,6 @@ default['keboola-syrup']['components'] = [
       has_recipe: true
     },
     {
-      id: "wr-google-drive",
-      repository_name: "google-drive-writer-bundle",
-      source: "github"
-    },
-    {
-        id: "table-importer",
-        repository_name: "sapi-table-importer",
-        source: "github"
-    },
-    {
-        id: "ex-salesforce",
-        repository_name: "ex-salesforce",
-        source: "github",
-        has_recipe: true
-    },
-    {
-        id: "ag-forecastio",
-        repository_name: "forecastio-augmentation",
-        bundle_install: false,
-        source: "github"
-    },
-    {
-        id: "rt-lucky-guess",
-        repository_name: "luckyguess-bundle",
-        source: "github",
-        bundle_install: false
-    },
-    {
         id: "queue",
         repository_name: "syrup-queue",
         source: "github",
