@@ -5,8 +5,8 @@ DEPENDENCIES
     tag: 0.3.15
   keboola-common
     git: git://github.com/keboola/cookbook-keboola-common.git
-    revision: 4fba40845e89b036d027ae26635b8a82fd410142
-    tag: 0.2.7
+    revision: 473df2fbc04c7bfef64e61e8432b3ad6b3d6e507
+    tag: 0.2.8
   keboola-php56
     git: git://github.com/keboola/cookbook-keboola-php56.git
     revision: ed09c4a8808696c83a7a9ddb686e13a65467e790
@@ -35,7 +35,7 @@ GRAPH
   keboola-apache2 (0.3.15)
     apache2 (~> 2.0.0)
     aws (~> 2.4.0)
-  keboola-common (0.2.6)
+  keboola-common (0.2.8)
     hostname (~> 0.3.0)
     monit (= 0.7.5)
     newrelic (~> 2.0.0)
