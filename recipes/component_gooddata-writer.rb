@@ -12,10 +12,3 @@ cron "gooddata writer clean" do
   command "/www/syrup-router/components/gooddata-writer/current/vendor/keboola/syrup/app/console gooddata-writer:clean-gooddata >/dev/null 2>&1"
   action action
 end
-
-cron "gooddata writer process-invitations" do
-  user "deploy"
-  minute "*/5"
-  command "cd /www/syrup-router/components/gooddata-writer/current; php vendor/keboola/syrup/app/console gooddata-writer:process-invitations >/dev/null 2>&1"
-  action action
-end
