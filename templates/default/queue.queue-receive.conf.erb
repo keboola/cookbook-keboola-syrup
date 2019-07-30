@@ -1,4 +1,10 @@
 instance ${QUEUE}-${N}
 respawn
+pre-start script
+  if [ -f /home/deploy/drain-instance ]; then
+   stop
+   exit 0
+  fi
+end script
 env LANG=en_US.UTF-8
 exec su -s /bin/sh -c 'exec "$0" "$@"' deploy --  php /www/syrup-router/components/queue/current/vendor/keboola/syrup/app/console syrup:queue:receive $QUEUE $N
