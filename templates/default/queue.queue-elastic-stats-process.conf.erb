@@ -1,3 +1,0 @@
-instance elastic-stats-${N}
-respawn
-exec su -s /bin/sh -c 'exec "$0" "$@"' deploy --  php /www/syrup-router/components/queue/current/vendor/keboola/syrup/app/console syrup:queue:metrics-process-elastic-stats
